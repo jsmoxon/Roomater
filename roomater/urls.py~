@@ -7,7 +7,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'frontend.views.home'),                       
-    url(r'^temp', direct_to_template, {'template': 'home.html'}),
+    url(r'^survey', direct_to_template, {'template': 'survey.html'}),
+    url(r'^location', direct_to_template, {'template': 'location.html'}),
     # Examples:
     # url(r'^$', 'roomater.views.home', name='home'),
     # url(r'^roomater/', include('roomater.foo.urls')),
