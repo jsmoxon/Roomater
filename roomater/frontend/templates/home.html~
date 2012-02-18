@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+        <!-- Basic Page Needs                                                                              \
+                                                                                                            
+  ================================================== -->
+        <meta charset="utf-8">
+        <title>Roomater - Find Roomates</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!--[if lt IE 9]>                                                                                  \
+                                                                                                            
+                <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>                 \
+                                                                                                            
+        <![endif]-->
+
+        <!-- Mobile Specific Metas                                                                         \
+                                                                                                            
+  ================================================== -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <!-- CSS                                                                                           \
+                                                                                                            
+  ================================================== -->
+        <link rel="stylesheet" href="{% get_static_prefix %}css/base.css">
+        <link rel="stylesheet" href="{% get_static_prefix %}css/skeleton.css">
+        <link rel="stylesheet" href="{% get_static_prefix %}css/layout.css">
+        <link rel="stylesheet" href="{% get_static_prefix %}css/style.css">
+        <style type="text/css">
+         body {background-image:url("{% get_static_prefix %}images/fabric_plaid.png")}
+        </style>
+
+        <!-- Javascript                                                                                    \
+                                                                                                            
+        ================================================== -->
+</head>
+<body>
+<div class="container">
+  <div id="header" class="sixteen columns">
+    <p>brought to you by Jack Moxon</p>
+  </div><!--closes header-->
+
+  <div id="main" class="sixteen columns">
+    <div id="logo">
+      <img src="{% get_static_prefix %}images/logo.png" width=50%/>
+    </div><!--closes logo-->
+    <div id="tagline">
+      <h3>Find roommates that fit your lifestyle.</h3>
+      <h5>Try our new free roommate matching service today!</h5>
+      <div id="buttons_x">
+	<a href="/survey/"><button class="signupbutton">List Apartment</button></a>
+	<a href="/survey/"><button class="myButton">Find Roomates</button></a>
+      </div><!--closes buttons-->
+    </div><!--closes tagline-->
+    <div id="features" class="fourteen columns offset-by-one">
+      <div class="featurebox">
+	<h5>Easy!</h5>
+	<p>Signing up is as easy as completing a quick photo based survey about your apartment and lifestyle needs.</p>
+      </div>
+      <div class="featurebox">
+	<h5>Free!</h5>
+	<p>It doesn't cost a thing.</p>
+      </div>
+      <div class="featurebox">
+	<h5>Customized!</h5>
+	<p>Messy? A slob? Need quiet at night? Like to party? Roommater will find your perfect match.</p>
+      </div>
+
+    </div><!--closes features-->
+
+  </div><!--closes main-->
+
+  <div id="footer" class="sixteen columns">
+    <ul class="footerlinks">
+      <li><a href="/">About</a></li>
+      <li><a href="/">Contact</a></li>
+      <li><a href="/">Careers</a></li>
+      <li><a href="/">Terms & Conditions</a></li>
+    </ul>
+  </div><!--closes footer-->
+</div><!--closes container-->
+</body>

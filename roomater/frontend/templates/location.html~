@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page %}
+<div class="container">
+  <div id="header" class="sixteen columns">
+    <a href="/"><img src="{% get_static_prefix %}images/logo.png" width=50%/></a>
+  </div><!--closes header-->
+  
+  <div id="main">
+    <div id="map">
+      <iframe width="600" height="475" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=san+francisco+ca&amp;aq=&amp;sll=37.775464,-122.439365&amp;sspn=0.086702,0.15295&amp;gl=us&amp;ie=UTF8&amp;hq=&amp;hnear=San+Francisco,+California&amp;ll=37.77493,-122.419416&amp;spn=0.086711,0.15295&amp;t=m&amp;z=13&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=san+francisco+ca&amp;aq=&amp;sll=37.775464,-122.439365&amp;sspn=0.086702,0.15295&amp;gl=us&amp;ie=UTF8&amp;hq=&amp;hnear=San+Francisco,+California&amp;ll=37.77493,-122.419416&amp;spn=0.086711,0.15295&amp;t=m&amp;z=13" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+    </div><!--closes map-->
+    <div id="location_info">
+      <h4>Choose a location</h4>
+      <form>
+	<select>
+	  <option>Nopa</option>
+          <option>The Mission</option>
+          <option>The Richmond</option>
+          <option>The Maestro</option>
+	</select>
+      </form>
+    </div><!--closes location_info-->
+  </div><!--closes main-->
+  <a href="/location/"><button class="myButton submit">Submit</button></a>
+
+  <div id="footer" class="sixteen columns">
+    <ul class="footerlinks">
+      <li><a href="/">About</a></li>
+      <li><a href="/">Contact</a></li>
+      <li><a href="/">Careers</a></li>
+      <li><a href="/">Terms & Conditions</a></li>
+    </ul>
+  </div><!--closes footer-->
+</div><!--closes container-->
+
+
+
+{% endblock page%}
