@@ -1,0 +1,16 @@
+<h1>Survey</h1>
+
+<h2>{{s.name}}</h2>
+
+<form action="/submit/" method="post">
+{% for b in q %}
+  <h3>{{b.text}}</h3>
+  <input type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}" />
+  <input type="hidden" name="{% cycle 'row1' 'row2' 'row3' 'row4' 'row5' 'row6' 'row7' 'row8' 'row9' 'row10'%}" value="{{b.text}}" />
+  <input type="hidden" name="number" value="2"2 />
+{% endfor %}
+  <input type="submit" value="Submit!" />
+</form>
+
+
+

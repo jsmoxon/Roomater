@@ -4,14 +4,24 @@ text-decoration: none;
 
 /* Landing Page*/
 #footer {
-background:black;
-margin-top:100px;
+background:#1C1C1C;
+height:200px;
+}
+
+#above_footer {
+background: #5FAADF;
+height:50px;
+margin-top:50px;
+}
+
+#above_footer h4 {
+margin-left:200px;
 }
 
 .footerlinks a, .footerlinks a:visited {
 text-decoration:none;
 color:white;
-padding:1em;
+margin-left:200px;
 }
 
 .footerlinks a:hover {color:grey;}

@@ -1,0 +1,29 @@
+from django.db import models
+from django.contrib.auth.models import User, Permission, Group
+
+class Survey(models.Model):
+    surveyor = models.ForeignKey(User)
+    name = models.CharField(max_length=200)
+    q1 = models.ForeignKey(Question)
+    q2 = models.ForeignKey(Question)
+    q3 = models.ForeignKey(Question)
+    q4 = models.ForeignKey(Question)
+    q5 = models.ForeignKey(Question)
+    def __unicode__(self):
+        return str(self.surveyor)+" "+str(self.name)
+        
+class Question(models.Model):
+    survey = models.ForeignKey(Survey)
+    questioner = models.ForeignKey(User)
+    text = models.TextField(null=True, blank=True)
+    def __unicode__(self):
+        return str(self.survey)+" "+str(self.questioner)+" "+str( self.text)
+
+
+class Response(models.Model):
+    responder = models.ForeignKey(User)
+    question = models.ForeignKey(Question)
+    text = models.TextField(null=True, blank=True)
+    def __unicode__(self):
+        return str(self.responder)+" "+str(self.question)+" "+str( self.text)
+

@@ -1,0 +1,17 @@
+from django.db import models
+from django.contrib.auth.models import User, Permission, Group
+
+class Question:
+    user
+    responses
+
+class Response:
+    user
+    text
+
+class Survey:
+    user
+    name
+    
+
+

@@ -1,0 +1,14 @@
+<head>
+<style type="text/css">
+.red {background:red;}
+.blue {background:blue;}
+</style>
+</head>
+<body>
+
+
+<h1>{{u}}</h1>
+
+{% for a in r %}
+<li>{{a.question}} -- {{a.text}}</li>
+{% endfor %}

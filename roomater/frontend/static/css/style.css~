@@ -27,7 +27,7 @@ margin-top:100px;
 .featurebox {
 float:left;
 text-align:center;
-min-height:130px;
+min-height:150px;
 width:200px;
 margin-left:30px;
 margin-top:10px;

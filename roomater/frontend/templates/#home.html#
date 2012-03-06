@@ -80,7 +80,9 @@
   </div><!--closes main-->
 
 </div><!--closes container-->
- 
+  <div id="above_footer" class="">
+    <h4>Check us out on Faceebok</h4>
+  </div>
   <div id="footer" class="">
     <ul class="footerlinks">
       <li><a href="/">About</a></li>
@@ -88,6 +90,5 @@
       <li><a href="/">Careers</a></li>
       <li><a href="/">Terms & Conditions</a></li>
     </ul>
-
   </div><!--closes footer-->
 </body>
