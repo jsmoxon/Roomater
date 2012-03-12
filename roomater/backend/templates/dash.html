@@ -1,4 +1,6 @@
+{% extends "la.html" %}
 {% load static %}
+{% block page %}
 <h1>{{profile.nickname}}'s Dashboard</h1>
 
 <img src="{% get_media_prefix%}{{pic}}"/>
@@ -38,3 +40,4 @@
 <h4>You need to create a survey</h4>
 
 {% endif %}
+{% endblock page%}

@@ -38,10 +38,6 @@ def log_view(request):
     else:
         return HttpResponse('Roomater is in private beta; please check again later.')
 
-def logout_action(request):
-    logout(request)
-    return render_to_response('logged_out.html')
-
 #submit a profile
 @csrf_exempt
 def create_profile(request):
