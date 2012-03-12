@@ -1,7 +1,10 @@
 from django.shortcuts import render_to_response, get_object_or_404, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from models import *
+from forms import ResponseForm
 from django.contrib.auth.models import User, Permission, Group
+from django.views.generic.edit import CreateView
+
 
 def index(request, entry_id):
     list = ResponseList.objects.filter(survey__id=entry_id)
@@ -13,9 +16,22 @@ def display_survey(request, entry_id):
     question = s.questions.all()
     return render_to_response('real_survey.html', {'s':s, 'question':question})
 
+class AddResponseView(CreateView):
+    form_class = ResponseForm
+    template_name = "create.html"
+    success_url = "/index/1/"
+    def get_form(self, form_class):
+        form = super(AddResponseView, self).get_form(form_class)
+        form.instance.person = self.request.user
+        return form
+
 #submits a survey     
 @csrf_exempt
-def submit_survey(request):
+def submit_survey(request, entry_id):
+    list = ResponseList()
+    list.survey = Survey.objects.get(pk=entry_id)
+    list.name = request.user.username +" "+ str(list.survey)
+    list.save()
     i = 1
     while i<11:
         try:
@@ -25,7 +41,10 @@ def submit_survey(request):
             new.save()
             new.text = str(request.POST['r'+str(i)])
             new.save()
+            list.responses.add(new)
+            list.save()
         except:
             pass
         i+=1
+    
     return HttpResponse("Thanks!")

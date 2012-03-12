@@ -3,10 +3,12 @@
 <h2>{{s}}</h2>
 
 
-<form action="" method="post">
+<form action="/submit/{{s.id}}/" method="post">
+  {% csrf_token %}
 {% for q in question %}
   <h3>{{q.text}}</h3>
-  <input type="text" />
+  <input type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}" />
+  <input type="hidden" name="{% cycle 'row1' 'row2' 'row3' 'row4' 'row5' 'row6' 'row7' 'row8' 'row9' 'row10'%}" value="{{q.text}}" />
 {% endfor %}
   <br/>
   <input type="submit" value="Submit!" />
