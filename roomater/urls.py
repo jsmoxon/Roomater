@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^location', direct_to_template, {'template': 'location.html'}),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^index', 'backend.views.index'),
+    url(r'^index/(?P<entry_id>\d+)/$', 'backend.views.index'),
     url(r'^real_survey/(?P<entry_id>\d+)/$', 'backend.views.display_survey'),
     url(r'^submit', 'backend.views.submit_survey'),                       
 )

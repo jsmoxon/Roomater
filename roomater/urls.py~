@@ -13,7 +13,6 @@ urlpatterns = patterns('',
     url(r'^index', 'backend.views.index'),
     url(r'^real_survey/(?P<entry_id>\d+)/$', 'backend.views.display_survey'),
     url(r'^submit', 'backend.views.submit_survey'),                       
-    url(r'^formstudy/', include('formstudy.urls')),
 )
 
 urlpatterns += patterns('django.contrib.staticfiles.views',

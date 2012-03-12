@@ -3,25 +3,15 @@ from django.views.decorators.csrf import csrf_exempt
 from models import *
 from django.contrib.auth.models import User, Permission, Group
 
-def index(request):
-    s = get_object_or_404(Survey, pk=1)
-    q = s.question_set.all()
-    r = Response.objects.filter(question__in=q)
-    responders = Response.objects.filter(responder__in=q)
-    u = User.objects.all()
-#missing chunk! needs another model i think there is a survey, then a SurveyAnswerSet
-    return render_to_response('index.html', {'s':s,'q':q,'r':r, 'responders':responders, 'u':u})
-
-#create a survey
-#def create_survey(request):
-    
+def index(request, entry_id):
+    list = ResponseList.objects.filter(survey__id=entry_id)
+    return render_to_response('index.html', {'list':list})    
 
 #displays a survey
 def display_survey(request, entry_id):
     s = get_object_or_404(Survey, pk=entry_id)
-    q = s.question_set.all()
-    r = "la"
-    return render_to_response('real_survey.html', {'s':s,'q':q,'r':r})
+    question = s.questions.all()
+    return render_to_response('real_survey.html', {'s':s, 'question':question})
 
 #submits a survey     
 @csrf_exempt
