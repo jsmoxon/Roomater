@@ -5,13 +5,21 @@ from forms import ResponseForm
 from django.contrib.auth.models import User, Permission, Group
 from django.views.generic.edit import CreateView
 
+def dash(request):
+    user_profile = request.user.get_profile()
+    pic = user_profile.pic
+    return render_to_response('dash.html', {'pic':pic, 'profile':user_profile})
+
+
 
 def index(request, entry_id):
     list = ResponseList.objects.filter(survey__id=entry_id)
     return render_to_response('index.html', {'list':list})    
 
 def create_survey(request):
-    return render_to_response('create_survey.html')
+    user_profile = request.user.get_profile()
+    pic = user_profile.pic
+    return render_to_response('create_survey.html', {'pic':pic})
 
 @csrf_exempt
 def submit_create_survey(request):
@@ -31,7 +39,7 @@ def submit_create_survey(request):
         except:
             pass
         i+=1
-    return redirect('/index/4')
+    return redirect('index/1/')
 
 #displays a survey
 def display_survey(request, entry_id):
