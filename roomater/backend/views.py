@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, get_object_or_404, HttpResponse
+from django.shortcuts import render_to_response, get_object_or_404, HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
 from models import *
 from forms import ResponseForm
@@ -9,6 +9,29 @@ from django.views.generic.edit import CreateView
 def index(request, entry_id):
     list = ResponseList.objects.filter(survey__id=entry_id)
     return render_to_response('index.html', {'list':list})    
+
+def create_survey(request):
+    return render_to_response('create_survey.html')
+
+@csrf_exempt
+def submit_create_survey(request):
+    survey = Survey()
+    survey.name = request.user.username
+    survey.save()
+    i = 1
+    while i<6:
+        try:
+            q = Question()
+            q.questioner = request.user
+            q.save()
+            q.text = str(request.POST['q'+str(i)])
+            q.save()
+            survey.questions.add(q)
+            survey.save()
+        except:
+            pass
+        i+=1
+    return redirect('/index/4')
 
 #displays a survey
 def display_survey(request, entry_id):
