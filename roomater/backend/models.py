@@ -1,16 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User, Permission, Group
 
-class UserProfile(models.Model):
-    user = models.ForeignKey(User, unique=True)
-    nickname = models.CharField(max_length=200)
-    clean_score = models.IntegerField()
-    food_score = models.IntegerField()
-    about = models.TextField()
-    pic = models.ImageField(upload_to='profile_pics')
-    def __unicode__(self):
-        return str(self.user)
-
 class Question(models.Model):
     questioner = models.ForeignKey(User)
     text = models.TextField(null=True, blank=True)
@@ -36,3 +26,14 @@ class ResponseList(models.Model):
     responses = models.ManyToManyField(Response)
     def __unicode__(self):
         return str(self.name)
+
+class UserProfile(models.Model):
+    user = models.ForeignKey(User, unique=True)
+    survey = models.ForeignKey(Survey, on_delete=models.SET_NULL, blank=True, null=True)
+    nickname = models.CharField(max_length=200)
+    clean_score = models.IntegerField(blank=True)
+    food_score = models.IntegerField(blank=True)
+    about = models.TextField(blank=True)
+    pic = models.ImageField(upload_to='profile_pics', blank=True)
+    def __unicode__(self):
+        return str(self.user)

@@ -1,11 +1,21 @@
 {% load static %}
 <h1>{{profile.nickname}}'s Dashboard</h1>
-<img src="{% get_media_prefix%}{{pic}}"
+
+<img src="{% get_media_prefix%}{{pic}}"/>
+<h4>Paste this URL to show your survey to others: <a href="/backend/real_survey/{{profile.survey.id}}">here</a></h4>
 
 <ul>
   <li><a href="/backend/create_survey">Create a Survey</a></li>
-  <li><a href="/backend/index/1/">View Your Survey</a></li>
+  <li><a href="/backend/real_survey/{{profile.survey.id}}">View Your Survey</a></li>
   <li><a href="">Edit Profile</a></li>
-
-
 </ul>
+
+{% for response in responses %}
+<h1>{{response.responses.all.0.responder}}</h1>
+{% for res in response.responses.all %}
+<ul>
+  <h3>{{res.question.text}}</h3>
+  <li>{{res.text}}</li>
+</ul>
+{% endfor %}
+{% endfor %}

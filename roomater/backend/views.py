@@ -8,9 +8,11 @@ from django.views.generic.edit import CreateView
 def dash(request):
     user_profile = request.user.get_profile()
     pic = user_profile.pic
-    return render_to_response('dash.html', {'pic':pic, 'profile':user_profile})
-
-
+    try:
+        responses = ResponseList.objects.filter(survey__id=user_profile.survey.id)
+    except:
+        responses = "No Responses"
+    return render_to_response('dash.html', {'pic':pic, 'profile':user_profile, 'responses':responses})
 
 def index(request, entry_id):
     list = ResponseList.objects.filter(survey__id=entry_id)
@@ -39,6 +41,10 @@ def submit_create_survey(request):
         except:
             pass
         i+=1
+#adds survey to UserProfile
+    user_profile = request.user.get_profile()
+    user_profile.survey = Survey.objects.get(name=str(survey))
+    user_profile.save()
     return redirect('backend/dash/')
 
 #displays a survey
@@ -64,12 +70,18 @@ def submit_survey(request, entry_id):
     list.name = request.user.username +" "+ str(list.survey)
     list.save()
     i = 1
+    print "list made"
     while i<11:
+        print "loop start"
         try:
+            print "try start"
             new = Response()
+            print "new init"
             new.responder = request.user
+            print "responder added" 
             new.question = Question.objects.get(text=request.POST['row'+str(i)])
             new.save()
+            print "response started"
             new.text = str(request.POST['r'+str(i)])
             new.save()
             list.responses.add(new)
