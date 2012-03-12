@@ -8,7 +8,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'dash/', 'backend.views.dash'),
-    url(r'^index/(?P<entry_id>\d+)/$', 'backend.views.index'),
     url(r'^create_survey', 'backend.views.create_survey'),
     url(r'^submit_create_survey', 'backend.views.submit_create_survey'),
     url(r'^real_survey/(?P<entry_id>\d+)/$', 'backend.views.display_survey'),

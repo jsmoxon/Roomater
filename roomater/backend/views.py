@@ -14,10 +14,6 @@ def dash(request):
         responses = "No Responses"
     return render_to_response('dash.html', {'pic':pic, 'profile':user_profile, 'responses':responses})
 
-def index(request, entry_id):
-    list = ResponseList.objects.filter(survey__id=entry_id)
-    return render_to_response('index.html', {'list':list})    
-
 def create_survey(request):
     user_profile = request.user.get_profile()
     pic = user_profile.pic
@@ -52,15 +48,6 @@ def display_survey(request, entry_id):
     s = get_object_or_404(Survey, pk=entry_id)
     question = s.questions.all()
     return render_to_response('real_survey.html', {'s':s, 'question':question})
-
-class AddResponseView(CreateView):
-    form_class = ResponseForm
-    template_name = "create.html"
-    success_url = "/index/1/"
-    def get_form(self, form_class):
-        form = super(AddResponseView, self).get_form(form_class)
-        form.instance.person = self.request.user
-        return form
 
 #submits a survey     
 @csrf_exempt
