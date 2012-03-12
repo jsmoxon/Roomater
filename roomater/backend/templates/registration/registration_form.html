@@ -1,0 +1,12 @@
+<div id="registration_form">
+<h3>Registration Form</h3>
+            <form method="post" action=""
+                  class="passform">
+              {% csrf_token %}
+              {{form}}
+              <div class="submit">
+                <input type="submit" value="Register" class="submit_click">
+              </div>
+            </form>
+</div><!--closes registration_form div-->
+

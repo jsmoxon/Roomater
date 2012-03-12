@@ -5,14 +5,26 @@
 <h4>Paste this URL to show your survey to others: <a href="/backend/real_survey/{{profile.survey.id}}">here</a></h4>
 
 <ul>
-  <li><a href="/backend/create_survey">Create a Survey</a></li>
+{% if profile.survey %}
   <li><a href="/backend/real_survey/{{profile.survey.id}}">View Your Survey</a></li>
+{% else %}
+  <li><a href="/backend/create_survey">Create a Survey</a></li>
+{% endif %}
   <li><a href="">Edit Profile</a></li>
+  <li><a href="/accounts/logout/">Logout</a></li>
+
 </ul>
 
+{% if profile.survey %}
 {% for response in responses %}
 <h1>{{response.responder}}</h1>
 <img src="{% get_media_prefix%}{{response.responder.pic}}" />
+<h3>Profile Stuff</h3>
+<li>{{response.responder.clean_score}}</li>
+<li>{{response.responder.about}}</li>
+<li>{{response.responder.food_score}}</li>
+
+
 {% for res in response.responses.all %}
 <ul>
   <h3>{{res.question.text}}</h3>
@@ -20,3 +32,9 @@
 </ul>
 {% endfor %}
 {% endfor %}
+
+{% else %}
+
+<h4>You need to create a survey</h4>
+
+{% endif %}

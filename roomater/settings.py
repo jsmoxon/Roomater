@@ -1,5 +1,7 @@
 # Django settings for roomater project.
 
+from constants import *
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -148,3 +150,5 @@ LOGGING = {
         },
     }
 }
+
+ACCOUNT_ACTIVATION_DAYS = 7

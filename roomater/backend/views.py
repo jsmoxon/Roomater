@@ -2,11 +2,17 @@ from django.shortcuts import render_to_response, get_object_or_404, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from models import *
 from forms import ResponseForm
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Permission, Group
 from django.views.generic.edit import CreateView
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def dash(request):
-    user_profile = request.user.get_profile()
+    try:
+        user_profile = request.user.get_profile()
+    except:
+        return render_to_response('profile_create.html')
     pic = user_profile.pic
     try:
         responses = ResponseList.objects.filter(survey__id=user_profile.survey.id)
@@ -14,6 +20,41 @@ def dash(request):
         responses = "No Responses"
     return render_to_response('dash.html', {'pic':pic, 'profile':user_profile, 'responses':responses})
 
+def log_view(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            try:
+                profile = request.user.get_profile()
+                return redirect('/backend/dash/')
+            except:
+#                UserProfile.objects.get_or_create(user=user)
+                return render_to_response('profile_create.html')
+        else:
+            return HttpResponse('Please submit a valid password')
+    else:
+        return HttpResponse('Roomater is in private beta; please check again later.')
+
+def logout_action(request):
+    logout(request)
+    return render_to_response('logged_out.html')
+
+#submit a profile
+@csrf_exempt
+def create_profile(request):
+    profile = UserProfile()
+    profile.user = request.user
+    profile.nickname = str(request.POST['nickname'])
+    profile.food_score = int(request.POST['food_score'])
+    profile.clean_score = int(request.POST['clean_score'])
+    profile.about = str(request.POST['about'])
+    profile.save()
+    return redirect('/backend/dash/')
+
+#creating surveys
 def create_survey(request):
     user_profile = request.user.get_profile()
     pic = user_profile.pic
@@ -41,9 +82,10 @@ def submit_create_survey(request):
     user_profile = request.user.get_profile()
     user_profile.survey = Survey.objects.get(name=str(survey))
     user_profile.save()
-    return redirect('backend/dash/')
+    return redirect('/backend/dash/')
 
 #displays a survey
+@login_required
 def display_survey(request, entry_id):
     s = get_object_or_404(Survey, pk=entry_id)
     question = s.questions.all()
@@ -79,4 +121,4 @@ def submit_survey(request, entry_id):
             pass
         i+=1
     
-    return HttpResponse("Thanks!")
+    return redirect('/backend/dash/')
