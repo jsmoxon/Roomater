@@ -3,7 +3,7 @@
 <h2>{{s}} -- {{s.id}}</h2>
 
 
-<form action="/submit/{{s.id}}/" method="post">
+<form action="/backend/submit/{{s.id}}/" method="post">
   {% csrf_token %}
 {% for q in question %}
   <h3>{{q.text}}</h3>

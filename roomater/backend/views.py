@@ -39,7 +39,7 @@ def submit_create_survey(request):
         except:
             pass
         i+=1
-    return redirect('index/1/')
+    return redirect('backend/dash/')
 
 #displays a survey
 def display_survey(request, entry_id):
