@@ -11,7 +11,8 @@
 </ul>
 
 {% for response in responses %}
-<h1>{{response.responses.all.0.responder}}</h1>
+<h1>{{response.responder}}</h1>
+<img src="{% get_media_prefix%}{{response.responder.pic}}" />
 {% for res in response.responses.all %}
 <ul>
   <h3>{{res.question.text}}</h3>

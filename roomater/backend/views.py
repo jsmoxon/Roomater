@@ -68,6 +68,8 @@ def submit_survey(request, entry_id):
     list = ResponseList()
     list.survey = Survey.objects.get(pk=entry_id)
     list.name = request.user.username +" "+ str(list.survey)
+    user_profile = request.user.get_profile()
+    list.responder = user_profile
     list.save()
     i = 1
     print "list made"
