@@ -1,6 +1,15 @@
 from django.forms import ModelForm
-from models import ResponseList, Response
+from models import ResponseList, Response, UserProfile
+from django import forms
 
-class ResponseForm(ModelForm):
+class ProfileForm(ModelForm):
     class Meta:
-        model = ResponseList
+        model = UserProfile
+        exclude = ('user', 'survey',)
+
+class PhotoForm(forms.Form):
+    pic = forms.ImageField(
+        label = "select a pic",
+        help_text = "png only!"
+    )
+

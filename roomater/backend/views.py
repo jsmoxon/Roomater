@@ -1,7 +1,8 @@
 from django.shortcuts import render_to_response, get_object_or_404, HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
 from models import *
-from forms import ResponseForm
+from forms import PhotoForm, ProfileForm
+from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Permission, Group
 from django.views.generic.edit import CreateView
@@ -32,23 +33,39 @@ def log_view(request):
                 return redirect('/backend/dash/')
             except:
 #                UserProfile.objects.get_or_create(user=user)
-                return render_to_response('profile_create.html')
+                return redirect('/backend/upload/')
         else:
             return HttpResponse('Please submit a valid password')
     else:
         return HttpResponse('Roomater is in private beta; please check again later.')
 
 #submit a profile
-@csrf_exempt
+
 def create_profile(request):
-    profile = UserProfile()
-    profile.user = request.user
-    profile.nickname = str(request.POST['nickname'])
-    profile.food_score = int(request.POST['food_score'])
-    profile.clean_score = int(request.POST['clean_score'])
-    profile.about = str(request.POST['about'])
-    profile.save()
-    return redirect('/backend/dash/')
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            newprofile = UserProfile(pic=request.FILES['pic'], user=request.user, 
+                                     nickname=request.POST['nickname'], clean_score=request.POST['clean_score'],
+                                     food_score = request.POST['food_score'])
+            newprofile.save()
+            return HttpResponse("new profile created!")
+    else:
+        form = ProfileForm()
+    return render_to_response('upload.html', {'form':form}, context_instance=RequestContext(request))
+
+@csrf_exempt
+def upload(request):
+    if request.method == 'POST':
+        form = PhotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            newphoto = Photo(pic=request.FILES['pic'])
+            newphoto.save()
+            return HttpResponse("uploaded!")
+    else: 
+        form = PhotoForm()
+    return render_to_response('upload.html', {'form':form}, context_instance=RequestContext(request))
+
 
 #creating surveys
 def create_survey(request):

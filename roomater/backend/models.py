@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User, Permission, Group
 
+class Photo(models.Model):
+    pic = models.ImageField(upload_to='profile_pics', blank=True)
+    def __unicode__(self):
+        return str(self.pic)
+
+
 class Question(models.Model):
     questioner = models.ForeignKey(User)
     text = models.TextField(null=True, blank=True)
