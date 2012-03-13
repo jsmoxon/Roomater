@@ -1,0 +1,6 @@
+Quick Start:
+
+1. Create Virtual Environment
+2. pip install > requirements.txt
+3. python manage.py syncdb
+4. find roommates!
