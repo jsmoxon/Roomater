@@ -3,7 +3,7 @@ Welcome to Roomater!
 You're almost there. 
 
 Please click the following link to activate your account:
-http://127.0.0.1:8000/accounts/activate/{{activation_key}}/
+http://growing-cloud-4552.herokuapp.com/accounts/activate/{{activation_key}}/
 
 You have {{expiration_days}} days to activate your account. 
 
