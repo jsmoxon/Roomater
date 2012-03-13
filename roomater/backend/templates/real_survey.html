@@ -1,6 +1,7 @@
-<h1>Survey</h1>
+{% extends "twitter_base.html" %}
+{% block page %}
 
-<h2>{{s}} -- {{s.id}}</h2>
+<h1>Survey by {{s}}</h1>
 
 
 <form action="/backend/submit/{{s.id}}/" method="post">
@@ -12,7 +13,6 @@
 {% endfor %}
   <br/>
   <input type="submit" value="Submit!" />
-</form>
-
-
+</form> 
+{% endblock page %}
 

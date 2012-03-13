@@ -8,6 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'home/', direct_to_template, {'template':'home_screen.html'}),                       
     url(r'^dash/', 'backend.views.dash'),
+    url(r'^surveys', 'backend.views.list_of_surveys'),
     url(r'^create_survey', 'backend.views.create_survey'),
     url(r'^upload', 'backend.views.create_profile', name='upload'),
     url(r'^submit_create_survey', 'backend.views.submit_create_survey'),

@@ -1,4 +1,4 @@
-{% extends "la.html" %}
+{% extends "twitter_base.html" %}
 {% load static %}
 {% block page %}
 <h1>{{profile.nickname}}'s Dashboard</h1>
@@ -12,7 +12,8 @@
 {% else %}
   <li><a href="/backend/create_survey">Create a Survey</a></li>
 {% endif %}
-  <li><a href="">Edit Profile</a></li>
+  <li><a href="/backend/surveys/">Search for Rooms</a></li>
+  <li><a href="">Edit Profile</a> (coming soon)</li>
   <li><a href="/accounts/logout/">Logout</a></li>
 
 </ul>

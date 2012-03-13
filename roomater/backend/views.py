@@ -39,33 +39,25 @@ def log_view(request):
     else:
         return HttpResponse('Roomater is in private beta; please check again later.')
 
-#submit a profile
+#search the site for surveys
 
+def list_of_surveys(request):
+    surveys = Survey.objects.all()
+    return render_to_response('survey_list.html', {'surveys':surveys})
+
+#create a profile
 def create_profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             newprofile = UserProfile(pic=request.FILES['pic'], user=request.user, 
                                      nickname=request.POST['nickname'], clean_score=request.POST['clean_score'],
-                                     food_score = request.POST['food_score'])
+                                     food_score = request.POST['food_score'], about=request.POST['about'])
             newprofile.save()
-            return HttpResponse("new profile created!")
+            return redirect('/backend/dash/')
     else:
         form = ProfileForm()
-    return render_to_response('upload.html', {'form':form}, context_instance=RequestContext(request))
-
-@csrf_exempt
-def upload(request):
-    if request.method == 'POST':
-        form = PhotoForm(request.POST, request.FILES)
-        if form.is_valid():
-            newphoto = Photo(pic=request.FILES['pic'])
-            newphoto.save()
-            return HttpResponse("uploaded!")
-    else: 
-        form = PhotoForm()
-    return render_to_response('upload.html', {'form':form}, context_instance=RequestContext(request))
-
+    return render_to_response('profile_create.html', {'form':form}, context_instance=RequestContext(request))
 
 #creating surveys
 def create_survey(request):
@@ -91,7 +83,7 @@ def submit_create_survey(request):
         except:
             pass
         i+=1
-#adds survey to UserProfile
+#adds survey to UserProfile, this may require a request context for security down the line
     user_profile = request.user.get_profile()
     user_profile.survey = Survey.objects.get(name=str(survey))
     user_profile.save()

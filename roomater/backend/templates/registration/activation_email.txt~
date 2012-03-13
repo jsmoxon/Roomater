@@ -1,9 +1,9 @@
-Welcome to Roomater! 
+Welcome to Remindr! 
 
 You're almost there. 
 
 Please click the following link to activate your account:
-http://127.0.0.1:8000/accounts/activate/{{activation_key}}/
+http://reminder.us/accounts/activate/{{activation_key}}/
 
 You have {{expiration_days}} days to activate your account. 
 
@@ -11,7 +11,7 @@ For reference your activation key is:
 
 {{activation_key}}
 
-Happy matching!
+Thanks! 
 
-The Roomater Team
+The Remindr Team
 

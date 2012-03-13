@@ -1,3 +1,7 @@
+{% extends "twitter_base.html" %}
+{% block page %}
+<h1>Login</h1>
+
 <form action="/log_view/" method="post">
 {% csrf_token %}
 <input type="text" name="username">Username</input>
@@ -5,4 +9,5 @@
 <input type="submit" value="Login" />
 </form>
 
+{% endblock page%}
 

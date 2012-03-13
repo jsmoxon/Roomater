@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{% get_static_prefix %}css/bootstrap.css">
+  <style type="text/css">
+    .horizontal li{display:inline; padding:1em;}
+  </style>
+</head>
+<body>
+<div class="container">
+
+{% block page %}
+
+{% endblock page%}
+<br/><br/><br/>
+<ul class="horizontal">
+  <li><a href="/accounts/register/">Register</a></li>
+  <li><a href="/backend/home/">Home</a></li>
+  <li><a href="/backend/dash/">Dashboard</a></li>
+  <li><a href="/backend/surveys/">Search for Rooms</a></li>
+  <li><a href="/accounts/login/">Login</a></li>
+  <li><a href="/accounts/logout/">Logout</a></li>
+
+
+
+</ul>
+</div>
+</body>
+
+</html>

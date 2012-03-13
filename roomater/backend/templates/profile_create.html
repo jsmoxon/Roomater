@@ -1,21 +1,10 @@
-<h1>Create Profile</h1>
-
-<form action="/backend/profile/create/" method="post">
-  {% csrf_token %}
-  <h4>Nickname</h4>
-  <input type="text" name="nickname"/>
-
-  <h4>Clean Score</h4>
-  <input type="text" name="clean_score"/>
-
-  <h4>Food_Score</h4>
-  <input type="text" name="food_score"/>
-
-  <h4>About</h4>
-  <input type="text" name="about"/>
-
-  <h4>Profile Picture</h4>
-  <input type="file" />
-
-  <input type="submit" value="Create Profile" />
+{% extends "twitter_base.html" %}
+{% block page %}
+<h1>Create a Profile</h1>
+<form action="{% url upload %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Upload" />
 </form>
+
+{% endblock page %}
