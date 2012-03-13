@@ -1,5 +1,7 @@
 # Django settings for roomater project.
 
+from constants import *
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 

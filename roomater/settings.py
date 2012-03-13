@@ -123,7 +123,7 @@ INSTALLED_APPS = (
     'backend',
     'registration',
     'south',
-#    'gunicorn',
+    'gunicorn',
     'django.contrib.admin',
     'django.contrib.admindocs',
 )
