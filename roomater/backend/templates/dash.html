@@ -5,7 +5,12 @@
 
 <img src="{% get_media_prefix%}{{pic}}" width=40%/>
 <br/>
-<h4>Paste this URL to show your survey to others: <a href="/backend/real_survey/{{profile.survey.id}}">http://127.0.0.1:8000:/backend/real_survey/{{profile.survey.id}}</a></h4>
+{% if profile.survey %}
+<h4>Paste this URL to show your survey to others: <a href="/backend/real_survey/{{profile.survey.id}}">http://growing-cloud-4552.herokuapp.com/backend/real_survey/{{profile.survey.id}}</a></h4>
+{% else %}
+<h4>Please <a href="/backend/create_survey/">create a survey</a></h4>
+{% endif %}
+
 <br/>
 <ul>
 <h4>options:</h4>
