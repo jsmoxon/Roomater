@@ -1,0 +1,11 @@
+{% extends "twitter_base.html" %}
+{% block page %}
+
+<h1>Available Rooms</h1>
+
+<ul>
+{% for survey in surveys %}
+<li><a href="/backend/real_survey/{{survey.id}}">{{survey.name}}</a></li>
+{% endfor %}
+</ul>
+{% endblock page %}

@@ -1,41 +1,129 @@
-from django.shortcuts import render_to_response, get_object_or_404, HttpResponse
+from django.shortcuts import render_to_response, get_object_or_404, HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
 from models import *
+from forms import PhotoForm, ProfileForm
+from django.template import RequestContext
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Permission, Group
+from django.views.generic.edit import CreateView
+from django.contrib.auth.decorators import login_required
 
-def index(request):
-    s = get_object_or_404(Survey, pk=1)
-    q = s.question_set.all()
-    r = Response.objects.filter(question__in=q)
-    responders = Response.objects.filter(responder__in=q)
-    u = User.objects.all()
-#missing chunk! needs another model i think there is a survey, then a SurveyAnswerSet
-    return render_to_response('index.html', {'s':s,'q':q,'r':r, 'responders':responders, 'u':u})
+@login_required
+def dash(request):
+    try:
+        user_profile = request.user.get_profile()
+    except:
+        return render_to_response('profile_create.html')
+    pic = user_profile.pic
+    try:
+        responses = ResponseList.objects.filter(survey__id=user_profile.survey.id)
+    except:
+        responses = "No Responses"
+    return render_to_response('dash.html', {'pic':pic, 'profile':user_profile, 'responses':responses})
 
-#create a survey
-#def create_survey(request):
-    
+def log_view(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            try:
+                profile = request.user.get_profile()
+                return redirect('/backend/dash/')
+            except:
+#                UserProfile.objects.get_or_create(user=user)
+                return redirect('/backend/upload/')
+        else:
+            return HttpResponse('Please submit a valid password')
+    else:
+        return HttpResponse('Roomater is in private beta; please check again later.')
 
-#displays a survey
-def display_survey(request, entry_id):
-    s = get_object_or_404(Survey, pk=entry_id)
-    q = s.question_set.all()
-    r = "la"
-    return render_to_response('real_survey.html', {'s':s,'q':q,'r':r})
+#search the site for surveys
 
-#submits a survey     
+def list_of_surveys(request):
+    surveys = Survey.objects.all()
+    return render_to_response('survey_list.html', {'surveys':surveys})
+
+#create a profile
+def create_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            newprofile = UserProfile(pic=request.FILES['pic'], user=request.user, 
+                                     nickname=request.POST['nickname'], clean_score=request.POST['clean_score'],
+                                     food_score = request.POST['food_score'], about=request.POST['about'])
+            newprofile.save()
+            return redirect('/backend/dash/')
+    else:
+        form = ProfileForm()
+    return render_to_response('profile_create.html', {'form':form}, context_instance=RequestContext(request))
+
+#creating surveys
+def create_survey(request):
+    user_profile = request.user.get_profile()
+    pic = user_profile.pic
+    return render_to_response('create_survey.html', {'pic':pic})
+
 @csrf_exempt
-def submit_survey(request):
+def submit_create_survey(request):
+    survey = Survey()
+    survey.name = request.user.username
+    survey.save()
     i = 1
-    while i<11:
+    while i<6:
         try:
-            new = Response()
-            new.responder = request.user
-            new.question = Question.objects.get(text=request.POST['row'+str(i)])
-            new.save()
-            new.text = str(request.POST['r'+str(i)])
-            new.save()
+            q = Question()
+            q.questioner = request.user
+            q.save()
+            q.text = str(request.POST['q'+str(i)])
+            q.save()
+            survey.questions.add(q)
+            survey.save()
         except:
             pass
         i+=1
-    return HttpResponse("Thanks!")
+#adds survey to UserProfile, this may require a request context for security down the line
+    user_profile = request.user.get_profile()
+    user_profile.survey = Survey.objects.get(name=str(survey))
+    user_profile.save()
+    return redirect('/backend/dash/')
+
+#displays a survey
+@login_required
+def display_survey(request, entry_id):
+    s = get_object_or_404(Survey, pk=entry_id)
+    question = s.questions.all()
+    return render_to_response('real_survey.html', {'s':s, 'question':question})
+
+#submits a survey     
+@csrf_exempt
+def submit_survey(request, entry_id):
+    list = ResponseList()
+    list.survey = Survey.objects.get(pk=entry_id)
+    list.name = request.user.username +" "+ str(list.survey)
+    user_profile = request.user.get_profile()
+    list.responder = user_profile
+    list.save()
+    i = 1
+    print "list made"
+    while i<11:
+        print "loop start"
+        try:
+            print "try start"
+            new = Response()
+            print "new init"
+            new.responder = request.user
+            print "responder added" 
+            new.question = Question.objects.get(text=request.POST['row'+str(i)])
+            new.save()
+            print "response started"
+            new.text = str(request.POST['r'+str(i)])
+            new.save()
+            list.responses.add(new)
+            list.save()
+        except:
+            pass
+        i+=1
+    
+    return redirect('/backend/dash/')

@@ -6,9 +6,16 @@
 </head>
 <body>
 
+<h1>Index</h1>
 
-<h1>{{u}}</h1>
+{% for item in list %}
+<h1>{{item.responses.all.0.responder}}</h1>
+{% for res in item.responses.all %}
+<ul>
+<h3 class="red">{{res.question.text}}</h3>
+<li>{{res.text}}</li>
+</ul>
 
-{% for a in r %}
-<li>{{a.question}} -- {{a.text}}</li>
 {% endfor %}
+{% endfor %}
+

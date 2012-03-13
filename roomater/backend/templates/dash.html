@@ -1,0 +1,45 @@
+{% extends "twitter_base.html" %}
+{% load static %}
+{% block page %}
+<h1>{{profile.nickname}}'s Dashboard</h1>
+
+<img src="{% get_media_prefix%}{{pic}}" width=40%/>
+<br/>
+<h4>Paste this URL to show your survey to others: <a href="/backend/real_survey/{{profile.survey.id}}">http://127.0.0.1:8000:/backend/real_survey/{{profile.survey.id}}</a></h4>
+<br/>
+<ul>
+<h4>options:</h4>
+{% if profile.survey %}
+  <li><a href="/backend/real_survey/{{profile.survey.id}}">View Your Survey</a></li>
+{% else %}
+  <li><a href="/backend/create_survey">Create a Survey</a></li>
+{% endif %}
+  <li><a href="/backend/surveys/">Search for Rooms</a></li>
+  <li><a href="">Edit Profile</a> (coming soon)</li>
+  <li><a href="/accounts/logout/">Logout</a></li>
+</ul>
+
+<h2>Potential Roommates</h2>
+{% if profile.survey %}
+{% for response in responses %}
+<h3>Name: {{response.responder}}</h3>
+<img src="{% get_media_prefix%}{{response.responder.pic}}" width=40%/>
+<h6>Profile Stuff</h6>
+<li>Cleanliness: {{response.responder.clean_score}}</li>
+<li>About: {{response.responder.about}}</li>
+<li>Foodliness:{{response.responder.food_score}}</li>
+<h6>Answers to Your Survey</h6>
+{% for res in response.responses.all %}
+<ul>
+  <h5>{{res.question.text}}</h5>
+  <li>{{res.text}}</li>
+</ul>
+{% endfor %}
+{% endfor %}
+
+{% else %}
+
+<h4>You need to create a survey</h4>
+
+{% endif %}
+{% endblock page%}
