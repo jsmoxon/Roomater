@@ -1,7 +1,7 @@
 {% extends "twitter_base.html" %}
 {% block page %}
 <h1>Create a Profile</h1>
-<form action="{% url upload %}" method="post" enctype="multipart/form-data">
+<form action="{% url profile %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <label>Username:</label>
     <input type="text" name="username" />

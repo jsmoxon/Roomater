@@ -27,8 +27,8 @@ def list_of_surveys(request):
     surveys = Survey.objects.all()
     return render_to_response('survey_list.html', {'surveys':surveys})
 
-#create a profile
-def create_profile(request):
+#create a profile with a survey
+def create_survey_profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -45,6 +45,25 @@ def create_profile(request):
     else:
         form = ProfileForm()
     return render_to_response('profile_create.html', {'form':form}, context_instance=RequestContext(request))
+
+#create a profile without a survey in mind
+def create_search_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
+            newprofile = UserProfile(pic=request.FILES['pic'], user=user,
+                                     nickname=request.POST['nickname'], clean_score=request.POST['clean_score'],
+                                     food_score = request.POST['food_score'], about=request.POST['about'])
+            newprofile.save()
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('/backend/surveys/')
+    else:
+        form = ProfileForm()
+    return render_to_response('profile_create.html', {'form':form}, context_instance=RequestContext(request))    
 
 #creating surveys
 def create_survey(request):
