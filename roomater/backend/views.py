@@ -21,26 +21,8 @@ def dash(request):
         responses = "No Responses"
     return render_to_response('dash.html', {'pic':pic, 'profile':user_profile, 'responses':responses})
 
-def log_view(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            login(request, user)
-            try:
-                profile = request.user.get_profile()
-                return redirect('/backend/dash/')
-            except:
-#                UserProfile.objects.get_or_create(user=user)
-                return redirect('/backend/upload/')
-        else:
-            return HttpResponse('Please submit a valid password')
-    else:
-        return HttpResponse('Roomater is in private beta; please check again later.')
-
 #search the site for surveys
-
+@login_required
 def list_of_surveys(request):
     surveys = Survey.objects.all()
     return render_to_response('survey_list.html', {'surveys':surveys})
@@ -50,10 +32,15 @@ def create_profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            newprofile = UserProfile(pic=request.FILES['pic'], user=request.user, 
+            user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
+            newprofile = UserProfile(pic=request.FILES['pic'], user=user, 
                                      nickname=request.POST['nickname'], clean_score=request.POST['clean_score'],
                                      food_score = request.POST['food_score'], about=request.POST['about'])
             newprofile.save()
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            login(request, user)
             return redirect('/backend/dash/')
     else:
         form = ProfileForm()

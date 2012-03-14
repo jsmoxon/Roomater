@@ -2,5 +2,12 @@
 {% block page %}
 <h1>Activated!</h1>
 <h6>Thank for registering. Please <a href="/accounts/login/">login</a> to start using Remindr.</h6>
+
+<form action="/accounts/login/" method="post">
+{% csrf_token %}
+<input type="text" name="username">Username</input>
+<input type="password" name="password">Password</input>
+<input type="submit" value="Login" />
+</form>
 {% endblock page%}
 

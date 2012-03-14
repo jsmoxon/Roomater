@@ -3,6 +3,13 @@
 <h1>Create a Profile</h1>
 <form action="{% url upload %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
+    <label>Username:</label>
+    <input type="text" name="username" />
+    <label>Password::</label>
+    <input type="text" name="password" />
+    <label>Email::</label>
+    <input type="text" name="email" />
+
     {{ form }}
     <p>note: currently .png only</p>
     <input type="submit" value="Upload" />
