@@ -1,0 +1,19 @@
+<h1>Demo</h1>
+
+<form action="." method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form}}
+    <label>Username:</label>
+    <input type="text" name="username" />
+    <label>Password::</label>
+    <input type="text" name="password" />
+    <label>Email::</label>
+    <input type="text" name="email" />
+
+  <input type="submit" value="UPload!" />
+</form>
+
+
+{% for photo in photos %}
+<img src="{{photo.url}}" />
+{% endfor %}

@@ -1,11 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User, Permission, Group
+from datetime import datetime
 
 class Photo(models.Model):
     pic = models.ImageField(upload_to='profile_pics', blank=True)
     def __unicode__(self):
         return str(self.pic)
 
+class PhotoUrl(models.Model):
+    url = models.CharField(max_length=500)
+    uploaded = models.DateTimeField()
+    
+    def save(self):
+        self.uploaded = datetime.now()
+        models.Model.save(self)
 
 class Question(models.Model):
     questioner = models.ForeignKey(User)

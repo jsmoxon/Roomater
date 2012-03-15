@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^submit_create_survey', 'backend.views.submit_create_survey'),
     url(r'^real_survey/(?P<entry_id>\d+)/$', 'backend.views.display_survey'),
     url(r'^submit/(?P<entry_id>\d+)/', 'backend.views.submit_survey'),
+    url(r'^demo/', 'backend.views.demo'),
 )
 
 urlpatterns += patterns('django.contrib.staticfiles.views',

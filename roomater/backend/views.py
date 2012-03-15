@@ -7,6 +7,51 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Permission, Group
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
+from django import forms
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
+from django.conf import settings
+import mimetypes
+
+class UploadForm(forms.Form):
+    file = forms.ImageField(label='Upload your pic')
+
+def demo(request):
+    def store_in_s3(filename):
+        conn = S3Connection(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY)
+        b = conn.create_bucket("roommater")
+        mime = mimetypes.guess_type(str(filename))[0]
+        k = Key(b)
+        k.key = filename
+        k.set_metadata("Content-Type", mime)
+        k.set_contents_from_file(filename)
+        k.set_acl("public-read")
+
+    photos = PhotoUrl.objects.all()
+    if not request.method == "POST":
+        form = UploadForm()
+        return render_to_response('demo.html', {"form":form, "photos":photos}, context_instance=RequestContext(request))
+    form = UploadForm(request.POST, request.FILES)
+    if not form.is_valid():
+        return render_to_response('demo.html', {"form":form, "photos":photos}, context_instance=RequestContext(request))
+
+    file = request.FILES["file"]
+    store_in_s3(file)
+    p = PhotoUrl(url="http://roommater.s3.amazonaws.com/"+str(file))
+    p.save()
+    photos = PhotoUrl.objects.all()
+#i think this is where i should call a function that creates a user and user profile with the request data
+    user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
+    newprofile = UserProfile(pic=p, user=user,
+                             nickname=request.POST['nickname'], clean_score=request.POST['clean_score'],
+                             food_score = request.POST['food_score'], about=request.POST['about'])
+    newprofile.save()
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    login(request, user)
+    return render_to_response('demo.html', {"form":form, "photos":photos}, context_instance=RequestContext(request))
+
 
 @login_required
 def dash(request):

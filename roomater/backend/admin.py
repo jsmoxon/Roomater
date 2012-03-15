@@ -7,4 +7,5 @@ admin.site.register(Response)
 admin.site.register(ResponseList)
 admin.site.register(UserProfile)
 admin.site.register(Photo)
+admin.site.register(PhotoUrl)
 

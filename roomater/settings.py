@@ -47,15 +47,6 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/media/'
-
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
@@ -67,7 +58,7 @@ STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAIKCIQTFH5VWHT4HQ'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'roommater'
-
+AWS_BUCKET_NAME = 'roommater'
 
 
 STATIC_ROOT = ''
@@ -90,6 +81,32 @@ STATICFILES_DIRS = (
 
 # List of finder classes that know how to find static files in
 # various locations.
+#mediasync for media files on S#                                                                                                    
+#TEMPLATE_CONTEXT_PROCESSORS = 'django.contrib.auth.context_processors.auth'
+
+
+MEDIASYNC = {
+    'BACKEND': 'mediasync.backends.s3',
+    'AWS_KEY': "AKIAIKCIQTFH5VWHT4HQ",
+    'AWS_SECRET': "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",
+    'AWS_BUCKET': "roommater",
+    'AWS_PREFIX': "media",
+    'SERVE_REMOTE': True,
+}
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.                                                     
+# Example: "/home/media/media.lawrence.com/media/"                                                                                  
+MEDIA_ROOT = 'media'
+#MEDIA_ROOT = "http://s3.amazonaws.com/roommater/"                                                                                                                                          
+
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a                                                             
+# trailing slash.                                                                                                                   
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"                                                         
+#MEDIA_URL = '/media/'
+#MEDIA_URL = 'http://roommater.s3.amazonaws.com/'
+MEDIA_URL = "http://s3.amazonaws.com/roommater/"
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -136,7 +153,9 @@ INSTALLED_APPS = (
     'gunicorn',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'storages'
+    'storages',
+    'mediasync',
+    'django_extensions',
 )
 
 # A sample logging configuration. The only tangible logging
