@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'gunicorn',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'storages'
 )
 
 # A sample logging configuration. The only tangible logging
