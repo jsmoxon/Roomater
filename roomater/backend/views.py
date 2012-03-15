@@ -112,18 +112,12 @@ def submit_survey(request, entry_id):
     list.responder = user_profile
     list.save()
     i = 1
-    print "list made"
     while i<11:
-        print "loop start"
         try:
-            print "try start"
             new = Response()
-            print "new init"
             new.responder = request.user
-            print "responder added" 
             new.question = Question.objects.get(text=request.POST['row'+str(i)])
             new.save()
-            print "response started"
             new.text = str(request.POST['r'+str(i)])
             new.save()
             list.responses.add(new)
