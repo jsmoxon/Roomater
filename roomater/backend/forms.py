@@ -5,7 +5,7 @@ from django import forms
 class ProfileForm(ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ('user', 'survey',)
+        exclude = ('user', 'survey', 'pic')
 
 class PhotoForm(forms.Form):
     pic = forms.ImageField(

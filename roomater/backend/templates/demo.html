@@ -2,7 +2,17 @@
 
 <form action="." method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  {{form}}
+    <label>Username:</label>
+    <input type="text" name="username" />
+    <label>Password:</label>
+    <input type="text" name="password" />
+    <label>Email:</label>
+    <input type="text" name="email" />
+    <input type="text" name="nickname" value="nickname" />
+    <input type="text" name="clean_score" value="clean_score" />
+    <input type="text" name="food_score" value="food_score" />
+    <input type="text" name="about" value="about" />
+    {{form}}
   <input type="submit" value="UPload!" />
 </form>
 

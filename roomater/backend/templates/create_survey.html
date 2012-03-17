@@ -1,11 +1,13 @@
 {% extends "twitter_base.html" %}
 {% block page %}
 
-<h1>Create a survey</h1>
+<h1>List a room</h1>
 
-<form action="/backend/submit_create_survey/" method="post">
+<form action="." method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <h3>What do you want to know about your roommates?</h3>
   <h5>Question 1</h5>
-  <input type="textarea" name="q1"/>
+  <input type="textarea" name="q1" value="e.g.Do you smoke?"/>
   <h5>Question 2</h5>
   <input type="textarea" name="q2" />
   <h5>Question 3</h5>
@@ -15,6 +17,27 @@
   <h5>Question 5</h5>
   <input type="textarea" name="q5" />
   <br/>
+  <h3>Create an account</h3>
+    <label>Username:</label>
+    <input type="text" name="username" />
+    <label>Password:</label>
+    <input type="text" name="password" />
+    <label>Email:</label>
+    <input type="text" name="email" />
+  <br/>
+  <h3>Tell us a bit about yourself</h3>
+
+    <input type="text" name="nickname" value="nickname" />
+  <br/>
+
+    <input type="text" name="clean_score" value="clean_score" />
+  <br/>
+
+    <input type="text" name="food_score" value="food_score" />
+
+  <br/>
+    <input type="text" name="about" value="about" />
+    {{form}}
   <input type="submit" value="Submit!" />
 </form>
 {% endblock page %}

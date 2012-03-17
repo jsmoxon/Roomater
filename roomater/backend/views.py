@@ -8,50 +8,43 @@ from django.contrib.auth.models import User, Permission, Group
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
 from django import forms
-from boto.s3.connection import S3Connection
-from boto.s3.key import Key
-from django.conf import settings
-import mimetypes
+#from boto.s3.connection import S3Connection
+#from boto.s3.key import Key
+#from django.conf import settings
+#import mimetypes
+from s3 import store_in_s3
 
 class UploadForm(forms.Form):
     file = forms.ImageField(label='Upload your pic')
 
-def demo(request):
-    def store_in_s3(filename):
-        conn = S3Connection(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY)
-        b = conn.create_bucket("roommater")
-        mime = mimetypes.guess_type(str(filename))[0]
-        k = Key(b)
-        k.key = filename
-        k.set_metadata("Content-Type", mime)
-        k.set_contents_from_file(filename)
-        k.set_acl("public-read")
-
+def create_survey(request):
     photos = PhotoUrl.objects.all()
     if not request.method == "POST":
         form = UploadForm()
-        return render_to_response('demo.html', {"form":form, "photos":photos}, context_instance=RequestContext(request))
+        return render_to_response('create_survey.html', {"form":form, "photos":photos}, context_instance=RequestContext(request))
     form = UploadForm(request.POST, request.FILES)
     if not form.is_valid():
-        return render_to_response('demo.html', {"form":form, "photos":photos}, context_instance=RequestContext(request))
+        return render_to_response('create_survey.html', {"form":form, "photos":photos}, context_instance=RequestContext(request))
 
     file = request.FILES["file"]
     store_in_s3(file)
     p = PhotoUrl(url="http://roommater.s3.amazonaws.com/"+str(file))
     p.save()
-    photos = PhotoUrl.objects.all()
-#i think this is where i should call a function that creates a user and user profile with the request data
+#    profile = ProfileForm(request.POST, request.FILES)
+#create a new user and profile
     user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
-    newprofile = UserProfile(pic=p, user=user,
+    newprofile = UserProfile(pic=p.url, user=user,
                              nickname=request.POST['nickname'], clean_score=request.POST['clean_score'],
                              food_score = request.POST['food_score'], about=request.POST['about'])
     newprofile.save()
+#log the new user in
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(username=username, password=password)
     login(request, user)
-    return render_to_response('demo.html', {"form":form, "photos":photos}, context_instance=RequestContext(request))
-
+#submit the survey they just made
+    submit_create_survey(request)
+    return redirect('/backend/dash/')
 
 @login_required
 def dash(request):
@@ -72,32 +65,18 @@ def list_of_surveys(request):
     surveys = Survey.objects.all()
     return render_to_response('survey_list.html', {'surveys':surveys})
 
-#create a profile with a survey
-def create_survey_profile(request):
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
-            newprofile = UserProfile(pic=request.FILES['pic'], user=user, 
-                                     nickname=request.POST['nickname'], clean_score=request.POST['clean_score'],
-                                     food_score = request.POST['food_score'], about=request.POST['about'])
-            newprofile.save()
-            username = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('/backend/dash/')
-    else:
-        form = ProfileForm()
-    return render_to_response('profile_create.html', {'form':form}, context_instance=RequestContext(request))
-
 #create a profile without a survey in mind
 def create_search_profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
+#upload photo
+            file = request.FILES["file"]
+            store_in_s3(file)
+            p = PhotoUrl(url="http://roommater.s3.amazonaws.com/"+str(file))
+            p.save()
             user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
-            newprofile = UserProfile(pic=request.FILES['pic'], user=user,
+            newprofile = UserProfile(pic=p.url, user=user,
                                      nickname=request.POST['nickname'], clean_score=request.POST['clean_score'],
                                      food_score = request.POST['food_score'], about=request.POST['about'])
             newprofile.save()
@@ -110,11 +89,6 @@ def create_search_profile(request):
         form = ProfileForm()
     return render_to_response('profile_create.html', {'form':form}, context_instance=RequestContext(request))    
 
-#creating surveys
-def create_survey(request):
-    user_profile = request.user.get_profile()
-    pic = user_profile.pic
-    return render_to_response('create_survey.html', {'pic':pic})
 
 @csrf_exempt
 def submit_create_survey(request):
@@ -123,7 +97,7 @@ def submit_create_survey(request):
     survey.save()
     i = 1
     while i<6:
-        try:
+        if request.POST['q'+str(i)] !="":
             q = Question()
             q.questioner = request.user
             q.save()
@@ -131,8 +105,6 @@ def submit_create_survey(request):
             q.save()
             survey.questions.add(q)
             survey.save()
-        except:
-            pass
         i+=1
 #adds survey to UserProfile, this may require a request context for security down the line
     user_profile = request.user.get_profile()

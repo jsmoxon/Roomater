@@ -5,7 +5,7 @@
 
 {{pic.name}}
 
-<img src="{% get_media_prefix%}{{pic}}" width=40%/>
+<img src="{{pic}}" width=40%/>
 <br/>
 {% if profile.survey %}
 <h4>Paste this URL to show your survey to others: <a href="/backend/real_survey/{{profile.survey.id}}">http://growing-cloud-4552.herokuapp.com/backend/real_survey/{{profile.survey.id}}</a></h4>
@@ -29,7 +29,7 @@
 {% if profile.survey %}
 {% for response in responses %}
 <h3>Name: {{response.responder}}</h3>
-<img src="{% get_media_prefix%}{{response.responder.pic}}" width=40%/>
+<img src="{{response.responder.pic}}" width=40% alt = "user pic" />
 <h6>Profile Stuff</h6>
 <li>Cleanliness: {{response.responder.clean_score}}</li>
 <li>About: {{response.responder.about}}</li>

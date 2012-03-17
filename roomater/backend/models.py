@@ -40,7 +40,8 @@ class UserProfile(models.Model):
     clean_score = models.IntegerField(blank=True)
     food_score = models.IntegerField(blank=True)
     about = models.TextField(blank=True)
-    pic = models.ImageField(upload_to='profile_pics', blank=True)
+#    pic = models.ImageField(upload_to='profile_pics', blank=True)
+    pic = models.CharField(max_length=500)
     def __unicode__(self):
         return str(self.user)
 
