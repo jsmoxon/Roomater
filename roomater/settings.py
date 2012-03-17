@@ -148,7 +148,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'frontend',
     'backend',
-    'registration',
+#    'registration',
     'south',
     'gunicorn',
     'django.contrib.admin',
