@@ -1,23 +1,38 @@
-{% extends "twitter_base.html" %}
-{% block page %}
+{% extends "header_footer.html" %}
+{% block main %}
 
-<h1>List a room</h1>
+<h2>List a room</h2>
 
 <form action="." method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  <h3>What do you want to know about your roommates?</h3>
-  <h5>Question 1</h5>
-  <input type="textarea" name="q1" value="e.g.Do you smoke?"/>
-  <h5>Question 2</h5>
-  <input type="textarea" name="q2" />
-  <h5>Question 3</h5>
-  <input type="textarea" name="q3" />
-  <h5>Question 4</h5>
-  <input type="textarea" name="q4" />
-  <h5>Question 5</h5>
-  <input type="textarea" name="q5" />
+  <h4>What do you want to know about your roommates?</h4>
+  <p>(feel free to delete our pre-selected examples)</p>
+  <label>Question 1</label>
+  <input type="text" name="q1" value="Do you smoke?"/>
+  <label>Question 2 (optional)</label>
+  <input type="text" name="q2" value="What is your favorite bar in the city?"/>
+  <label>Question 3 (optional)</label>
+  <input type="text" name="q3" value="What is your idea of a fun night out?"/>
+  <label>Question 4 (optional)</label>
+  <input type="text" name="q4" value="Are you a morning or night person?"/>
+  <label>Question 5 (optional)</label>
+  <input type="text" name="q5" value="Do you watch TV? Which shows?"/>
+
+  <label>Question 6 (optional)</label>
+  <input type="text" name="q6" />
+  <label>Question 7 (optional)</label>
+  <input type="text" name="q7" />
+  <label>Question 8 (optional)</label>
+  <input type="text" name="q8" />
+  <label>Question 9 (optional)</label>
+  <input type="text" name="q9" />
+  <label>Question 10 (optional)</label>
+  <input type="text" name="q10" />
+
+
+
   <br/>
-  <h3>Create an account</h3>
+  <h4>Create an account</h4>
     <label>Username:</label>
     <input type="text" name="username" />
     <label>Password:</label>
@@ -25,19 +40,30 @@
     <label>Email:</label>
     <input type="text" name="email" />
   <br/>
-  <h3>Tell us a bit about yourself</h3>
-
-    <input type="text" name="nickname" value="nickname" />
-  <br/>
-
-    <input type="text" name="clean_score" value="clean_score" />
-  <br/>
-
-    <input type="text" name="food_score" value="food_score" />
-
-  <br/>
-    <input type="text" name="about" value="about" />
+  <h4>Tell us a bit about yourself</h4>
+    <label>Name</label>
+    <input type="text" name="name"/>
+    <label>How important is cleanliness to you?</label>
+    <select name="clean_score">
+      <option value="1">1 - Not at all</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5 - Somewhat</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10 - It's all I care about</option>
+    </select>
+    <label>Do you smoke?</label>
+    <select name="smoker">
+      <option value="No">No</option>
+      <option value="Yes">Yes</option>
+    </select>
+    <label>About</label>
+    <textarea name="about" value="about"></textarea>
     {{form}}
   <input type="submit" value="Submit!" />
 </form>
-{% endblock page %}
+{% endblock main %}

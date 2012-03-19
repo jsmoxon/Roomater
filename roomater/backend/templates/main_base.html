@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{% get_static_prefix %}css/base.css">
+  <link rel="stylesheet" href="{% get_static_prefix %}css/layout.css">
+  <link rel="stylesheet" href="{% get_static_prefix %}css/skeleton.css">
+  <link rel="stylesheet" href="{% get_static_prefix %}css/backend.css">
+</head>
+<body>
+<div class="container">
+
+{% block page %}
+
+{% endblock page%}
+ </div><!--closes container-->
+</body>
+
+</html>

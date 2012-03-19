@@ -1,18 +1,21 @@
-{% extends "twitter_base.html" %}
-{% block page %}
+{% extends "header_footer.html" %}
+{% block main %}
 
-<h1>Survey by {{s}}</h1>
+<div id="main">
+<h2>Survey by {{s}}</h2>
 
 
 <form action="/backend/submit/{{s.id}}/" method="post">
   {% csrf_token %}
 {% for q in question %}
-  <h3>{{q.text}}</h3>
-  <input type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}" />
+  <label>{{q.text}}</label>
+  <textarea type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}"></textarea>
   <input type="hidden" name="{% cycle 'row1' 'row2' 'row3' 'row4' 'row5' 'row6' 'row7' 'row8' 'row9' 'row10'%}" value="{{q.text}}" />
 {% endfor %}
   <br/>
   <input type="submit" value="Submit!" />
 </form> 
-{% endblock page %}
+
+</div><!--closes main-->
+{% endblock main %}
 

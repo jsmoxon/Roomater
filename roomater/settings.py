@@ -64,8 +64,11 @@ AWS_BUCKET_NAME = 'roommater'
 STATIC_ROOT = ''
 
 # URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
+# for production
 STATIC_URL = 'https://s3.amazonaws.com/roommater/'
+
+# for development
+#STATIC_URL = '/static/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.

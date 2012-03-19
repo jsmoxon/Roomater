@@ -1,51 +1,66 @@
-{% extends "twitter_base.html" %}
+{% extends "header_footer.html" %}
 {% load static %}
-{% block page %}
-<h1>{{profile.nickname}}'s Dashboard</h1>
+{% block main %}
 
-{{pic.name}}
 
-<img src="{{pic}}" width=40%/>
-<br/>
+<h2>{{profile.name}}'s Dashboard</h2>
+
+<div id="profile_inf" class="sixteen columns profile">
+  <img class="five columns "src="{{pic}}" width=30%/>
+  <ul id="" class="ten columns">
+    <h4>My Basic Info</h4>
+    <li>How Clean? -- {{profile.clean_score}}</li>
+    <li>Smoker? -- 
+{% if profile.smoker %}
+Yes</li>
+{% else %}
+No</li>
+{% endif%}
+    <li>About: <p>{{profile.about}}</p></li>
+  </ul>
+</div><!--clses profile_info-->
+
+<div id="survey_url" class="sixteen columns">
 {% if profile.survey %}
-<h4>Paste this URL to show your survey to others: <a href="/backend/real_survey/{{profile.survey.id}}">http://growing-cloud-4552.herokuapp.com/backend/real_survey/{{profile.survey.id}}</a></h4>
+<h5>Paste this URL to show your survey to others: <a href="/backend/real_survey/{{profile.survey.id}}">http://growing-cloud-4552.herokuapp.com/backend/real_survey/{{profile.survey.id}}</a></h5>
 {% else %}
 <h4>Please <a href="/backend/create_survey/">create a survey</a></h4>
 {% endif %}
+</div><!--closes survey_url-->
 
-<br/>
-<ul>
-<h4>options:</h4>
-{% if profile.survey %}
-{% else %}
-  <li><a href="/backend/create_survey">Create a Survey</a></li>
+<div id="potential_roommates" class="sixteen columns">
+  <h3>Potential Roommates</h3>
+  {% if profile.survey %}
+  {% for response in responses %}
+  <div class="profile">
+  <h4>{{response.responder.name}} -- {{response.responder.user.email}}</h4>
+  <img class="five columns" src="{{response.responder.pic}}" width=30% alt = "user pic" />
+  <ul class="ten columns user_info">
+    <h6>Basic Info</h6>
+    <li>Cleanliness: {{response.responder.clean_score}}</li>
+    <li>Smoker:
+      {% if response.responder.smoker %}
+      Yes</li>
+    {% else%}
+    No</li>
 {% endif %}
-  <li><a href="/backend/surveys/">Search for Rooms</a></li>
-  <li><a href="">Edit Profile</a> (coming soon)</li>
-  <li><a href="/accounts/logout/">Logout</a></li>
-</ul>
 
-<h2>Potential Roommates</h2>
-{% if profile.survey %}
-{% for response in responses %}
-<h3>Name: {{response.responder}}</h3>
-<img src="{{response.responder.pic}}" width=40% alt = "user pic" />
-<h6>Profile Stuff</h6>
-<li>Cleanliness: {{response.responder.clean_score}}</li>
-<li>About: {{response.responder.about}}</li>
-<li>Foodliness:{{response.responder.food_score}}</li>
-<h6>Answers to Your Survey</h6>
+    <li>About: {{response.responder.about}}</li>
+  </ul>
+  </div><!--closes profile-->
+<div class="answers">
+<h5>Answers to Your Survey</h5>
 {% for res in response.responses.all %}
 <ul>
-  <h5>{{res.question.text}}</h5>
+  <h6>{{res.question.text}}</h6>
   <li>{{res.text}}</li>
 </ul>
 {% endfor %}
 {% endfor %}
-
 {% else %}
-
-<h4>You need to create a survey</h4>
+<h4>You aren't listing a room</h4>
+</div><!--closes answers-->
 
 {% endif %}
-{% endblock page%}
+</div><!--closes potential_roommates-->
+{% endblock main%}

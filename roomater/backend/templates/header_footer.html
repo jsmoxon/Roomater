@@ -1,16 +1,8 @@
+{% extends "main_base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <link rel="stylesheet" href="{% get_static_prefix %}css/base.css">
-  <link rel="stylesheet" href="{% get_static_prefix %}css/layout.css">
-  <link rel="stylesheet" href="{% get_static_prefix %}css/skeleton.css">
-  <link rel="stylesheet" href="{% get_static_prefix %}css/backend.css">
-</head>
-<body>
-<div class="container">
+{% block page %}
 <div id="header" class="sixteen columns">
-  <h1 class="left">Roommater</h1>
+  <img class="" src="{% get_static_prefix %}images/logo.png" width=40%/>
   <ul class="horizontal six columns" id="headerlinks">
     <li><a href="/backend/home/">Home</a></li>
     <li><a href="/backend/dash/">Dashboard</a></li>
@@ -18,11 +10,10 @@
   </ul>
 </div><!--closes header-->
 
+{% block main %}
 
-{% block page %}
+{% endblock main%}
 
-{% endblock page%}
-<br/><br/><br/>
 <div id="footer" class="ten columns offset-by-three">
   <ul class="horizontal">
     <li><a href="/backend/profile/">Register</a></li>
@@ -33,7 +24,4 @@
     <li><a href="/accounts/logout/">Logout</a></li>
   </ul>
 </div><!--closes footer-->
-</div><!--closes container-->
-</body>
-
-</html>
+{% endblock page%}

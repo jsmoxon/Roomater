@@ -3,7 +3,7 @@
 {% block page %}
 <h1>Login</h1>
 
-
+<div id="login">
 <form action="/accounts/login/" method="post">
 {% csrf_token %}
 <input type="text" name="username">Username</input>
@@ -11,8 +11,43 @@
 <input type="hidden" name="next" value="{{ next }}" />
 <input type="submit" value="Login" />
 </form>
-<!--we need a separate way for searchers to login and create profiles so they are redirected to surveys rather than 
-their dashboard-->
+</div><!--closes login-->
+
+<h1>OR</h1>
+
+<div id="register">
+<h1>Create a Profile</h1>
+<form action="/backend/profile/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Username:</label>
+    <input type="text" name="username" />
+    <label>Password::</label>
+    <input type="text" name="password" />
+    <label>Email::</label>
+    <input type="text" name="email" />
+  <h3>Tell us a bit about yourself</h3>
+
+    <input type="text" name="nickname" value="nickname" />
+  <br/>
+
+    <input type="text" name="clean_score" value="clean_score" />
+  <br/>
+
+    <input type="text" name="food_score" value="food_score" />
+
+  <br/>
+    <input type="text" name="about" value="about" />
+    <p>note: currently .png only</p>
+    <br/>
+    <input type="file" name="file" />
+    <input type="hidden" name="nexturl" value="{{request.path}}" />
+    <input type="submit" value="Upload" />
+</form>
+</div><!--closes register-->
+
+
+
+
 New? <a href="/backend/profile/">Register here</a>
 
 {% endblock page%}

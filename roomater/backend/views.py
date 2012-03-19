@@ -8,10 +8,6 @@ from django.contrib.auth.models import User, Permission, Group
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
 from django import forms
-#from boto.s3.connection import S3Connection
-#from boto.s3.key import Key
-#from django.conf import settings
-#import mimetypes
 from s3 import store_in_s3
 
 class UploadForm(forms.Form):
@@ -30,12 +26,11 @@ def create_survey(request):
     store_in_s3(file)
     p = PhotoUrl(url="http://roommater.s3.amazonaws.com/"+str(file))
     p.save()
-#    profile = ProfileForm(request.POST, request.FILES)
 #create a new user and profile
     user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
     newprofile = UserProfile(pic=p.url, user=user,
-                             nickname=request.POST['nickname'], clean_score=request.POST['clean_score'],
-                             food_score = request.POST['food_score'], about=request.POST['about'])
+                             name=request.POST['name'], clean_score=request.POST['clean_score'],
+                             smoker = request.POST['smoker'], about=request.POST['about'])
     newprofile.save()
 #log the new user in
     username = request.POST['username']
@@ -84,6 +79,8 @@ def create_search_profile(request):
             password = request.POST['password']
             user = authenticate(username=username, password=password)
             login(request, user)
+            print request.path
+            print request.POST['nexturl']
             return redirect('/backend/surveys/')
     else:
         form = ProfileForm()
@@ -96,7 +93,7 @@ def submit_create_survey(request):
     survey.name = request.user.username
     survey.save()
     i = 1
-    while i<6:
+    while i<11:
         if request.POST['q'+str(i)] !="":
             q = Question()
             q.questioner = request.user
