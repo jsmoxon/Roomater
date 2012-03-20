@@ -1,22 +1,31 @@
-{% extends "twitter_base.html" %}
+{% extends "main_base.html" %}
 {% load url from future %}
 {% block page %}
-<h1>Login</h1>
+
+<div class="page_title sixteen columns">
+<h4>Login</h4>
+</div><!--closes page_title-->
+
 
 <div id="login">
 <form action="/accounts/login/" method="post">
 {% csrf_token %}
-<input type="text" name="username">Username</input>
-<input type="password" name="password">Password</input>
+    <label>Username:</label>
+    <input type="text" name="username" />
+    <label>Password:</label>
+    <input type="text" name="password" />
 <input type="hidden" name="next" value="{{ next }}" />
 <input type="submit" value="Login" />
 </form>
 </div><!--closes login-->
 
-<h1>OR</h1>
+<h4>New User?</h4>
 
 <div id="register">
-<h1>Create a Profile</h1>
+<div class="page_title sixteen columns">
+<h4>Create a Profile</h4>
+</div><!--closes page_title-->
+
 <form action="/backend/profile/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <label>Username:</label>
@@ -25,30 +34,33 @@
     <input type="text" name="password" />
     <label>Email::</label>
     <input type="text" name="email" />
-  <h3>Tell us a bit about yourself</h3>
-
-    <input type="text" name="nickname" value="nickname" />
-  <br/>
-
-    <input type="text" name="clean_score" value="clean_score" />
-  <br/>
-
-    <input type="text" name="food_score" value="food_score" />
-
-  <br/>
-    <input type="text" name="about" value="about" />
-    <p>note: currently .png only</p>
-    <br/>
-    <input type="file" name="file" />
-    <input type="hidden" name="nexturl" value="{{request.path}}" />
-    <input type="submit" value="Upload" />
+  <h4>Tell us a bit about yourself</h4>
+    <label>Name</label>
+    <input type="text" name="name"/>
+    <label>How important is cleanliness to you?</label>
+    <select name="clean_score">
+      <option value="1">1 - Not at all</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5 - Somewhat</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10 - It's all I care about</option>
+    </select>
+    <label>Do you smoke?</label>
+    <select name="smoker">
+      <option value="No">No</option>
+      <option value="Yes">Yes</option>
+    </select>
+    <label>About</label>
+    <textarea name="about" value="about"></textarea>
+    <label>Upload your pic:</label>
+    <input type="file" name="file"/>
+    <br/><br/>
+    <input type="submit" value="Submit" />
 </form>
 </div><!--closes register-->
-
-
-
-
-New? <a href="/backend/profile/">Register here</a>
-
 {% endblock page%}
-

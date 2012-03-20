@@ -1,9 +1,10 @@
-{% extends "header_footer.html" %}
-{% block main %}
+{% extends "main_base.html" %}
+{% block page %}
 
 <div id="main">
-<h2>Survey by {{s}}</h2>
-
+<div class="page_title sixteen columns">
+  <h2>Survey by {{s}}</h2>
+</div><!--closes page_title-->
 
 <form action="/backend/submit/{{s.id}}/" method="post">
   {% csrf_token %}
@@ -17,5 +18,5 @@
 </form> 
 
 </div><!--closes main-->
-{% endblock main %}
+{% endblock page %}
 

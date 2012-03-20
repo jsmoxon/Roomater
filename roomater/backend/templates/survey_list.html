@@ -1,11 +1,15 @@
-{% extends "twitter_base.html" %}
+{% extends "main_base.html" %}
 {% block page %}
 
-<h1>Available Rooms</h1>
+<div class="page_title sixteen columns">
+  <h2>Available Rooms</h2>
+</div><!--closes page_title-->
 
-<ul>
-{% for survey in surveys %}
-<li><a href="/backend/real_survey/{{survey.id}}">{{survey.name}}</a></li>
-{% endfor %}
-</ul>
+<div id="room_list">
+  <ul>
+    {% for survey in surveys %}
+    <li><a href="/backend/real_survey/{{survey.id}}">{{survey.name}}</a></li>
+    {% endfor %}
+  </ul>
+</div><!--closes room_list-->
 {% endblock page %}

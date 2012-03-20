@@ -1,15 +1,20 @@
-{% extends "twitter_base.html" %}
+{% extends "main_base.html" %}
 {% block page %}
 
-<h1>Successful logout!</h1>
+<div class="page_title sixteen columns">
+  <h2>Successful logout!</h2>
+</div><!--closes page_title-->
 
-<h4>Login Again</h4>
-
-<form action="/accounts/login/" method="post">
-{% csrf_token %}
-<input type="text" name="username">Username</input>
-<input type="password" name="password">Password</input>
-<input type="submit" value="Login" />
-</form>
-
+<div id="logout">
+  <h4>Login Again</h4>
+  
+  <form action="/accounts/login/" method="post">
+    {% csrf_token %}
+    <label>Username:</label>
+    <input type="text" name="username" />
+    <label>Password:</label>
+    <input type="text" name="password" />
+    <input type="submit" value="Login" />
+  </form>
+</div><!-- closes logout-->
 {% endblock page%}

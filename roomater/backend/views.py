@@ -72,15 +72,14 @@ def create_search_profile(request):
             p.save()
             user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
             newprofile = UserProfile(pic=p.url, user=user,
-                                     nickname=request.POST['nickname'], clean_score=request.POST['clean_score'],
-                                     food_score = request.POST['food_score'], about=request.POST['about'])
+                             name=request.POST['name'], clean_score=request.POST['clean_score'],
+                             smoker = request.POST['smoker'], about=request.POST['about'])
+
             newprofile.save()
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username=username, password=password)
             login(request, user)
-            print request.path
-            print request.POST['nexturl']
             return redirect('/backend/surveys/')
     else:
         form = ProfileForm()

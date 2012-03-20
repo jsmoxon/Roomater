@@ -1,3 +1,12 @@
+h1, h2, h3, h4, h5, h6 {
+font-family: 'helvetica neue';
+font-weight:bold;
+}
+
+.container {
+clear:both
+}
+
 .left {
 float:left
 }
@@ -6,12 +15,18 @@ float:left
 text-align:center;
 }
 
+.clearboth {
+clear:both;
+}
+
 /* Header and Footer*/
 
 #header {
 background: #5FAADF;
 float:right;
 height:50px;
+-webkit-box-shadow: 10px 10px 5px #888;
+box-shadow: 0px 5px 5px #888;
 }
 
 #headerlinks {
@@ -69,15 +84,30 @@ background:}
 
 .answers {
 clear:both;
+padding-top:30px;
+
 }
 
 .profile {
 background:#B5C7CB;
-min-height:250px;
+min-height:280px;
+-moz-box-shadow: 10px 10px 5px #888;
+-webkit-box-shadow: 10px 10px 5px #888;
+box-shadow: 10px 10px 5px #888;
+-moz-border-radius: 15px;
+border-radius: 15px;
+padding:5px;
 }
 
 #survey_url {
 background:#EAD46E;
+-moz-box-shadow: 10px 10px 5px #888;
+-webkit-box-shadow: 10px 10px 5px #888;
+box-shadow: 10px 10px 5px #888;
+-moz-border-radius: 15px;
+border-radius: 0px 0px 15px 15px;
+padding:5px;
+margin-top:-20px;
 }
 
 #potential_roommates {
@@ -90,16 +120,66 @@ background:;
 clear:both
 }
 
+/* Survey List */
+
+#room_list {
+min-height:700px;
+}
+
+/* Login and logout */
+
+#login {
+clear:both;
+}
+
+#logout {
+min-height:710px;
+}
+
 /* HOME SCREEN*/
+
+#home_main {
+padding-top:30px;
+}
 
 #home_buttons {
 width:300px;
-margin-top:30px;
-margin-bottom:100px;
+margin-top:60px;
+margin-bottom:50px;
 }
 
 .horizontal li{
 display:inline; padding:1em;
+}
+
+#home_left {
+background:white;
+min-height:420px;
+-moz-box-shadow: 10px 10px 5px #888;
+-webkit-box-shadow: 10px 10px 5px #888;
+box-shadow: 10px 10px 5px #888;
+-moz-border-radius: 15px;
+border-radius: 15px;
+padding:15px 5px 5px 0px;
+}
+
+#home_right {
+background:white;
+min-height:420px;
+-moz-box-shadow: 10px 10px 5px #888;
+-webkit-box-shadow: 10px 10px 5px #888;
+box-shadow: 10px 10px 5px #888;
+-moz-border-radius: 15px;
+border-radius: 15px;
+padding:15px 5px 5px 0px;
+margin-bottom:20px;
+margin-left:80px;
+}
+
+.rounded_image {
+-moz-border-radius: 15px;
+border-radius: 15px;
+width:250px;
 }
 
 .myButton {

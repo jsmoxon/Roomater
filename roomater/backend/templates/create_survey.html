@@ -1,7 +1,8 @@
-{% extends "header_footer.html" %}
-{% block main %}
-
-<h2>List a room</h2>
+{% extends "main_base.html" %}
+{% block page %}
+<div class="page_title sixteen columns">
+  <h2>List a room</h2>
+</div><!--closes page_title-->
 
 <form action="." method="post" enctype="multipart/form-data">
   {% csrf_token %}
@@ -66,4 +67,4 @@
     {{form}}
   <input type="submit" value="Submit!" />
 </form>
-{% endblock main %}
+{% endblock page %}

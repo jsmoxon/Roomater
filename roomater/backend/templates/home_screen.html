@@ -2,17 +2,18 @@
 {% load static %}
 {% block page %}
 
-<div id="main">
+<div id="home_main">
   <img class="six columns offset-by-five" src="{% get_static_prefix %}images/logo.png" />
-  <h2 class="center clear">Find roommates that fit your lifestyle</h2>
-  <h4 class="center">Join the roommate search site that millions are talking about today!</h4>
+  <h2 class="center clearboth">Find roommates that fit your lifestyle</h2>
+  <h4 class="center">Create standardized, customized surveys and track your potential roommates.</h4>
   <div id="home_buttons" class="six columns offset-by-five">
     <a href="/backend/create_survey/"><button class="signupbutton">List a room</button></a>
     <a href="/backend/surveys/"><button class="myButton">Find a room</button></a>
   </div><!--closes buttons-->
 
-  <div id="home_left" class="eight columns center">
-    <img src="https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcS_NvnycJ_dOeKSpRTMwmchvY4Va6NGVTgZedXUAcuGtcc9OhmI" width=300px height=200px/>
+<div id="howto" class="fourteen columns offset-by-one">
+  <div id="home_left" class="six columns center">
+    <img class="rounded_image" src="https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcS_NvnycJ_dOeKSpRTMwmchvY4Va6NGVTgZedXUAcuGtcc9OhmI" width=300px height=200px/>
     <h4>Have a room?</h4>
     <ul>
       <li>1. List your room</li>
@@ -23,8 +24,8 @@
     </ul>
   </div><!--closes home_left-->
 
-  <div id="home_right" class="eight columns center">
-    <img src="http://roommater.s3.amazonaws.com/elvis.png" width=300px height=200px/>
+  <div id="home_right" class="six columns center">
+    <img class="rounded_image" src="http://roommater.s3.amazonaws.com/elvis.png" width=300px height=200px/>
 
     <h4>Need a room?</h4>
     <ul>
@@ -35,7 +36,7 @@
     </ul>
 
   </div><!--closes home_right-->
-
+</div><!--closes howto-->
 
 </div><!--closes main div-->
 
