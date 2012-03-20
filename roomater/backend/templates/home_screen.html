@@ -1,6 +1,7 @@
 {% extends "main_base.html" %}
 {% load static %}
 {% block page %}
+
 <div id="main">
   <img class="six columns offset-by-five" src="{% get_static_prefix %}images/logo.png" />
   <h2 class="center clear">Find roommates that fit your lifestyle</h2>
@@ -37,16 +38,5 @@
 
 
 </div><!--closes main div-->
-<div id="footer" class="ten columns offset-by-three">
-  <ul class="horizontal">
-    <li><a href="/backend/profile/">Register</a></li>
-    <li><a href="/backend/home/">Home</a></li>
-    <li><a href="/backend/dash/">Dashboard</a></li>
-    <li><a href="/backend/surveys/">Search for Rooms</a></li>
-    <li><a href="/accounts/login/">Login</a></li>
-    <li><a href="/accounts/logout/">Logout</a></li>
-  </ul>
-</div><!--closes footer-->
-
 
 {% endblock page %}

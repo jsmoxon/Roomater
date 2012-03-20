@@ -26,7 +26,7 @@
 {% block page %}
 
 {% endblock page%}
- </div><!--closes container-->
+</div><!--closes container-->
 <div id="footer" class="">
   <div id="footerlinks">
   <ul class="horizontal">

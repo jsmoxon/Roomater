@@ -6,8 +6,17 @@ float:left
 text-align:center;
 }
 
+/* Header and Footer*/
+
+#header {
+background: #5FAADF;
+float:right;
+height:50px;
+}
+
 #headerlinks {
 float:right;
+padding-top:15px;
 }
 
 #main {
@@ -15,8 +24,48 @@ clear:both;
 min-height:500px;
 }
 
+#footer {
+background:#1C1C1C;
+min-height:45px;
+}
+
+#footer ul {
+width:600px;
+margin-left:auto;
+margin-right:auto;
+padding-top:10px;
+
+}
+
+#footer a, #footer a:visited {
+color:white;
+}
+
+#footer a:hover {
+color:grey;
+}
+
+
+
+/* GENERAL */
+
+a, a:visited {
+color:#333333;
+text-decoration:none;
+font-weight:bold;
+}
+
+a:hover {
+color:grey;
+}
+
 
 /* DASHBOARD*/
+
+.page_title {
+padding-top:30px;
+clear:both;
+background:}
 
 .answers {
 clear:both;
@@ -33,9 +82,16 @@ background:#EAD46E;
 
 #potential_roommates {
 margin-top:50px;
+min-height:200px;
+background:;
+}
+
+#profile_info {
+clear:both
 }
 
 /* HOME SCREEN*/
+
 #home_buttons {
 width:300px;
 margin-top:30px;

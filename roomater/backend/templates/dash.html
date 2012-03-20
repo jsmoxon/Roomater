@@ -1,11 +1,12 @@
-{% extends "header_footer.html" %}
+{% extends "main_base.html" %}
 {% load static %}
-{% block main %}
 
+{% block page %}
 
+<div class="page_title sixteen columns">
 <h2>{{profile.name}}'s Dashboard</h2>
-
-<div id="profile_inf" class="sixteen columns profile">
+</div><!--closes page_title-->
+<div id="profile_info" class="sixteen columns profile">
   <img class="five columns "src="{{pic}}" width=30%/>
   <ul id="" class="ten columns">
     <h4>My Basic Info</h4>
@@ -18,7 +19,7 @@ No</li>
 {% endif%}
     <li>About: <p>{{profile.about}}</p></li>
   </ul>
-</div><!--clses profile_info-->
+</div><!--closes profile_info-->
 
 <div id="survey_url" class="sixteen columns">
 {% if profile.survey %}
@@ -57,10 +58,14 @@ No</li>
 </ul>
 {% endfor %}
 {% endfor %}
+</div><!--closes answers-->
+</div>
 {% else %}
 <h4>You aren't listing a room</h4>
-</div><!--closes answers-->
 
+</div>
 {% endif %}
+
+
 </div><!--closes potential_roommates-->
-{% endblock main%}
+{% endblock page %}
