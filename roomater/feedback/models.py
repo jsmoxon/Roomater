@@ -13,4 +13,6 @@ class Choice(models.Model):
     choice = models.CharField(max_length=200)
     votes = models.IntegerField()
 
-
+class Bruisers(models.Model):
+	bruiser = models.CharField(max_length=2)
+	
