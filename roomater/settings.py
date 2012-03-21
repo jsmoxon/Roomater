@@ -65,10 +65,10 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # for production
-#STATIC_URL = 'https://s3.amazonaws.com/roommater/'
+STATIC_URL = 'https://s3.amazonaws.com/roommater/'
 
 # for development
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
