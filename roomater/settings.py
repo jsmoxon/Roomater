@@ -151,6 +151,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'frontend',
     'backend',
+	'feedback',
 #    'registration',
     'south',
     'gunicorn',
