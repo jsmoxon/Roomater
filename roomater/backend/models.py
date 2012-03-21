@@ -19,7 +19,7 @@ class Question(models.Model):
     questioner = models.ForeignKey(User)
     text = models.TextField(null=True, blank=True)
     def __unicode__(self):
-        return str(self.questioner)+" "+str(self.text)
+        return str(self.text)
 
 class Response(models.Model):
     question = models.ForeignKey(Question)

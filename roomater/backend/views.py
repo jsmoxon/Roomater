@@ -91,14 +91,23 @@ def submit_create_survey(request):
     survey = Survey()
     survey.name = request.user.username
     survey.save()
+    questions = Question.objects.all()
+    question_list = []
+    for question in questions:
+        question_list.append(question.text)
+    print questions
+    print question_list
     i = 1
     while i<11:
         if request.POST['q'+str(i)] !="":
-            q = Question()
-            q.questioner = request.user
-            q.save()
-            q.text = str(request.POST['q'+str(i)])
-            q.save()
+            if request.POST['q'+str(i)] in question_list:
+                q = Question.objects.get(text=request.POST['q'+str(i)])
+            else:
+                q = Question()
+                q.questioner = request.user
+                q.save()
+                q.text = str(request.POST['q'+str(i)])
+                q.save()
             survey.questions.add(q)
             survey.save()
         i+=1
@@ -135,7 +144,7 @@ def submit_survey(request, entry_id):
             new.save()
             list.responses.add(new)
             list.save()
-        except:
+        except: 
             pass
         i+=1
     
