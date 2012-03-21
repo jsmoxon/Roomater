@@ -53,29 +53,50 @@
       <h3>Find roommates that fit your lifestyle.</h3>
       <h5>Join the free roommate matching community everyone's talking about.</h5>
       <br/><br/>
-      <div id="buttons_x">
-	<a href="/survey/"><button class="signupbutton">List Apartment</button></a>
-	<a href="/survey/"><button class="myButton">Find Roomates</button></a>
-      </div><!--closes buttons-->
+    	<div id="buttons_x">
+			<a href="/survey/"><button class="signupbutton">List Apartment</button></a>
+			<a href="/survey/"><button class="myButton">Find Roomates</button></a>
+        </div><!--closes buttons-->
     </div><!--closes tagline-->
-    <div id="features" class="fourteen columns offset-by-one">
-      <div class="featurebox">
-	<img src="{% get_static_prefix %}images/easy.jpeg" width=40%/>
-	<h5>Easy!</h5>
-	<p>Just fill out a quick survey and get matched.</p>
-      </div>
-      <div class="featurebox">
-	<img src="{% get_static_prefix %}images/tux_man.svg" width=10%/>
-	<h5>Tailored!</h5>
-	<p>No need to randomly screen people on craigslist.</p>
-      </div>
-      <div class="featurebox">
+    
+	<div id="features" class="fourteen columns offset-by-one">
+    	<div class="featurebox">
+		<img src="{% get_static_prefix %}images/easy.jpeg" width=40%/>
+		<h5>Easy!</h5>
+		<p>Just fill out a quick survey and get matched.</p>
+        </div>
+      	<div class="featurebox">
+		<img src="{% get_static_prefix %}images/tux_man.svg" width=10%/>
+		<h5>Tailored!</h5>
+		<p>No need to randomly screen people on craigslist.</p>
+      	</div>
+		<div class="featurebox">
         <img src="{% get_static_prefix %}images/peace_sign.svg" width=30%/>
-	<h5>Harmony</h5>
-	<p>Live in harmony with your roommates.</p>
-      </div>
-
+		<h5>Harmony</h5>
+		<p>Live in harmony with your roommates.</p>
+      	</div>
     </div><!--closes features-->
+	
+	<div id = "fedbackbox" class="fourteen columns offset-by-one">
+	<h3> Tell us what to do next! </h3>
+		<form>
+		<h5> What feature do you most want? </h5>
+			<input type="checkbox" name="c1" value="c1" /> Facebook integration to know when friends-of-friends are looking. <br />
+			<input type="checkbox" name="c1" value="c1" /> A personality-matching algorithm like they have on dating sites. <br />
+			<input type="checkbox" name="c1" value="c1" /> More features to make it easier to manage applications (for people who are listing a room). <br />
+		<br />
+
+		<h5> Any other feedback? </h5>	
+			<textarea name="unpromptedfeedback"></textarea>
+		<br />
+
+		<h5> If you give us your email we'll tell you when we add the feature you want. <h5>
+			<input type="text" name="feedback_name" value="Name" />
+			<input type="text" name="feedback_email" value="you@email.com" />
+		<br />
+		<input type="submit" value="Submit" />
+		</form>
+	</div><!--closes feedbackbox-->
 
   </div><!--closes main-->
 
