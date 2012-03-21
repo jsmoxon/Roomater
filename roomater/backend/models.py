@@ -2,11 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User, Permission, Group
 from datetime import datetime
 
-class Photo(models.Model):
-    pic = models.ImageField(upload_to='profile_pics', blank=True)
-    def __unicode__(self):
-        return str(self.pic)
-
 class PhotoUrl(models.Model):
     url = models.CharField(max_length=500)
     uploaded = models.DateTimeField()
@@ -14,6 +9,15 @@ class PhotoUrl(models.Model):
     def save(self):
         self.uploaded = datetime.now()
         models.Model.save(self)
+
+class Room(models.Model):
+    price = models.IntegerField(blank=True)
+    address = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100, blank=True)
+    pic = models.CharField(max_length=500, blank=True, null=True)
+    def __unicode__(self):
+        return str(self.address)+" "+str(self.city)
+
 
 class Question(models.Model):
     questioner = models.ForeignKey(User)
@@ -30,6 +34,7 @@ class Response(models.Model):
 class Survey(models.Model):
     name = models.CharField(max_length=200)
     questions =models.ManyToManyField(Question)
+    room = models.ForeignKey(Room)
     def __unicode__(self):
         return str(self.name)
 

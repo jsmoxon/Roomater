@@ -38,7 +38,9 @@ def create_survey(request):
     user = authenticate(username=username, password=password)
     login(request, user)
 #submit the survey they just made
-    submit_create_survey(request)
+    room = Room(price=request.POST["price"], address=request.POST["address"], city=request.POST["city"])
+    room.save()
+    submit_create_survey(request, room)
     return redirect('/backend/dash/')
 
 @login_required
@@ -87,9 +89,10 @@ def create_search_profile(request):
 
 
 @csrf_exempt
-def submit_create_survey(request):
+def submit_create_survey(request, room):
     survey = Survey()
     survey.name = request.user.username
+    survey.room = room
     survey.save()
     questions = Question.objects.all()
     question_list = []
