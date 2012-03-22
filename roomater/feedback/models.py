@@ -35,3 +35,8 @@ class Choice(models.Model):
     
     def __unicode__(self):
         return self.choice
+
+class Bruisers(models.Model):
+	poll = models.ForeignKey(Poll)
+    choice = models.CharField(max_length=200)
+    votes = models.IntegerField()
