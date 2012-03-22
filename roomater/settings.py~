@@ -186,3 +186,4 @@ LOGGING = {
 
 ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_REDIRECT_URL = '/backend/dash/'
+LOGIN_URL = '/login/'

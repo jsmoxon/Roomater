@@ -19,6 +19,10 @@ text-align:center;
 clear:both;
 }
 
+.pointer {
+cursor:pointer;
+}
+
 /* Header and Footer*/
 
 #header {

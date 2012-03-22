@@ -1,4 +1,5 @@
 {% extends "main_base.html" %}
+{% load static %}
 {% block page %}
 <div class="page_title sixteen columns">
   <h2>List a room</h2>
@@ -32,59 +33,71 @@
   <input type="text" name="q10" />
 
   <br/>
-  <h4>Tell us about the room</h4>
-  <label>{{form.price.label}} ($)</label>
-  <p class="error_p">{{form.price.errors}}</p>
-  {{form.price}}
-  <label>{{form.address.label}}</label>
-  <p class="error_p">{{form.address.errors}}</p>
-  {{form.address}}
-  <label>{{form.city.label}}</label>
-  <p class="error_p">{{form.city.errors}}</p>
-  {{form.city}}
-
+  <div id="tell_room">
+    <h4 class="pointer">Tell us about the room</h4>
+    <dd>
+    <label>{{form.price.label}} ($)</label>
+    <p class="error_p">{{form.price.errors}}</p>
+    {{form.price}}
+    <label>{{form.address.label}}</label>
+    <p class="error_p">{{form.address.errors}}</p>
+    {{form.address}}
+    <label>{{form.city.label}}</label>
+    <p id="next_toggle"  class="error_p next_toggle">{{form.city.errors}}</p>
+    {{form.city}}
+    </dd>
+  </div><!--closes tell_room-->
   <br/>
-  <h4>Create an account</h4>
-  <label>{{form.username.label}}</label>
-  <p class="error_p">{{form.username.errors}}</p>
-  {{form.username}}
-  <label>{{form.password.label}}</label>
-  <p class="error_p">{{form.password.errors}}</p>
-  <input type="password" name="password" />
-  <label>{{form.email.label}}</label>
-  <p class="error_p">{{form.email.errors}}</p>
-  {{form.email}}
-
+  <div id="create_account">
+    <h4 class="pointer">Create an account</h4>
+    <dd>
+    <label>{{form.username.label}}</label>
+    <p class="error_p">{{form.username.errors}}</p>
+    {{form.username}}
+    <label>{{form.password.label}}</label>
+    <p class="error_p">{{form.password.errors}}</p>
+    <input type="password" name="password" />
+    <label>{{form.email.label}}</label>
+    <p class="error_p next_toggle">{{form.email.errors}}</p>
+    {{form.email}}
+    </dd>
+  </div><!--closes create_account-->
   <br/>
-  <h4>Tell us a bit about yourself</h4>
-    <label>{{form.name.label}}</label>
-    {{form.name.errors}}
-    {{form.name}}
-    <label>How important is cleanliness to you?</label>
-    <select name="clean_score">
-      <option value="1">1 - Not at all</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5 - Somewhat</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10 - It's all I care about</option>
-    </select>
-    <label>Do you smoke?</label>
-    <select name="smoker">
-      <option value="No">No</option>
-      <option value="Yes">Yes</option>
-    </select>
-    <label>{{form.about.label}}</label>
-  <p class="error_p">{{form.about.errors}}</p>
-    {{form.about}}
-    <label>Upload a picture</label>
-  <p class="error_p">{{form.file.errors}}</p>
-    {{form.file}}
-    <br/><br/>
-  <input type="submit" value="Submit!" />
+  <div id="tell_yourself">
+    <h4 class="pointer">Tell us a bit about yourself</h4>
+    <dd>
+      <label>{{form.name.label}}</label>
+      {{form.name.errors}}
+      {{form.name}}
+      <label>How important is cleanliness to you?</label>
+      <select name="clean_score">
+	<option value="1">1 - Not at all</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5 - Somewhat</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10 - It's all I care about</option>
+      </select>
+      <label>Do you smoke?</label>
+      <select name="smoker">
+	<option value="No">No</option>
+	<option value="Yes">Yes</option>
+      </select>
+      <label>{{form.about.label}}</label>
+      <p class="error_p">{{form.about.errors}}</p>
+      {{form.about}}
+      <label>Upload a picture</label>
+      <p class="error_p">{{form.file.errors}}</p>
+      {{form.file}}
+      <br/><br/>
+      <input type="submit" value="Submit!" />
+    </dd>
+  </div><!--closes tell_yourself-->
 </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="{% get_static_prefix %}js/dropdown.js"></script>
 {% endblock page %}
