@@ -7,7 +7,7 @@ admin.autodiscover()
 
 
 urlpatterns = patterns('',
-#    url(r'^$', 'frontend.views.home'),                       
+    url(r'^$', 'frontend.views.home'),                       
     url(r'^survey', direct_to_template, {'template': 'survey.html'}),
     url(r'^location', direct_to_template, {'template': 'location.html'}),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
