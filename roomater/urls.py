@@ -1,5 +1,5 @@
 from django.views.generic.simple import direct_to_template
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.conf.urls.static import static
 import settings
@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^location', direct_to_template, {'template': 'location.html'}),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^feedback/', include('feedback.urls')),
     url(r'^backend/', include('backend.urls')),                      
     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^accounts/', include('registration.urls')),                       
