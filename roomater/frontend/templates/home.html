@@ -100,7 +100,7 @@
 
   </div><!--closes main-->
 
-	<div id="Djangoform" class="fourteen columns offset-by-one">
+	<div id="Djangoform1" class="fourteen columns offset-by-one">
 	<h3> Django's example </h3>
 	<h5> {{ survey.suggestion }} </h5>
 	{% if error_message %}
@@ -115,6 +115,22 @@
 	{% endfor %}
 	<input type="submit" value="Vote" />
 	</form> 
+	</div>
+
+	<div id="Djangoform2" class="fourteen columns offset-by-one">
+	<h3> Django's Real Example </h3>
+	<h1> {{ Survey.option }} </h1>
+	
+	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+	
+	<form action="/feedback/{{ survey.id }}/vote/" method="post">
+	{% csrf_token %}
+	{% for choice in poll.choice_set.all %}
+		<input type="radio" name="option" id="option"{{ forloop.counter }}" value="{{ option.id}}" />
+		<label for="option{{ forloop.counter }}">{{ option.option }} ({{ option.votes }} votes so far)</label><br />
+	{% endfor %}
+	<input type="submit" value="Vote" />
+	</form>
 	</div>
 
 </div><!--closes container-->
