@@ -1,0 +1,12 @@
+<h1> {{ survey.question }} </h1>
+
+<ul>
+{% for option in survey.option_set.all %}
+    <li> {{option.option }} ({{ option.votes }} vote{{ option.votes|pluralize }}) </li>
+{% endfor %}
+</ul>
+
+<a href="/polls/{{ survey.id }}/"> You can respond again, though it does seem a bit unfair doesn't it? </a>
+
+
+

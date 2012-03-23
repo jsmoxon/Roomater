@@ -5,20 +5,20 @@ class Suggestion(models.Model):
     suggestion = models.TextField(max_length=200)
     pub_date = models.DateTimeField('date submitted')
     def __unicode__(self):
-		return self.suggestion
+        return self.suggestion
 
 class Survey(models.Model):
     survey = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     def __unicode__(self):
-		return self.survey
+        return self.survey
 
 class Option(models.Model):
     survey = models.ForeignKey(Survey)
     option = models.CharField(max_length=200)
     votes = models.IntegerField()
     def __unicode__(self):
-		return self.option
+        return self.option
 
 class Poll(models.Model):
     question = models.CharField(max_length=200)
