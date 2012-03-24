@@ -6,11 +6,21 @@
   <h2>Survey by {{s}}</h2>
 </div><!--closes page_title-->
 
+<div id="">
+  <ul>
+    <li>Price: ${{s.room.price}}</li>
+    <li>Address: {{s.room.address}}</li>
+    <li>City: {{s.room.city}}</li>
+  </ul>
+<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=3730+20th+St,+San+Francisco,+CA+94110&amp;aq=0&amp;oq=37&amp;sll=37.0625,-95.677068&amp;sspn=47.215051,86.923828&amp;ie=UTF8&amp;hq=&amp;hnear=3730+20th+St,+San+Francisco,+California+94110&amp;t=m&amp;z=14&amp;ll=37.758334,-122.424248&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=3730+20th+St,+San+Francisco,+CA+94110&amp;aq=0&amp;oq=37&amp;sll=37.0625,-95.677068&amp;sspn=47.215051,86.923828&amp;ie=UTF8&amp;hq=&amp;hnear=3730+20th+St,+San+Francisco,+California+94110&amp;t=m&amp;z=14&amp;ll=37.758334,-122.424248" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+</div>
+
 <form action="/backend/submit/{{s.id}}/" method="post">
   {% csrf_token %}
 {% for q in question %}
   <label>{{q.text}}</label>
-  <textarea type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}"></textarea>
+  <input type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}" />
+<!--  <textarea type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}"></textarea>-->
   <input type="hidden" name="{% cycle 'row1' 'row2' 'row3' 'row4' 'row5' 'row6' 'row7' 'row8' 'row9' 'row10'%}" value="{{q.text}}" />
 {% endfor %}
   <br/>

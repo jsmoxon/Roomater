@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^feedback/', include('feedback.urls')),
     url(r'^backend/', include('backend.urls')),                      
     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    url(r'^login/$', 'backend.views.create_search_profile'),                       
     url(r'^accounts/', include('registration.urls')),                       
 )
 

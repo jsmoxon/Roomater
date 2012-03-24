@@ -1,0 +1,77 @@
+{% extends "main_base.html" %}
+{% block page %}
+<div class="page_title sixteen columns">
+  <h2>List a room</h2>
+</div><!--closes page_title-->
+
+<form action="." method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <h4>What do you want to know about your roommates?</h4>
+  <p>(feel free to delete our pre-selected examples)</p>
+  <label>Question 1</label>
+  <input type="text" name="q1" value="Do you smoke?"/>
+  <label>Question 2 (optional)</label>
+  <input type="text" name="q2" value="What is your favorite bar in the city?"/>
+  <label>Question 3 (optional)</label>
+  <input type="text" name="q3" value="What is your idea of a fun night out?"/>
+  <label>Question 4 (optional)</label>
+  <input type="text" name="q4" value="Are you a morning or night person?"/>
+  <label>Question 5 (optional)</label>
+  <input type="text" name="q5" value="Do you watch TV? Which shows?"/>
+
+  <label>Question 6 (optional)</label>
+  <input type="text" name="q6" />
+  <label>Question 7 (optional)</label>
+  <input type="text" name="q7" />
+  <label>Question 8 (optional)</label>
+  <input type="text" name="q8" />
+  <label>Question 9 (optional)</label>
+  <input type="text" name="q9" />
+  <label>Question 10 (optional)</label>
+  <input type="text" name="q10" />
+
+  <br/>
+  <h4>Tell us about the room</h4>
+  <label>Price ($)</label>
+  <input type="text" name="price" />
+  <label>Address</label>
+  <input type="text" name="address" />
+  <label>City</label>
+  <input type="text" name="city" />
+
+  <br/>
+  <h4>Create an account</h4>
+    <label>Username:</label>
+    <input type="text" name="username" />
+    <label>Password:</label>
+    <input type="text" name="password" />
+    <label>Email:</label>
+    <input type="text" name="email" />
+  <br/>
+  <h4>Tell us a bit about yourself</h4>
+    <label>Name</label>
+    <input type="text" name="name"/>
+    <label>How important is cleanliness to you?</label>
+    <select name="clean_score">
+      <option value="1">1 - Not at all</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5 - Somewhat</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10 - It's all I care about</option>
+    </select>
+    <label>Do you smoke?</label>
+    <select name="smoker">
+      <option value="No">No</option>
+      <option value="Yes">Yes</option>
+    </select>
+    <label>About</label>
+    <textarea name="about" value="about"></textarea>
+    {{form}}
+  <input type="submit" value="Submit!" />
+</form>
+{% endblock page %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response, get_object_or_404, HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
 from models import *
-from forms import ProfileForm, SearchRegForm, ListRegForm
+from forms import ProfileForm
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Permission, Group
@@ -15,9 +15,9 @@ class UploadForm(forms.Form):
 
 def create_survey(request):
     if not request.method == "POST":
-        form = ListRegForm()
+        form = UploadForm()
         return render_to_response('create_survey.html', {"form":form}, context_instance=RequestContext(request))
-    form = ListRegForm(request.POST, request.FILES)
+    form = UploadForm(request.POST, request.FILES)
     if not form.is_valid():
         return render_to_response('create_survey.html', {"form":form}, context_instance=RequestContext(request))
 
@@ -64,7 +64,7 @@ def list_of_surveys(request):
 #create a profile without a survey in mind
 def create_search_profile(request):
     if request.method == 'POST':
-        form = SearchRegForm(request.POST, request.FILES)
+        form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
 #upload photo
             file = request.FILES["file"]
@@ -81,11 +81,9 @@ def create_search_profile(request):
             password = request.POST['password']
             user = authenticate(username=username, password=password)
             login(request, user)
-            redirect_to = request.REQUEST.get('next' '')
-            print redirect_to
-            return redirect(redirect_to)
+            return redirect('/backend/surveys/')
     else:
-        form = SearchRegForm()
+        form = ProfileForm()
     return render_to_response('registration/login.html', {'form':form}, context_instance=RequestContext(request))    
 
 

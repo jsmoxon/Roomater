@@ -65,10 +65,10 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # for production
-STATIC_URL = 'https://s3.amazonaws.com/roommater/'
+#STATIC_URL = 'https://s3.amazonaws.com/roommater/'
 
 # for development
-#STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
@@ -84,18 +84,6 @@ STATICFILES_DIRS = (
 
 # List of finder classes that know how to find static files in
 # various locations.
-#mediasync for media files on S#                                                                                                    
-#TEMPLATE_CONTEXT_PROCESSORS = 'django.contrib.auth.context_processors.auth'
-
-
-MEDIASYNC = {
-    'BACKEND': 'mediasync.backends.s3',
-    'AWS_KEY': "AKIAIKCIQTFH5VWHT4HQ",
-    'AWS_SECRET': "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",
-    'AWS_BUCKET': "roommater",
-    'AWS_PREFIX': "media",
-    'SERVE_REMOTE': True,
-}
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.                                                     
 # Example: "/home/media/media.lawrence.com/media/"                                                                                  
@@ -158,7 +146,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
 #    'storages',
-#    'mediasync',
 #    'django_extensions',
 )
 
@@ -187,3 +174,4 @@ LOGGING = {
 
 ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_REDIRECT_URL = '/backend/dash/'
+LOGIN_URL = '/login/'

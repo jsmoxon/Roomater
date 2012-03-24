@@ -3,41 +3,54 @@
 {% block page %}
 
 <div id="home_main">
-  <img class="six columns offset-by-five" src="{% get_static_prefix %}images/logo.png" />
-  <h2 class="center clearboth">Find roommates that fit your lifestyle</h2>
-  <h4 class="center">Create standardized, customized surveys and track your potential roommates.</h4>
-  <div id="home_buttons" class="six columns offset-by-five">
-    <a href="/backend/create_survey/"><button class="signupbutton">List a room</button></a>
-    <a href="/backend/surveys/"><button class="myButton">Find a room</button></a>
-  </div><!--closes buttons-->
-
-<div id="howto" class="fourteen columns offset-by-one">
-  <div id="home_left" class="six columns center">
-    <img class="rounded_image" src="https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcS_NvnycJ_dOeKSpRTMwmchvY4Va6NGVTgZedXUAcuGtcc9OhmI" width=300px height=200px/>
-    <h4>Have a room?</h4>
-    <ul>
-      <li>1. List your room</li>
-      <li>2. Create a survey for potential roommates</li>
-      <li>3. Post your survey to Craigslist</li>
-      <li>4. Track potential applicants at your dashboard</li>
-      <li>5. Find an okay roommate!</li>
-    </ul>
-  </div><!--closes home_left-->
-
-  <div id="home_right" class="six columns center">
-    <img class="rounded_image" src="http://roommater.s3.amazonaws.com/elvis.png" width=300px height=200px/>
-
-    <h4>Need a room?</h4>
-    <ul>
-      <li>1. Enter your location</li>
-      <li>2. Search for rooms in your price range</li>
-      <li>3. Reply to people's surveys</li>
-      <li>4. Find an okay roommate!</li>
-    </ul>
-
-  </div><!--closes home_right-->
-</div><!--closes howto-->
-
+    <img class="six columns offset-by-five" src="{% get_static_prefix %}images/logo.png" />
+    <h2 class="center clearboth">Find roommates that fit your lifestyle</h2>
+    <h4 class="center">Create standardized, customized surveys and track your potential roommates.</h4>
+    <div id="home_buttons" class="six columns offset-by-five">
+        <a href="/backend/create_survey/"><button class="signupbutton">List a room</button></a>
+        <a href="/backend/surveys/"><button class="myButton">Find a room</button></a>
+    </div><!--closes buttons-->
+    <div id="howto" class="fourteen columns offset-by-one">
+        <div id="home_left" class="six columns center">
+            <img class="rounded_image" src="https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcS_NvnycJ_dOeKSpRTMwmchvY4Va6NGVTgZedXUAcuGtcc9OhmI" width=300px height=200px/>
+            <h4>Have a room?</h4>
+            <ul>
+              <li>1. List your room</li>
+              <li>2. Create a survey for potential roommates</li>
+              <li>3. Post your survey to Craigslist</li>
+              <li>4. Track potential applicants at your dashboard</li>
+              <li>5. Find an okay roommate!</li>
+            </ul>
+        </div><!--closes home_left-->
+        <div id="home_right" class="six columns center">
+        <img class="rounded_image" src="http://roommater.s3.amazonaws.com/elvis.png" width=300px height=200px/>
+        
+        <h4>Need a room?</h4>
+        <ul>
+          <li>1. Enter your location</li>
+          <li>2. Search for rooms in your price range</li>
+          <li>3. Reply to people's surveys</li>
+          <li>4. Find an okay roommate!</li>
+        </ul>
+        
+        </div><!--closes home_right-->
+    </div><!--closes howto-->
+    <div id="feedback_survey" class="fourteen columns offset-by-one">
+        <h2 class="center"> Help us out!! </h2>
+        <h4> {{ survey }} </h4>
+        
+        {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+        {% endif %}
+        
+        <form action="/feedback/{{ survey.id }}/vote/" method="post">
+            {% csrf_token %}
+            {% for option in survey.option_set.all %}
+                <input type="radio" name="option" id="option"{{ forloop.counter }}" value="{{ option.id}}" />
+                <label for="option{{ forloop.counter }}">{{ option.option }}</label><br />
+            {% endfor %}
+            <input type="submit" value="Select" class="center clearboth" />
+        </form>
+    </div> <!--closes feedback_survey -->
 </div><!--closes main div-->
-
 {% endblock page %}

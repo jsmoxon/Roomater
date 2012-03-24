@@ -1,66 +1,76 @@
 {% extends "main_base.html" %}
 {% load url from future %}
+{% load static %}
 {% block page %}
 
 <div class="page_title sixteen columns">
-<h4>Login</h4>
+  <h4>Login</h4>
 </div><!--closes page_title-->
 
 
 <div id="login">
-<form action="/accounts/login/" method="post">
-{% csrf_token %}
+  <form action="/accounts/login/" method="post">
+    {% csrf_token %}
     <label>Username:</label>
     <input type="text" name="username" />
     <label>Password:</label>
     <input type="text" name="password" />
-<input type="hidden" name="next" value="{{ next }}" />
-<input type="submit" value="Login" />
-</form>
+    <input type="hidden" name="next" value="{{ next }}" />
+    <input type="submit" value="Login" />
+  </form>
 </div><!--closes login-->
 
-<h4>New User?</h4>
-
-<div id="register">
-<div class="page_title sixteen columns">
-<h4>Create a Profile</h4>
-</div><!--closes page_title-->
-
-<form action="/backend/profile/" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <label>Username:</label>
-    <input type="text" name="username" />
-    <label>Password::</label>
-    <input type="text" name="password" />
-    <label>Email::</label>
-    <input type="text" name="email" />
-  <h4>Tell us a bit about yourself</h4>
-    <label>Name</label>
-    <input type="text" name="name"/>
-    <label>How important is cleanliness to you?</label>
-    <select name="clean_score">
-      <option value="1">1 - Not at all</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5 - Somewhat</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10 - It's all I care about</option>
-    </select>
-    <label>Do you smoke?</label>
-    <select name="smoker">
-      <option value="No">No</option>
-      <option value="Yes">Yes</option>
-    </select>
-    <label>About</label>
-    <textarea name="about" value="about"></textarea>
-    <label>Upload your pic:</label>
-    <input type="file" name="file"/>
-    <br/><br/>
-    <input type="submit" value="Submit" />
+<h4 class="dropdown pointer">New User? -- Register here</h4>
+<dd>
+  <div id="register">
+  <div id="create_account">
+    <h4 class="pointer">Create an account</h4>
+    <label>{{form.username.label}}</label>
+    <p class="error_p">{{form.username.errors}}</p>
+    {{form.username}}
+    <label>{{form.password.label}}</label>
+    <p class="error_p">{{form.password.errors}}</p>
+    <input type="password" name="password" />
+    <label>{{form.email.label}}</label>
+    <p class="error_p next_toggle">{{form.email.errors}}</p>
+    {{form.email}}
+  </div><!--closes create_account-->
+  <br/>
+  <div id="tell_yourself">
+    <h4 class="pointer">Tell us a bit about yourself</h4>
+      <label>{{form.name.label}}</label>
+      {{form.name.errors}}
+      {{form.name}}
+      <label>How important is cleanliness to you?</label>
+      <select name="clean_score">
+        <option value="1">1 - Not at all</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+	<option value="5">5 - Somewhat</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10 - It's all I care about</option>
+      </select>
+      <label>Do you smoke?</label>
+      <select name="smoker">
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+      </select>
+      <label>{{form.about.label}}</label>
+      <p class="error_p">{{form.about.errors}}</p>
+      {{form.about}}
+      <label>Upload a picture</label>
+      <p class="error_p">{{form.file.errors}}</p>
+      {{form.file}}
+      <br/><br/>
+      <input type="submit" value="Submit!" />
+  </div><!--closes tell_yourself-->
 </form>
-</div><!--closes register-->
+  </div><!--closes register-->
+</dd>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="{% get_static_prefix %}js/dropdown.js"></script>
 {% endblock page%}
