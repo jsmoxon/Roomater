@@ -7,8 +7,8 @@
     <h2 class="center clearboth">Find roommates that fit your lifestyle</h2>
     <h4 class="center">Create standardized, customized surveys and track your potential roommates.</h4>
     <div id="home_buttons" class="six columns offset-by-five">
-        <a href="/backend/create_survey/"><button class="signupbutton">List a room</button></a>
-        <a href="/backend/surveys/"><button class="myButton">Find a room</button></a>
+        <a href="/backend/create_survey/"><button class="signupbutton mainbuttons">List a room</button></a>
+        <a href="/backend/surveys/"><button class="myButton mainbuttons">Find a room</button></a>
     </div><!--closes buttons-->
     <div id="howto" class="fourteen columns offset-by-one">
         <div id="home_left" class="six columns center">
@@ -37,20 +37,16 @@
     </div><!--closes howto-->
     <div id="feedback_survey" class="fourteen columns offset-by-one">
         <h2 class="center"> Help us out!! </h2>
-        <h4> {{ survey }} </h4>
-        
-        {% if error_message %}
-        <p><strong>{{ error_message }}</strong></p>
+        <h4> Click on each question to answer it: </h4>
+        {% if survey_list %}
+        <ul>
+        {% for survey in survey_list %}
+            <li><a href="/feedback/{{ survey.id }}/">{{ survey.survey }}</a></li>
+        {% endfor %}
+        </ul>
+        {% else %}
+            <p>No surveys are present, presently. </p>
         {% endif %}
-        
-        <form action="/feedback/{{ survey.id }}/vote/" method="post">
-            {% csrf_token %}
-            {% for option in survey.option_set.all %}
-                <input type="radio" name="option" id="option"{{ forloop.counter }}" value="{{ option.id}}" />
-                <label for="option{{ forloop.counter }}">{{ option.option }}</label><br />
-            {% endfor %}
-            <input type="submit" value="Select" class="center clearboth" />
-        </form>
     </div> <!--closes feedback_survey -->
 </div><!--closes main div-->
 {% endblock page %}

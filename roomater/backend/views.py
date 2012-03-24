@@ -9,6 +9,7 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
 from django import forms
 from s3 import store_in_s3
+from feedback.models import *
 
 class UploadForm(forms.Form):
     file = forms.ImageField(label='Upload your pic')
@@ -153,3 +154,39 @@ def submit_survey(request, entry_id):
         i+=1
     
     return redirect('/backend/dash/')
+
+
+
+
+#PK's FEEDBACK STUFF
+
+# Following the index example
+def feedback_index(request):
+    survey_list = Survey.objects.all().order_by('-pub_date')[:5]
+    return render_to_response('home_screen.html', {'survey_list': survey_list})
+
+# Following the detail example
+def feedback_detail(request, survey_id):
+    s = get_object_or_404(Survey, pk=survey_id)
+    return render_to_response('feedback_detail.html', {'survey': s}, 
+                                context_instance=RequestContext(request))
+
+# Following the vote example
+def feedback_vote(request, survey_id):
+    s = get_object_or_404(Survey, pk=survey_id)
+    try: 
+        selected_option = s.option_set.get(pk=request.POST['option'])
+    except (KeyError, Option.DoesNotExist):
+        return render_to_response('feedback_detail.html', {
+            'survey': s,
+            'error_message': "You didn't opt for any option, you little ruffian! Try again:",
+        }, context_instance=RequestContext(request))
+    else:
+        selected_option.votes += 1
+        selected_option.save()
+        return HttpResponseRedirect(reverse('feedback.views.feedback_responses', args=(s.id,)))
+
+# following the results example
+def feedback_responses(request, survey_id):
+    s = get_object_or_404(Survey, pk=survey_id)
+    return render_to_response('feedback_responses.html', {'survey': s})

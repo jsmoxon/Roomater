@@ -1,3 +1,7 @@
+{% extends "main_base.html" %}
+{% load static %}
+{% block page %}
+
 <h1> {{ survey.question }} </h1>
 
 <ul>
@@ -7,6 +11,4 @@
 </ul>
 
 <a href="/feedback/{{ survey.id }}/"> You can respond again, though it does seem a bit unfair doesn't it? </a>
-
-
-
+ {% endblock page %}

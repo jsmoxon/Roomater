@@ -1,3 +1,7 @@
+{% extends "main_base.html" %}
+{% load static %}
+{% block page %}
+
 <h3> {{ survey }} </h3>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -5,7 +9,7 @@
 <form action="/feedback/{{ survey.id }}/vote/" method="post">
 {% csrf_token %}
 {% for option in survey.option_set.all %}
-    <input type="radio" name="option" id="option"{{ forloop.counter }}" value="{{ option.id}}" />
+    <input type="radio" name="option" class="feedback_option"{{ forloop.counter }}" value="{{ option.id}}" />
     <label for="option{{ forloop.counter }}">{{ option.option }}</label><br />
 {% endfor %}
 <input type="submit" value="Select" />
@@ -14,3 +18,4 @@
 <!--# REVIEW form action, for="option {{ forloop.counter }} -->
 
 
+{% endblock page %}

@@ -181,13 +181,30 @@ margin-left:80px;
 }
 
 .rounded_image {
--moz-border-radius: 15px;
-border-radius: 15px;
-width:250px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        width:250px;
+}
+
+.mainbuttons {
+        height:50px;
+        -moz-border-radius:6px;
+        -webkit-border-radius:6px;
+        border-radius:6px;
+        display:inline-block;
+        font-family:arial;
+        font-size:15px;
+        font-weight:bold;
+        padding:6px 24px;
+        text-decoration:none;
+}
+
+}.mainbuttons:active {
+                  position:relative;
+                  top:1px;
 }
 
 .myButton {
-          height:50px;
           -moz-box-shadow:inset 0px 1px 0px 0px #38c955;
           -webkit-box-shadow:inset 0px 1px 0px 0px #38c955;
           box-shadow:inset 0px 1px 0px 0px #38c955;
@@ -195,32 +212,11 @@ width:250px;
           background:-moz-linear-gradient( center top, #23c42e 5%, #18ad22 100% );
           filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#23c42e', endColorstr='#18ad22');
           background-color:#23c42e;
-          -moz-border-radius:6px;
-          -webkit-border-radius:6px;
-          border-radius:6px;
           border:1px solid #dcdcdc;
-          display:inline-block;
           color:#f5f2f5;
-          font-family:arial;
-          font-size:15px;
-          font-weight:bold;
-          padding:6px 24px;
-          text-decoration:none;
           text-shadow:1px 1px 0px #7a787a;
 }
-
-.myButton:hover {
-                 background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #18ad22), color-stop(1, #23c42e) );
-                 background:-moz-linear-gradient( center top, #18ad22 5%, #23c42e 100% );
-                 filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#18ad22', endColorstr='#23c42e');
-                 background-color:#18ad22;
-}.myButton:active {
-                  position:relative;
-                  top:1px;
-}
-
 .signupbutton {
-          height:50px;
           -moz-box-shadow:inset 0px 1px 0px 0px #3784c7;
           -webkit-box-shadow:inset 0px 1px 0px 0px #3784c7;
           box-shadow:inset 0px 1px 0px 0px #3784c7;
@@ -228,24 +224,26 @@ width:250px;
           background:-moz-linear-gradient( center top, #2398c2 5%, #182cab 100% );
           filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2398c2', endColorstr='#182cab');
           background-color:#2398c2;
-          -moz-border-radius:6px;
-          -webkit-border-radius:6px;
-          border-radius:6px;
           border:1px solid #dcdcdc;
-          display:inline-block;
           color:#f5f2f5;
-          font-family:arial;
-          font-size:15px;
-          font-weight:bold;
-          padding:6px 24px;
-          text-decoration:none;
           text-shadow:1px 1px 0px #7a787a;
-}.signupbutton:hover {
+
+.myButton:hover {
+                 background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #18ad22), color-stop(1, #23c42e) );
+                 background:-moz-linear-gradient( center top, #18ad22 5%, #23c42e 100% );
+                 filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#18ad22', endColorstr='#23c42e');
+                 background-color:#18ad22;
+
+}
+
+.signupbutton:hover {
                  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #182cab), color-stop(1, #2398c2) );
                  background:-moz-linear-gradient( center top, #182cab 5%, #2398c2 100% );
                  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#182cab', endColorstr='#2398c2');
                  background-color:#182cab;
-}.signupbutton:active {
-                  position:relative;
-                  top:1px;
+
+
+input.feedback_option {
+display: inline;
+background-color: green;
 }

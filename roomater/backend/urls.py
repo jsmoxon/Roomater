@@ -6,7 +6,8 @@ import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^home/', direct_to_template, {'template':'home_screen.html'}),                       
+#    url(r'^home/', direct_to_template, {'template':'home_screen.html'}), 
+    url(r'^home/', 'backend.views.feedback_index'),                      
     url(r'^dash/', 'backend.views.dash'),
     url(r'^surveys', 'backend.views.list_of_surveys'),
     url(r'^create_survey', 'backend.views.create_survey', name='create_survey'),
