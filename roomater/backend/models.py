@@ -14,6 +14,8 @@ class Room(models.Model):
     price = models.IntegerField(blank=True)
     address = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100, blank=True)
+    lat = models.FloatField(blank=True, null=True)
+    lng = models.FloatField(blank=True, null=True)
     pic = models.CharField(max_length=500, blank=True, null=True)
     def __unicode__(self):
         return str(self.address)+" "+str(self.city)
@@ -45,7 +47,7 @@ class UserProfile(models.Model):
     clean_score = models.IntegerField(blank=True)
     smoker = models.NullBooleanField()
     about = models.TextField(blank=True)
-#    pic = models.ImageField(upload_to='profile_pics', blank=True)
+    rooms = models.ManyToManyField(Room, blank=True, null=True)
     pic = models.CharField(max_length=500)
     def __unicode__(self):
         return str(self.user)

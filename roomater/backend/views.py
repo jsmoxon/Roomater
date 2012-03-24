@@ -9,6 +9,7 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
 from django import forms
 from s3 import store_in_s3
+from maps import geo_code
 
 class UploadForm(forms.Form):
     file = forms.ImageField(label='Upload your pic')
@@ -37,8 +38,9 @@ def create_survey(request):
     user = authenticate(username=username, password=password)
     login(request, user)
 #submit the survey they just made
-    room = Room(price=request.POST["price"], address=request.POST["address"], city=request.POST["city"])
+    room = Room(price=request.POST["price"], address=request.POST["address"], city=request.POST["city"], lat=geo_code(request.POST["address"], request.POST["city"])[0], lng = geo_code(request.POST["address"], request.POST["city"])[1])
     room.save()
+#    print geo_code(request.POST["address"], request.POST["city"])[0]
     submit_create_survey(request, room)
     return redirect('/backend/dash/')
 
@@ -99,8 +101,6 @@ def submit_create_survey(request, room):
     question_list = []
     for question in questions:
         question_list.append(question.text)
-    print questions
-    print question_list
     i = 1
     while i<11:
         if request.POST['q'+str(i)] !="":
@@ -135,6 +135,8 @@ def submit_survey(request, entry_id):
     list.survey = Survey.objects.get(pk=entry_id)
     list.name = request.user.username +" "+ str(list.survey)
     user_profile = request.user.get_profile()
+    print user_profile
+    user_profile.rooms.add(list.survey.room)
     list.responder = user_profile
     list.save()
     i = 1
@@ -151,5 +153,4 @@ def submit_survey(request, entry_id):
         except: 
             pass
         i+=1
-    
     return redirect('/backend/dash/')

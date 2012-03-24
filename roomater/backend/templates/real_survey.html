@@ -1,6 +1,5 @@
 {% extends "main_base.html" %}
 {% block page %}
-
 <div id="main">
 <div class="page_title sixteen columns">
   <h2>Survey by {{s}}</h2>
@@ -12,8 +11,10 @@
     <li>Address: {{s.room.address}}</li>
     <li>City: {{s.room.city}}</li>
   </ul>
-<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=3730+20th+St,+San+Francisco,+CA+94110&amp;aq=0&amp;oq=37&amp;sll=37.0625,-95.677068&amp;sspn=47.215051,86.923828&amp;ie=UTF8&amp;hq=&amp;hnear=3730+20th+St,+San+Francisco,+California+94110&amp;t=m&amp;z=14&amp;ll=37.758334,-122.424248&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=3730+20th+St,+San+Francisco,+CA+94110&amp;aq=0&amp;oq=37&amp;sll=37.0625,-95.677068&amp;sspn=47.215051,86.923828&amp;ie=UTF8&amp;hq=&amp;hnear=3730+20th+St,+San+Francisco,+California+94110&amp;t=m&amp;z=14&amp;ll=37.758334,-122.424248" style="color:#0000FF;text-align:left">View Larger Map</a></small>
 </div>
+
+      <div id="map_canvas" style="width: 500px; height: 300px"></div>
+
 
 <form action="/backend/submit/{{s.id}}/" method="post">
   {% csrf_token %}
@@ -28,5 +29,35 @@
 </form> 
 
 </div><!--closes main-->
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCxf_ljx73homsazrdtygO9LF2Vpa9GVWE&sensor=false" type="text/javascript"></script>
+<script type="text/javascript">
+
+var map;
+var geocoder;
+var address ="{{s.room.address}}"+" {{s.room.city}}";
+var coordinates = new google.maps.LatLng({{s.room.lat}}, {{s.room.lng}});
+
+function initializeMap() {
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address':address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      var latlng = results[0].geometry.location;
+    } else {
+      var latlng = new google.maps.LatLng(-34.397, 150.644);
+    };
+    var myOptions = {
+      zoom: 12,
+      center: coordinates,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+  var marker = new google.maps.Marker({
+    map: map,
+    position: coordinates,
+    });
+  }
+)}
+</script>
 {% endblock page %}
 

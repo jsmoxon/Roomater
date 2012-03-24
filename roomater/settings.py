@@ -1,4 +1,6 @@
 # Django settings for roomater project.
+import os
+os.environ['DJANGO_SETTINGS_MODULE']= 'roomater.settings'
 
 from constants import *
 

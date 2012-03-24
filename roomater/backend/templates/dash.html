@@ -30,8 +30,9 @@ No</li>
 </div><!--closes survey_url-->
 
 <div id="potential_roommates" class="sixteen columns">
-  <h3>Potential Roommates</h3>
+
   {% if profile.survey %}
+  <h3>Potential Roommates</h3>
   {% for response in responses %}
   <div class="profile">
   <h4>{{response.responder.name}} -- {{response.responder.user.email}}</h4>
@@ -61,9 +62,10 @@ No</li>
 </div><!--closes answers-->
 </div>
 {% else %}
-<h4>You aren't listing a room.</h4>
-
-
+<h4>Rooms you've applied to:</h4>
+{% for room in profile.rooms.all %}
+<li>{{room}}</li>
+{% endfor %}
 {% endif %}
 
 
