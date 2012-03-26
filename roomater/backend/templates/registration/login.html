@@ -1,38 +1,38 @@
-{% extends "main_base.html" %}
+{% extends "header_footer.html" %}
 {% load url from future %}
 {% load static %}
-{% block page %}
-
-<div class="page_title sixteen columns">
-  <h4>Login</h4>
-</div><!--closes page_title-->
-
-
-<div id="login">
-  <form action="/accounts/login/" method="post">
-    {% csrf_token %}
-    <label>Username:</label>
-    <input type="text" name="username" />
-    <label>Password:</label>
-    <input type="text" name="password" />
-    <input type="hidden" name="next" value="{{ next }}" />
-    <input type="submit" value="Login" />
-  </form>
-</div><!--closes login-->
-
-<h4 class="dropdown pointer">New User? -- Register here</h4>
-<dd>
-  <div id="register">
-  <form action="" method="post" enctype="multipart/form-data">
+{% block main %}
+<div class="container">
+  <div class="page_title sixteen columns">
+    <h4>Login</h4>
+  </div><!--closes page_title-->
+  
+  
+  <div id="login">
+    <form action="/accounts/login/" method="post">
       {% csrf_token %}
-      {{form}}
-      <input type="submit" value="Submit!" />
-
-
-  </div><!--closes tell_yourself-->
-</form>
-  </div><!--closes register-->
-</dd>
+      <label>Username:</label>
+      <input type="text" name="username" />
+      <label>Password:</label>
+      <input type="text" name="password" />
+      <input type="hidden" name="next" value="{{ next }}" />
+      <input type="submit" value="Login" />
+    </form>
+  </div><!--closes login-->
+  
+  <h4 class="dropdown pointer">New User? -- Register here</h4>
+  <dd>
+    <div id="register">
+      <form action="" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{form}}
+	<input type="submit" value="Submit!" />
+	
+	
+    </form>
+    </dd>
+</div><!--closes register-->
+</div><!--closes container-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="{% get_static_prefix %}js/dropdown.js"></script>
-{% endblock page%}
+{% endblock main %}

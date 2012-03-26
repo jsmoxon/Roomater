@@ -1,6 +1,7 @@
-{% extends "main_base.html" %}
+{% extends "header_footer.html" %}
 {% load static %}
-{% block page %}
+{% block main %}
+<div class="container">
 <div class="page_title sixteen columns">
   <h2>List a room</h2>
 </div><!--closes page_title-->
@@ -8,19 +9,24 @@
 <form action="." method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{form.non_field_errors}}
-  <h4>What do you want to know about your roommates?</h4>
-  <p>(feel free to delete our pre-selected examples)</p>
-  <label>Question 1</label>
-  <input type="text" name="q1" value="Do you smoke?"/>
+  <h4>1. What do you want to know about your roommates?</h4>
+  <p>Select our FAQs for create your own below.</p>
+  {% for ques in standard %}
+  <label for"{{ques.text}}"=>{{ques.text}}</label>
+  <input type="checkbox" name="{{ques.text}}" value="{{ques.text}}" /> 
+  {% endfor%}
+  <h5 class="pointer clickable dropdown">Click here to add your own questions</h5>
+  <dd>
+  <label>Question 1 (optional)</label>
+  <input type="text" name="q1" />
   <label>Question 2 (optional)</label>
-  <input type="text" name="q2" value="What is your favorite bar in the city?"/>
+  <input type="text" name="q2" />
   <label>Question 3 (optional)</label>
-  <input type="text" name="q3" value="What is your idea of a fun night out?"/>
-  <label>Question 4 (optional)</label>
-  <input type="text" name="q4" value="Are you a morning or night person?"/>
+  <input type="text" name="q3" />
+   <label>Question 4 (optional)</label>
+  <input type="text" name="q4" />
   <label>Question 5 (optional)</label>
-  <input type="text" name="q5" value="Do you watch TV? Which shows?"/>
-
+  <input type="text" name="q5" />
   <label>Question 6 (optional)</label>
   <input type="text" name="q6" />
   <label>Question 7 (optional)</label>
@@ -31,10 +37,10 @@
   <input type="text" name="q9" />
   <label>Question 10 (optional)</label>
   <input type="text" name="q10" />
-
+  </dd>
   <br/>
   <div id="tell_room">
-    <h4 class="pointer">Tell us about the room</h4>
+    <h4 class="pointer clickable">2. Tell us about the room</h4>
     <dd>
     <label>{{form.price.label}} ($)</label>
     <p class="error_p">{{form.price.errors}}</p>
@@ -43,13 +49,23 @@
     <p class="error_p">{{form.address.errors}}</p>
     {{form.address}}
     <label>{{form.city.label}}</label>
-    <p id="next_toggle"  class="error_p next_toggle">{{form.city.errors}}</p>
+    <p class="error_p">{{form.city.errors}}</p>
     {{form.city}}
+    <label>{{form.state.label}}</label>
+    <p class="error_p">{{form.state.errors}}</p>
+    {{form.state}}
+    <label>{{form.zip.label}}</label>
+    <p class="error_p">{{form.zip.errors}}</p>
+    {{form.zip}}
+    <label>About the room:</label>
+    <p class="error_p">{{form.room_about.errors}}</p>
+    {{form.room_about}}
+
     </dd>
   </div><!--closes tell_room-->
   <br/>
   <div id="create_account">
-    <h4 class="pointer">Create an account</h4>
+    <h4 class="pointer clickable">3. Create an account</h4>
     <dd>
     <label>{{form.username.label}}</label>
     <p class="error_p">{{form.username.errors}}</p>
@@ -64,7 +80,7 @@
   </div><!--closes create_account-->
   <br/>
   <div id="tell_yourself">
-    <h4 class="pointer">Tell us a bit about yourself</h4>
+    <h4 class="pointer clickable">4. Tell us a bit about yourself</h4>
     <dd>
       <label>{{form.name.label}}</label>
       {{form.name.errors}}
@@ -98,6 +114,7 @@
     </dd>
   </div><!--closes tell_yourself-->
 </form>
+</div><!--closes container-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="{% get_static_prefix %}js/dropdown.js"></script>
-{% endblock page %}
+{% endblock main %}

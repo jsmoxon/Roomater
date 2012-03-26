@@ -10,6 +10,6 @@ $(document).ready(function() {
                 $(this).next().slideToggle();
             });
 	$('.dropdown').click(function() {
-		$('dd').slideToggle();
+		$(this).next().slideToggle();
 	    });
     });

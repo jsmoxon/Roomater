@@ -1,15 +1,17 @@
-{% extends "main_base.html" %}
-{% block page %}
+{% extends "header_footer.html" %}
+{% block main %}
 
-<div class="page_title sixteen columns">
-  <h2>Available Rooms</h2>
-</div><!--closes page_title-->
-
-<div id="room_list">
-  <ul>
-    {% for survey in surveys %}
-    <li><a href="/backend/real_survey/{{survey.id}}">{{survey.name}}</a></li>
-    {% endfor %}
-  </ul>
-</div><!--closes room_list-->
-{% endblock page %}
+<div class="container">
+  <div class="page_title sixteen columns">
+    <h2>Available Rooms</h2>
+  </div><!--closes page_title-->
+  
+  <div id="room_list">
+    <ul>
+      {% for survey in surveys %}
+      <li><a href="/room/{{survey.id}}">{{survey.room.address}} {{survey.room.city}}, {{survey.room.state}}</a></li>
+      {% endfor %}
+    </ul>
+  </div><!--closes room_list-->
+</div><!--closes container-->
+{% endblock main %}

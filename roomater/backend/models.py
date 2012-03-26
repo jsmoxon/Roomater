@@ -14,6 +14,9 @@ class Room(models.Model):
     price = models.IntegerField(blank=True)
     address = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100, blank=True)
+    state = models.CharField(max_length=100, blank=True)
+    zip = models.CharField(max_length=100, blank=True)
+    about = models.TextField(blank=True)
     lat = models.FloatField(blank=True, null=True)
     lng = models.FloatField(blank=True, null=True)
     pic = models.CharField(max_length=500, blank=True, null=True)
@@ -24,6 +27,7 @@ class Room(models.Model):
 class Question(models.Model):
     questioner = models.ForeignKey(User)
     text = models.TextField(null=True, blank=True)
+    standard = models.NullBooleanField()
     def __unicode__(self):
         return str(self.text)
 

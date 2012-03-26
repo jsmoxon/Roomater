@@ -12,28 +12,19 @@
 
 </head>
 <body onload="initializeMap()">
-<div id="header">
-  <a href="/backend/home/"><img class="" src="{% get_static_prefix %}images/logo.png" width=25% /></a>
-  <ul class="horizontal" id="headerlinks">
-    <li><a href="/backend/home/">Home</a></li>
-    <li><a href="/backend/dash/">Dashboard</a></li>
-    <li><a href="/backend/surveys/">Search for Rooms</a></li>
-  </ul>
-</div><!--closes header-->
 
-<div class="container">
 
 {% block page %}
 
 {% endblock page%}
- </div><!--closes container-->
+
 <div id="footer" class="">
   <div id="footerlinks">
   <ul class="horizontal">
-    <li><a href="/backend/home/">About</a></li>
-    <li><a href="/backend/home/">Home</a></li>
-    <li><a href="/backend/dash/">Dashboard</a></li>
-    <li><a href="/backend/surveys/">Search for Rooms</a></li>
+    <li><a href="/">About</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/dash/">Dashboard</a></li>
+    <li><a href="/rooms/">Search for Rooms</a></li>
     <li><a href="/login/">Login</a></li>
     <li><a href="/accounts/logout/">Logout</a></li>
   </ul>

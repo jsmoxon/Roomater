@@ -8,7 +8,11 @@ clear:both
 }
 
 .left {
-float:left
+float:left;
+}
+
+.right {
+float:right;
 }
 
 .center {
@@ -26,15 +30,20 @@ cursor:pointer;
 /* Header and Footer*/
 
 #header {
-background: #5FAADF;
+background:#27AAE1;
 height:50px;
 -webkit-box-shadow: 10px 10px 5px #888;
 box-shadow: 0px 5px 5px #888;
 }
 
-#headerlinks {
+#header img {
+width:270px;
+margin-left:50px;
+}
+
+.headerlinks {
 float:right;
-padding-top:15px;
+padding:15px;
 }
 
 #main {
@@ -150,13 +159,53 @@ min-height:710px;
 /* HOME SCREEN*/
 
 #home_main {
-padding-top:30px;
+padding-top:60px;
+margin-bottom:100px;
 }
 
-#home_buttons {
-width:300px;
-margin-top:60px;
-margin-bottom:50px;
+#list_room {
+background:#27AAE1;
+}
+
+#list_room h3, #list_room a {
+font-size:60px;
+color:white;
+padding:40px;
+margin-top:40px;
+}
+
+#list_room h5 {
+font-size:24px;
+color:white;
+}
+
+#find_room {
+background:#00A651;
+}
+
+#find_room h3,#find_room a {
+font-size:60px;
+padding:40px;
+color:white;
+margin-top:40px;
+}
+
+#find_room a:hover, #list_room a:hover {
+color:black;
+}
+
+
+
+#find_room h5 {
+font-size:24px;
+color:white;
+}
+
+
+
+.home_img {
+width: 400px;
+padding:20px;
 }
 
 .horizontal li{
@@ -255,4 +304,10 @@ width:250px;
 }.signupbutton:active {
                   position:relative;
                   top:1px;
+}
+
+/* CREATE SURVEY */
+
+.clickable:hover {
+color:#27AAE1;
 }
