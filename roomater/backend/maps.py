@@ -1,6 +1,6 @@
 from models import Room
 import urllib
-import simplejson as json
+import json
 
 api_address_0 = "http://maps.googleapis.com/maps/api/geocode/json?address="
 api_address_1 = "&sensor=false"
