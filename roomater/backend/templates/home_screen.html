@@ -37,16 +37,30 @@
     </div><!--closes howto-->
     <div id="feedback_survey" class="fourteen columns offset-by-one">
         <h2 class="center"> Help us out!! </h2>
-        <h4> Click on each question to answer it: </h4>
         {% if survey_list %}
-        <ul>
-        {% for survey in survey_list %}
-            <li><a href="/feedback/{{ survey.id }}/">{{ survey.survey }}</a></li>
-        {% endfor %}
-        </ul>
+        <form action="/backend/submitted_feedback/" method="post">
+        {% csrf_token %}
+            {% for survey in survey_list %}
+                <h4>{{ survey }}</h4>
+                {% for option in survey.option_set.all %}
+                <input type="radio" name="option{{ forloop.counter }}" class="feedback_option{{ forloop.counter }}" value="{{ option.id}}" />            
+                <label for="option{{ forloop.counter }}" style="display:inline;">{{ option.option }}</label><br />
+                {% endfor %}
+            {% endfor %}
+        <h4> What's your email? <h4> 
+        <p style=font-weight:100;"> (Optional, but we'll tell you when we add features.) </p>
+        <label for="firstname" style="display:inline;">First Name</label>
+        <input type="text" name="firstname" style="display:inline;">
+        <label for="email" style="display:inline;">Email</label>
+        <input type="text" name="email" style="display:inline;"/> <br />        
+
+        <input type="submit" value="Submit"/>
+        </form>
         {% else %}
             <p>No surveys are present, presently. </p>
         {% endif %}
     </div> <!--closes feedback_survey -->
 </div><!--closes main div-->
 {% endblock page %}
+
+

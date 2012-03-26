@@ -10,4 +10,6 @@ urlpatterns = patterns('feedback.views',
     url(r'feedback/(?P<poll_id>\d+)/$', 'detail'),
     url(r'feedback/(?P<poll_id>\d+)/results/$', 'results'),
     url(r'feedback/(?P<poll_id>\d+)/vote/$', 'vote'),
+
+
 )

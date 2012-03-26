@@ -160,15 +160,35 @@ def submit_survey(request, entry_id):
 
 #PK's FEEDBACK STUFF
 
-# Following the index example
 def feedback_index(request):
     survey_list = Survey.objects.all().order_by('-pub_date')[:5]
-    return render_to_response('home_screen.html', {'survey_list': survey_list})
+    return render_to_response('home_screen.html', {'survey_list': survey_list},
+                                context_instance=RequestContext(request))
+
+def submitted_feedback(request):
+    i = 1
+    s = get_object_or_404(Survey, pk=i)
+    while i <= len(s.option_set):
+        try: 
+            selected_option = s.option_set.get(pk=request.POST['option'])
+        except (KeyError, Option.DoesNotExist):
+            return render_to_response('feedback_detail.html', {
+                'survey': s,
+                'error_message': "You didn't opt for any option, you little ruffian! Try again:",
+            }, context_instance=RequestContext(request))
+        else:
+            selected_option.votes += 1
+            selected_option.save()
+    i = i + 1
+
+    survey_list = Survey.objects.all().order_by('-pub_date')[:5]
+    return render_to_response('home_screen.html', {'survey_list': survey_list},
+                                context_instance=RequestContext(request))
 
 # Following the detail example
 def feedback_detail(request, survey_id):
     s = get_object_or_404(Survey, pk=survey_id)
-    return render_to_response('feedback_detail.html', {'survey': s}, 
+    return render_to_response('feedback_detail.html', {'survey': s},  
                                 context_instance=RequestContext(request))
 
 # Following the vote example
