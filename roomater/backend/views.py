@@ -15,12 +15,13 @@ class UploadForm(forms.Form):
     file = forms.ImageField(label='Upload your pic')
 
 def create_survey(request):
+    standard_questions = Question.objects.filter(standard=True)
     if not request.method == "POST":
         form = ListRegForm()
-        return render_to_response('create_survey.html', {"form":form}, context_instance=RequestContext(request))
+        return render_to_response('create_survey.html', {"form":form, "standard":standard_questions}, context_instance=RequestContext(request))
     form = ListRegForm(request.POST, request.FILES)
     if not form.is_valid():
-        return render_to_response('create_survey.html', {"form":form}, context_instance=RequestContext(request))
+        return render_to_response('create_survey.html', {"form":form, "standard":standard_questions}, context_instance=RequestContext(request))
 
     file = request.FILES["file"]
     store_in_s3(file)
@@ -38,11 +39,11 @@ def create_survey(request):
     user = authenticate(username=username, password=password)
     login(request, user)
 #submit the survey they just made
-    room = Room(price=request.POST["price"], address=request.POST["address"], city=request.POST["city"], lat=geo_code(request.POST["address"], request.POST["city"])[0], lng = geo_code(request.POST["address"], request.POST["city"])[1])
+    room = Room(price=request.POST["price"], address=request.POST["address"], city=request.POST["city"], state=request.POST["state"], zip=request.POST["zip"], about=request.POST["room_about"], lat=geo_code(request.POST["address"], request.POST["city"], request.POST['state'], request.POST['zip'])[0], lng = geo_code(request.POST["address"], request.POST["city"], request.POST['state'], request.POST['zip'])[1])
     room.save()
 #    print geo_code(request.POST["address"], request.POST["city"])[0]
     submit_create_survey(request, room)
-    return redirect('/backend/dash/')
+    return redirect('/dash/')
 
 @login_required
 def dash(request):
@@ -97,6 +98,14 @@ def submit_create_survey(request, room):
     survey.name = request.user.username
     survey.room = room
     survey.save()
+    pre_selected_questions = Question.objects.filter(standard=True)
+    for ques in pre_selected_questions:
+        try:
+            test = request.POST[str(ques.text)]
+            survey.questions.add(ques)
+            survey.save()
+        except:
+            pass
     questions = Question.objects.all()
     question_list = []
     for question in questions:
@@ -119,7 +128,7 @@ def submit_create_survey(request, room):
     user_profile = request.user.get_profile()
     user_profile.survey = Survey.objects.get(name=str(survey))
     user_profile.save()
-    return redirect('/backend/dash/')
+    return redirect('/dash/')
 
 #displays a survey
 @login_required
@@ -153,4 +162,4 @@ def submit_survey(request, entry_id):
         except: 
             pass
         i+=1
-    return redirect('/backend/dash/')
+    return redirect('/dash/')

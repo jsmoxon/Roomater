@@ -1,37 +1,39 @@
-{% extends "main_base.html" %}
-{% block page %}
-<div id="main">
-<div class="page_title sixteen columns">
-  <h2>Survey by {{s}}</h2>
-</div><!--closes page_title-->
+{% extends "header_footer.html" %}
+{% block main %}
 
-<div id="">
-  <ul>
-    <li>Price: ${{s.room.price}}</li>
-    <li>Address: {{s.room.address}}</li>
-    <li>City: {{s.room.city}}</li>
-  </ul>
-</div>
-
-      <div id="map_canvas" style="width: 500px; height: 300px"></div>
-
-
-<form action="/backend/submit/{{s.id}}/" method="post">
-  {% csrf_token %}
-{% for q in question %}
-  <label>{{q.text}}</label>
-  <input type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}" />
-<!--  <textarea type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}"></textarea>-->
-  <input type="hidden" name="{% cycle 'row1' 'row2' 'row3' 'row4' 'row5' 'row6' 'row7' 'row8' 'row9' 'row10'%}" value="{{q.text}}" />
-{% endfor %}
-  <br/>
-  <input type="submit" value="Submit!" />
-</form> 
-
-</div><!--closes main-->
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCxf_ljx73homsazrdtygO9LF2Vpa9GVWE&sensor=false" type="text/javascript"></script>
-<script type="text/javascript">
-
+<div class="container">
+  <div id="main">
+    <div class="page_title sixteen columns">
+      <h2>{{s.room.address}} {{s.room.city}}</h2>
+    </div><!--closes page_title-->
+    
+    <div id="">
+      <ul>
+	<li>Price: ${{s.room.price}}</li>
+	<li>About: {{s.room.about}}</li>
+      </ul>
+    </div>
+    
+    <div id="map_canvas" style="width: 500px; height: 300px"></div>
+    
+    
+    <form action="/submit/{{s.id}}/" method="post">
+      {% csrf_token %}
+      {% for q in question %}
+      <label>{{q.text}}</label>
+      <input type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}" />
+      <!--  <textarea type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}"></textarea>-->
+      <input type="hidden" name="{% cycle 'row1' 'row2' 'row3' 'row4' 'row5' 'row6' 'row7' 'row8' 'row9' 'row10'%}" value="{{q.text}}" />
+      {% endfor %}
+      <br/>
+      <input type="submit" value="Submit!" />
+    </form> 
+    
+  </div><!--closes main-->
+</div><!--closes container-->
+  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCxf_ljx73homsazrdtygO9LF2Vpa9GVWE&sensor=false" type="text/javascript"></script>
+  <script type="text/javascript">
+    
 var map;
 var geocoder;
 var address ="{{s.room.address}}"+" {{s.room.city}}";
@@ -59,5 +61,5 @@ function initializeMap() {
   }
 )}
 </script>
-{% endblock page %}
+{% endblock main %}
 

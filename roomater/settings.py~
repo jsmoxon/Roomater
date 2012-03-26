@@ -1,4 +1,6 @@
 # Django settings for roomater project.
+import os
+os.environ['DJANGO_SETTINGS_MODULE']= 'roomater.settings'
 
 from constants import *
 
@@ -137,15 +139,11 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'frontend',
     'backend',
-#    'registration',
     'south',
     'gunicorn',
     'django.contrib.admin',
     'django.contrib.admindocs',
-#    'storages',
-#    'django_extensions',
 )
 
 # A sample logging configuration. The only tangible logging

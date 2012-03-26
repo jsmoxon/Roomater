@@ -1,64 +1,64 @@
-{% extends "main_base.html" %}
+{% extends "header_footer.html" %}
 {% load static %}
 
-{% block page %}
-
-<div class="page_title sixteen columns">
-<h2>{{profile.name}}'s Dashboard</h2>
-</div><!--closes page_title-->
-<div id="profile_info" class="sixteen columns profile">
-  <img class="five columns "src="{{pic}}" width=30%/>
-  <ul id="" class="ten columns">
-    <h4>My Basic Info</h4>
-    <li>How Clean? -- {{profile.clean_score}}</li>
-    <li>Smoker? -- 
-{% if profile.smoker %}
-Yes</li>
-{% else %}
-No</li>
+{% block main %}
+<div class="container">
+  <div class="page_title sixteen columns">
+    <h2>{{profile.name}}'s Dashboard</h2>
+  </div><!--closes page_title-->
+  <div id="profile_info" class="sixteen columns profile">
+    <img class="five columns "src="{{pic}}" width=30%/>
+    <ul id="" class="ten columns">
+      <h4>My Basic Info</h4>
+      <li>How Clean? -- {{profile.clean_score}}</li>
+      <li>Smoker? -- 
+	{% if profile.smoker %}
+	Yes</li>
+      {% else %}
+      No</li>
 {% endif%}
-    <li>About: <p>{{profile.about}}</p></li>
-  </ul>
+<li>About: <p>{{profile.about}}</p></li>
+</ul>
 </div><!--closes profile_info-->
 
 <div id="survey_url" class="sixteen columns">
-{% if profile.survey %}
-<h5>Paste this URL to show your survey to others: <a href="/backend/real_survey/{{profile.survey.id}}">http://freezing-mist-1462.herokuapp.com/backend/real_survey/{{profile.survey.id}}</a></h5>
-{% else %}
-<h4>Click here to <a href="/backend/create_survey/">list a room</a></h4>
-{% endif %}
+  {% if profile.survey %}
+  <h5>Paste this URL to show your survey to others: <a href="/backend/real_survey/{{profile.survey.id}}">http://freezing-mist-1462.herokuapp.com/backend/real_survey/{{profile.survey.id}}</a></h5>
+  {% else %}
+  <h4>Click here to <a href="/backend/create_survey/">list a room</a></h4>
+  {% endif %}
 </div><!--closes survey_url-->
 
 <div id="potential_roommates" class="sixteen columns">
-
+  
   {% if profile.survey %}
   <h3>Potential Roommates</h3>
   {% for response in responses %}
   <div class="profile">
-  <h4>{{response.responder.name}} -- {{response.responder.user.email}}</h4>
-  <img class="five columns" src="{{response.responder.pic}}" width=30% alt = "user pic" />
-  <ul class="ten columns user_info">
-    <h6>Basic Info</h6>
-    <li>Cleanliness: {{response.responder.clean_score}}</li>
-    <li>Smoker:
-      {% if response.responder.smoker %}
-      Yes</li>
-    {% else%}
-    No</li>
+    <h4>{{response.responder.name}} -- {{response.responder.user.email}}</h4>
+    <img class="five columns" src="{{response.responder.pic}}" width=30% alt = "user pic" />
+    <ul class="ten columns user_info">
+      <h6>Basic Info</h6>
+      <li>Cleanliness: {{response.responder.clean_score}}</li>
+      <li>Smoker:
+	{% if response.responder.smoker %}
+	Yes</li>
+      {% else%}
+      No</li>
 {% endif %}
 
-    <li>About: {{response.responder.about}}</li>
-  </ul>
-  </div><!--closes profile-->
-<div class="answers">
-<h5>Answers to Your Survey</h5>
-{% for res in response.responses.all %}
-<ul>
-  <h6>{{res.question.text}}</h6>
-  <li>{{res.text}}</li>
+<li>About: {{response.responder.about}}</li>
 </ul>
-{% endfor %}
-{% endfor %}
+</div><!--closes profile-->
+<div class="answers">
+  <h5>Answers to Your Survey</h5>
+  {% for res in response.responses.all %}
+  <ul>
+    <h6>{{res.question.text}}</h6>
+    <li>{{res.text}}</li>
+  </ul>
+  {% endfor %}
+  {% endfor %}
 </div><!--closes answers-->
 </div>
 {% else %}
@@ -70,4 +70,5 @@ No</li>
 
 
 </div><!--closes potential_roommates-->
-{% endblock page %}
+</div><!--closes container -->
+{% endblock main %}

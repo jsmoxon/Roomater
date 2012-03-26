@@ -1,0 +1,42 @@
+{% extends "main_base.html" %}
+{% load static %}
+{% block page %}
+
+<div class="container">
+  <div id="home_main">
+    <h5>Get acquainted with...</h5>
+    <img class="offset-by-four" src="{% get_static_prefix %}img/logo.png" width=50%/>
+    <h2 class="center clearboth">Find roommates that fit your lifestyle</h2>
+    <h4 class="center">Create standardized, customized surveys and track your potential roommates.</h4>
+  </div><!--closes home_main-->
+</div><!--closes container-->
+
+<div id="list_room">
+  <div class="container">
+    <div class="left">
+      <img class="home_img" src="{% get_static_prefix %}img/questionman.png" />
+    </div><!--closes right-->
+    <div class="right center">
+      <h3 class="grey_hover"><a href="/list_room/">List a room</a></h3>
+      <h5>Create a survey and track applicants</h5>
+    </div><!--closes left-->
+  </div><!--closes container-->
+</div><!--closes list_room-->
+
+<div id="find_room">
+  <div class="container">
+    <div class="left center">
+      <h3 class="grey_hover"><a href="/rooms/">Find a room</a></h3>
+      <h5>Search for rooms in your area</h5>
+    </div><!--closes left-->
+    <div class="right">
+      <img class="home_img" src="{% get_static_prefix %}img/map.png" />
+    </div><!--closes right-->
+
+
+  </div><!--closes container-->
+</div><!--closes list_room-->
+
+
+
+{% endblock page %}

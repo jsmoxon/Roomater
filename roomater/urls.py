@@ -7,14 +7,12 @@ admin.autodiscover()
 
 
 urlpatterns = patterns('',
-    url(r'^$', 'frontend.views.home'),                       
-    url(r'^survey', direct_to_template, {'template': 'survey.html'}),
-    url(r'^location', direct_to_template, {'template': 'location.html'}),
+    url(r'^', include('backend.urls')),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^backend/', include('backend.urls')),                      
+#    url(r'^backend/', include('backend.urls')),                      
     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
-    url(r'^login/$', 'backend.views.create_search_profile'),                       
+    url(r'^login/$', 'backend.views.create_search_profile'),
     url(r'^accounts/', include('registration.urls')),                       
 )
 

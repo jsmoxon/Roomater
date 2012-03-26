@@ -139,15 +139,11 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'frontend',
     'backend',
-#    'registration',
     'south',
     'gunicorn',
     'django.contrib.admin',
     'django.contrib.admindocs',
-#    'storages',
-#    'django_extensions',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -174,5 +170,5 @@ LOGGING = {
 }
 
 ACCOUNT_ACTIVATION_DAYS = 7
-LOGIN_REDIRECT_URL = '/backend/dash/'
+LOGIN_REDIRECT_URL = '/dash/'
 LOGIN_URL = '/login/'
