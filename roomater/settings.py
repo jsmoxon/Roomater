@@ -146,6 +146,7 @@ INSTALLED_APPS = (
     'gunicorn',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'feedback'
 #    'storages',
 #    'django_extensions',
 )
