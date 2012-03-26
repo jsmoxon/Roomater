@@ -15,12 +15,7 @@ def geo_code(address, city, state, zip):
         lat = result['results'][0]['geometry']['location']['lat']
         lng = result['results'][0]['geometry']['location']['lng']
     except:
-<<<<<<< HEAD
-        lat = 37.77493
-        lng = -122.419416
-=======
         lat = 37.92977070
         lng = -122.32791480
->>>>>>> jack
     list = [lat, lng]
     return list
