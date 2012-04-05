@@ -13,15 +13,26 @@ class PhotoForm(forms.Form):
         help_text = "png only!"
     )
 
+clean_scores = (
+    ('1', 'Cleanliness is not that important to me'),
+    ('2', 'Cleanliness is moderately important to me'),
+    ('3', 'Cleanliness is godliness')
+)
+
+smoker_choices = (
+    ('Yes', 'Yes'),
+    ('No', 'No')
+)
+
 class SearchRegForm(forms.Form):
     username = forms.CharField(max_length=100)
-    password = forms.CharField(max_length=100)
+    password = forms.CharField(max_length=100, widget=forms.PasswordInput())
     email = forms.EmailField(max_length=100)
     name = forms.CharField(max_length=100)
-    clean_score = forms.IntegerField()
-    smoker = forms.BooleanField()
+    clean_score = forms.IntegerField(label="How much do you value cleanliness?", widget=forms.Select(choices=clean_scores))
+#    smoker = forms.NullBooleanField(widget=forms.Select(choices=smoker_choices))
     about = forms.CharField(widget=forms.Textarea)
-    file = forms.ImageField(label='Upload your pic')
+    file = forms.ImageField(label='Upload your pic; .png files only')
     
 class ListRegForm(forms.Form):
     price = forms.IntegerField()
@@ -35,6 +46,6 @@ class ListRegForm(forms.Form):
     email = forms.EmailField()
     name = forms.CharField(max_length=150)
     clean_score = forms.IntegerField()
-    smoker = forms.NullBooleanField()
+#    smoker = forms.NullBooleanField()
     about = forms.CharField(widget=forms.Textarea)
     file = forms.ImageField(label='Upload your picture')

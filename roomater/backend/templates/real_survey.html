@@ -1,6 +1,5 @@
 {% extends "header_footer.html" %}
 {% block main %}
-
 <div class="container">
   <div id="main">
     <div class="page_title sixteen columns">
@@ -15,8 +14,7 @@
     </div>
     
     <div id="map_canvas" style="width: 500px; height: 300px"></div>
-    
-    
+
     <form action="/submit/{{s.id}}/" method="post">
       {% csrf_token %}
       {% for q in question %}
@@ -26,7 +24,11 @@
       <input type="hidden" name="{% cycle 'row1' 'row2' 'row3' 'row4' 'row5' 'row6' 'row7' 'row8' 'row9' 'row10'%}" value="{{q.text}}" />
       {% endfor %}
       <br/>
+      {% if user.is_authenticated %}
       <input type="submit" value="Submit!" />
+      {% else %}
+      <h4>You must <a href="/accounts/login/?next=/room/{{s.id}}/">login</a> to complete this survey</h4>
+      {% endif %}
     </form> 
     
   </div><!--closes main-->

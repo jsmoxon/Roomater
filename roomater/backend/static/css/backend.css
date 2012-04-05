@@ -4,7 +4,11 @@ font-weight:bold;
 }
 
 .container {
-clear:both
+clear:both;
+}
+
+.login_push_footer {
+min-height:680px;
 }
 
 .left {
@@ -195,6 +199,17 @@ color:white;
 }
 
 
+.horizontal_login form{
+float:right;
+margin:10px;
+}
+
+.horizontal_login input {
+display:inline;
+padding:5px;
+margin-left:5px;
+width:100px;
+}
 
 .home_img {
 width: 400px;
@@ -303,4 +318,8 @@ width:250px;
 
 .clickable:hover {
 color:#27AAE1;
+}
+
+#create_survey_main {
+min-height: 680px;
 }

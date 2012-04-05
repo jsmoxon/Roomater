@@ -23,10 +23,13 @@
   <ul class="horizontal">
     <li><a href="/">About</a></li>
     <li><a href="/">Home</a></li>
-    <li><a href="/dash/">Dashboard</a></li>
+    <li><a href="/dash/">My Rooms</a></li>
     <li><a href="/rooms/">Search for Rooms</a></li>
-    <li><a href="/login/">Login</a></li>
+{% if user.is_authenticated %}
     <li><a href="/accounts/logout/">Logout</a></li>
+{% else %}
+    <li><a href="/login/">Login</a></li>
+{% endif %}
   </ul>
   </div><!--closes footerlinks-->
 </div><!--closes footer-->

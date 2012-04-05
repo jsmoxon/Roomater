@@ -31,7 +31,7 @@ def create_survey(request):
     user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
     newprofile = UserProfile(pic=p.url, user=user,
                              name=request.POST['name'], clean_score=request.POST['clean_score'],
-                             smoker = request.POST['smoker'], about=request.POST['about'])
+                             about=request.POST['about'])
     newprofile.save()
 #log the new user in
     username = request.POST['username']
@@ -50,19 +50,19 @@ def dash(request):
     try:
         user_profile = request.user.get_profile()
     except:
-        return render_to_response('profile_create.html')
+        return render_to_response('profile_create.html', {}, context_instance=RequestContext(request))
     pic = user_profile.pic
     try:
         responses = ResponseList.objects.filter(survey__id=user_profile.survey.id)
     except:
         responses = "No Responses"
-    return render_to_response('dash.html', {'pic':pic, 'profile':user_profile, 'responses':responses})
+    return render_to_response('dash.html', {'pic':pic, 'profile':user_profile, 'responses':responses}, context_instance=RequestContext(request))
 
 #search the site for surveys
-@login_required
+
 def list_of_surveys(request):
     surveys = Survey.objects.all()
-    return render_to_response('survey_list.html', {'surveys':surveys})
+    return render_to_response('survey_list.html', {'surveys':surveys}, context_instance=RequestContext(request))
 
 #create a profile without a survey in mind
 def create_search_profile(request):
@@ -77,15 +77,16 @@ def create_search_profile(request):
             user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
             newprofile = UserProfile(pic=p.url, user=user,
                              name=request.POST['name'], clean_score=request.POST['clean_score'],
-                             smoker = request.POST['smoker'], about=request.POST['about'])
-
+                             about=request.POST['about'])
             newprofile.save()
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username=username, password=password)
             login(request, user)
-            redirect_to = request.REQUEST.get('next' '')
-            print redirect_to
+            if request.REQUEST.get('next' '') != None:
+                redirect_to = request.REQUEST.get('next' '')
+            else: 
+                redirect_to = '/dash/'
             return redirect(redirect_to)
     else:
         form = SearchRegForm()
@@ -131,13 +132,13 @@ def submit_create_survey(request, room):
     return redirect('/dash/')
 
 #displays a survey
-@login_required
 def display_survey(request, entry_id):
     s = get_object_or_404(Survey, pk=entry_id)
     question = s.questions.all()
-    return render_to_response('real_survey.html', {'s':s, 'question':question})
+    return render_to_response('real_survey.html', {'s':s, 'question':question}, context_instance=RequestContext(request))
 
 #submits a survey     
+@login_required
 @csrf_exempt
 def submit_survey(request, entry_id):
     list = ResponseList()

@@ -1,7 +1,18 @@
 {% extends "main_base.html" %}
 {% load static %}
 {% block page %}
+<div class="header">
+  <div id="login" class="horizontal_login">
+    <form action="/accounts/login/" method="post">
+      {% csrf_token %}
+      <input type="text" name="username" value="usename" class="login_box" id="username_input" onfocus="clearUsernameBox()"/>
+      <input type="password" name="password" value="password" class="login_box" id="password_input" onfocus="clearPasswordBox()"/>
+      <input type="hidden" name="next" value="{{ next }}" />
+      <input type="submit" value="Login" />
+    </form>
+  </div><!--closes login-->
 
+</div>
 <div class="container">
   <div id="home_main">
     <h5>Get acquainted with...</h5>
@@ -36,7 +47,16 @@
 
   </div><!--closes container-->
 </div><!--closes list_room-->
+<script type="text/javascript">
+  function clearUsernameBox(){
+    document.getElementById('username_input').value = "";
+  };
+  function clearPasswordBox(){
+    document.getElementById('password_input').value = "";
+  }
 
+
+</script>
 
 
 {% endblock page %}

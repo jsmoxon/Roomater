@@ -8,7 +8,7 @@
   </div><!--closes page_title-->
   
   
-  <div id="login" class="">
+  <div id="login" class="h>
     <form action="/accounts/login/" method="post">
       {% csrf_token %}
       <label>Username:</label>

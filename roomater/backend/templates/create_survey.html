@@ -1,7 +1,7 @@
 {% extends "header_footer.html" %}
 {% load static %}
 {% block main %}
-<div class="container">
+<div class="container" id="create_survey_main">
 <div class="page_title sixteen columns">
   <h2>List a room</h2>
 </div><!--closes page_title-->
@@ -97,11 +97,6 @@
 	<option value="8">8</option>
 	<option value="9">9</option>
 	<option value="10">10 - It's all I care about</option>
-      </select>
-      <label>Do you smoke?</label>
-      <select name="smoker">
-	<option value="No">No</option>
-	<option value="Yes">Yes</option>
       </select>
       <label>{{form.about.label}}</label>
       <p class="error_p">{{form.about.errors}}</p>
