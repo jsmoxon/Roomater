@@ -10,13 +10,18 @@
   {% csrf_token %}
   {{form.non_field_errors}}
   <h4>1. What do you want to know about your roommates?</h4>
-  <p>Select our FAQs for create your own below.</p>
+  <h6 class="blue">Create a custom survey that your potential roommates will answer here.</h6>
+  <br/>
+<div class="eight columns">
+  <p>Choose from our standard questions:</p>
   {% for ques in standard %}
   <label for"{{ques.text}}"=>{{ques.text}}</label>
   <input type="checkbox" name="{{ques.text}}" value="{{ques.text}}" /> 
   {% endfor%}
-  <h5 class="pointer clickable dropdown">Click here to add your own questions</h5>
-  <dd>
+<!--  <h5 class="pointer clickable dropdown">Click here to add your own questions</h5>-->
+</div><!--closes left-->
+<div class="eight columns">
+  <p>Add up to 10 custom questions that they must answer:</p>  
   <label>Question 1 (optional)</label>
   <input type="text" name="q1" />
   <label>Question 2 (optional)</label>
@@ -37,7 +42,7 @@
   <input type="text" name="q9" />
   <label>Question 10 (optional)</label>
   <input type="text" name="q10" />
-  </dd>
+</div>
   <br/>
   <div id="tell_room">
     <h4 class="pointer clickable">2. Tell us about the room</h4>

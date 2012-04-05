@@ -146,21 +146,26 @@ def submit_survey(request, entry_id):
     list.name = request.user.username +" "+ str(list.survey)
     user_profile = request.user.get_profile()
     print user_profile
-    user_profile.rooms.add(list.survey.room)
-    list.responder = user_profile
-    list.save()
-    i = 1
-    while i<11:
-        try:
-            new = Response()
-            new.responder = request.user
-            new.question = Question.objects.get(text=request.POST['row'+str(i)])
-            new.save()
-            new.text = str(request.POST['r'+str(i)])
-            new.save()
-            list.responses.add(new)
-            list.save()
-        except: 
-            pass
-        i+=1
+    print list.survey.room
+    print user_profile.rooms.all
+    if list.survey.room not in user_profile.rooms.all():
+        user_profile.rooms.add(list.survey.room)
+        list.responder = user_profile
+        list.save()
+        i = 1
+        while i<11:
+            try:
+                new = Response()
+                new.responder = request.user
+                new.question = Question.objects.get(text=request.POST['row'+str(i)])
+                new.save()
+                new.text = str(request.POST['r'+str(i)])
+                new.save()
+                list.responses.add(new)
+                list.save()
+            except: 
+                pass
+            i+=1
+    else:
+        return redirect('/one_room/')
     return redirect('/dash/')

@@ -27,6 +27,10 @@ text-align:center;
 clear:both;
 }
 
+.blue {
+color:#27AAE1
+}
+
 .pointer {
 cursor:pointer;
 }
@@ -113,7 +117,7 @@ box-shadow: 10px 10px 5px #888;
 -moz-border-radius: 15px;
 border-radius: 15px;
 padding:5px;
-background:#00A651;
+background:#ADD8C7;
 }
 
 #survey_url {

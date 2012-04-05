@@ -27,7 +27,7 @@
       {% if user.is_authenticated %}
       <input type="submit" value="Submit!" />
       {% else %}
-      <h4>You must <a href="/accounts/login/?next=/room/{{s.id}}/">login</a> to complete this survey</h4>
+      <h4>You must <a href="/login/?next=/room/{{s.id}}/">login</a> to complete this survey</h4>
       {% endif %}
     </form> 
     

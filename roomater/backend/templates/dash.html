@@ -27,6 +27,7 @@
   
   {% if profile.survey %}
   <h3>Potential Roommates</h3>
+  {% if responses %}
   {% for response in responses %}
   <div class="profile">
     <h4>{{response.responder.name}} -- {{response.responder.user.email}}</h4>
@@ -55,6 +56,10 @@
   {% endfor %}
 </div><!--closes answers-->
 </div>
+{% else %}
+<p>No responses yet. Post the above <a href="/room/{{profile.survey.id}}/">url</a> to somewhere like <a href="http://craigslist.org">craigslist</a> or <a href="http://padmapper.com">padmapper</a> to get responses.</p>
+{% endif %}
+
 {% else %}
 <h4>Rooms you've applied to:</h4>
 {% for room in profile.rooms.all %}
