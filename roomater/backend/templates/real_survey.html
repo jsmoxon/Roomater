@@ -1,36 +1,37 @@
 {% extends "header_footer.html" %}
 {% block main %}
-<div class="container">
+<div class="container login_push_footer">
   <div id="main">
     <div class="page_title sixteen columns">
-      <h2>{{s.room.address}} {{s.room.city}}</h2>
+      <h2>Questionnaire</h2>
     </div><!--closes page_title-->
+    <div class="eight columns">
+      <form action="/submit/{{s.id}}/" method="post">
+	{% csrf_token %}
+	{% for q in question %}
+	<label>{{q.text}}</label>
+	<textarea name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}"></textarea>
+	<!--  <textarea type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}"></textarea>-->
+	<input type="hidden" name="{% cycle 'row1' 'row2' 'row3' 'row4' 'row5' 'row6' 'row7' 'row8' 'row9' 'row10'%}" value="{{q.text}}" />
+	{% endfor %}
+	<br/>
+	{% if user.is_authenticated %}
+	<input type="submit" value="Submit!" />
+	{% else %}
+	<h4>You must <a href="/login/?next=/room/{{s.id}}/">login</a> to complete this survey</h4>
+	{% endif %}
+      </form>
+      
+    </div><!--closes left-->
     
-    <div id="">
+    <div class="eight columns">
+      <h4>{{s.room.address}} {{s.room.city}}</h4>
       <ul>
 	<li>Price: ${{s.room.price}}</li>
 	<li>About: {{s.room.about}}</li>
       </ul>
-    </div>
-    
-    <div id="map_canvas" style="width: 500px; height: 300px"></div>
-
-    <form action="/submit/{{s.id}}/" method="post">
-      {% csrf_token %}
-      {% for q in question %}
-      <label>{{q.text}}</label>
-      <input type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}" />
-      <!--  <textarea type="text" name="{% cycle 'r1' 'r2' 'r3' 'r4' 'r5' 'r6' 'r7' 'r8' 'r9' 'r10'%}"></textarea>-->
-      <input type="hidden" name="{% cycle 'row1' 'row2' 'row3' 'row4' 'row5' 'row6' 'row7' 'row8' 'row9' 'row10'%}" value="{{q.text}}" />
-      {% endfor %}
-      <br/>
-      {% if user.is_authenticated %}
-      <input type="submit" value="Submit!" />
-      {% else %}
-      <h4>You must <a href="/login/?next=/room/{{s.id}}/">login</a> to complete this survey</h4>
-      {% endif %}
-    </form> 
-    
+      <div id="map_canvas" style="width: 400px; height: 300px"></div>
+    </div><!--closes right-->    
   </div><!--closes main-->
 </div><!--closes container-->
   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCxf_ljx73homsazrdtygO9LF2Vpa9GVWE&sensor=false" type="text/javascript"></script>
