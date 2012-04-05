@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response, get_object_or_404, HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
 from models import *
-from forms import ProfileForm, SearchRegForm, ListRegForm
+from forms import ProfileForm, SearchRegForm, ListRegForm, UserRegForm
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Permission, Group
@@ -18,10 +18,14 @@ def create_survey(request):
     standard_questions = Question.objects.filter(standard=True)
     if not request.method == "POST":
         form = ListRegForm()
-        return render_to_response('create_survey.html', {"form":form, "standard":standard_questions}, context_instance=RequestContext(request))
+        user_form = UserRegForm(request.POST)
+        return render_to_response('create_survey.html', {"form":form, "user_form":user_form, "standard":standard_questions}, context_instance=RequestContext(request))
     form = ListRegForm(request.POST, request.FILES)
-    if not form.is_valid():
-        return render_to_response('create_survey.html', {"form":form, "standard":standard_questions}, context_instance=RequestContext(request))
+    user_form = UserRegForm(request.POST)
+    print "post"
+    if not form.is_valid() or not user_form.is_valid():
+        print "something not valid"
+        return render_to_response('create_survey.html', {"form":form, "user_form":user_form, "standard":standard_questions}, context_instance=RequestContext(request))
 
     file = request.FILES["file"]
     store_in_s3(file)
@@ -67,8 +71,9 @@ def list_of_surveys(request):
 #create a profile without a survey in mind
 def create_search_profile(request):
     if request.method == 'POST':
+        user_form = UserRegForm(request.POST)
         form = SearchRegForm(request.POST, request.FILES)
-        if form.is_valid():
+        if form.is_valid() and user_form.is_valid():
 #upload photo
             file = request.FILES["file"]
             store_in_s3(file)
@@ -89,8 +94,9 @@ def create_search_profile(request):
                 redirect_to = '/dash/'
             return redirect(redirect_to)
     else:
+        user_form = UserRegForm()
         form = SearchRegForm()
-    return render_to_response('registration/login.html', {'form':form}, context_instance=RequestContext(request))    
+    return render_to_response('registration/login.html', {'form':form, 'user_form':user_form}, context_instance=RequestContext(request))    
 
 
 @csrf_exempt

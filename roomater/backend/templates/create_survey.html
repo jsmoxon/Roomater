@@ -72,12 +72,12 @@
   <div id="create_account">
     <h4 class="pointer clickable">3. Create an account</h4>
     <dd>
-    <label>{{form.username.label}}</label>
-    <p class="error_p">{{form.username.errors}}</p>
-    {{form.username}}
-    <label>{{form.password.label}}</label>
-    <p class="error_p">{{form.password.errors}}</p>
-    <input type="password" name="password" />
+    <label>{{user_form.username.label}}</label>
+    <p class="error_p">{{user_form.username.errors}}</p>
+    {{user_form.username}}
+    <label>{{user_form.password.label}}</label>
+    <p class="error_p">{{user_form.password.errors}}</p>
+    {{user_form.password}}
     <label>{{form.email.label}}</label>
     <p class="error_p next_toggle">{{form.email.errors}}</p>
     {{form.email}}

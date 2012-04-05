@@ -62,9 +62,13 @@
 
 {% else %}
 <h4>Rooms you've applied to:</h4>
+{% if profile.rooms %}
 {% for room in profile.rooms.all %}
 <li>{{room}}</li>
 {% endfor %}
+{% else %}
+<p>You haven't applied anywhere yet. Checkout some of the <a href="/rooms/">rooms</a> we have listed.
+{% endif %}
 {% endif %}
 
 

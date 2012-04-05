@@ -27,6 +27,13 @@
     <div id="register">
       <form action="" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
+	{{user_form.non_field_errors}}
+	<label>{{user_form.username.label}}</label>
+        {{user_form.username.errors}}
+	{{user_form.username}}
+	<label>{{user_form.password.label}}</label>
+	{{user_form.password.errors}}
+        {{user_form.password}}
 	{{form}}
 	<input type="submit" value="Submit!" />
 	
