@@ -5,6 +5,7 @@ font-weight:bold;
 
 .container {
 clear:both;
+padding-top:10px;
 }
 
 .login_push_footer {
