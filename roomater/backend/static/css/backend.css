@@ -340,3 +340,11 @@ width:240px;
 height:200px;
 margin-left:-10px;
 }
+
+.hidden {
+display:none;
+}
+
+#errorz li, #errorz ul {
+display:inline;
+}

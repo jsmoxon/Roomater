@@ -4,13 +4,77 @@
 <div class="container" id="create_survey_main">
 <div class="page_title sixteen columns">
   <h2>List a room</h2>
+<div id="errorz" class="sixteen columns">
+    {% if form.price.errors %}
+    <span class="error_p">Price Error: {{form.price.errors}}</span><br />
+    {% else %}
+    {% endif %}
+    
+    {% if form.address.errors %}
+    <span class="error_p">Address Error: {{form.address.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.city.errors %}
+    <span class="error_p">City Error: {{form.city.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.state.errors %}
+    <span class="error_p">State Error: {{form.state.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.zip.errors %}
+    <span class="error_p">Zip Error: {{form.zip.errors}}</span><br />
+    {% else %}
+    {% endif %}
+    
+    {% if form.room_about.errors %}
+    <span class="error_p">About Error: {{form.room_about.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.about.errors %}
+    <span class="error_p">About Error: {{form.about.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.password.errors %}
+    <span class="error_p">Password Error: {{form.password.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.email.errors %}
+    <span class="error_p">Email Error: {{form.email.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.name.errors %}
+    <span class="error_p">Name Error: {{form.name.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.about.errors %}
+    <span class="error_p">About Error: {{form.about.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.file.errors %}
+    <span class="error_p">Image Error: {{form.file.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+
+</div><!--closes errormessages-->
 </div><!--closes page_title-->
 
-<form action="." method="post" enctype="multipart/form-data">
+<form action="." method="post" enctype="multipart/form-data" name="createsurveyform">
+
   {% csrf_token %}
   {{form.non_field_errors}}
   <h4>1. What do you want to know about your roommates?</h4>
-  <h6 class="blue">Create a custom survey that your potential roommates will answer here.</h6>
+  <h7 class="blue">Create a custom survey that your potential roommates will answer:</h7>
   <br/>
 <div class="ten columns">
   <p>Choose from our standard questions:</p>
@@ -22,95 +86,136 @@
 <!--  <h5 class="pointer clickable dropdown">Click here to add your own questions</h5>-->
 </div><!--closes left-->
 <div class="ten columns">
-  <p>Or add your own question:</p>  
-  <input type="checkbox" /> 
-    <input type="text" name="q1" /> 
-    <button>Add Another</button>
-    <br />
-  <label>Question 2 (optional)</label>
-  <input type="text" name="q2" />
-  <label>Question 3 (optional)</label>
-  <input type="text" name="q3" />
-   <label>Question 4 (optional)</label>
-  <input type="text" name="q4" />
-  <label>Question 5 (optional)</label>
-  <input type="text" name="q5" />
-  <label>Question 6 (optional)</label>
-  <input type="text" name="q6" />
-  <label>Question 7 (optional)</label>
-  <input type="text" name="q7" />
-  <label>Question 8 (optional)</label>
-  <input type="text" name="q8" />
-  <label>Question 9 (optional)</label>
-  <input type="text" name="q9" />
-  <label>Question 10 (optional)</label>
-  <input type="text" name="q10" />
+  <p>Or add your own question:</p> 
+    <div id="ques1" class="userquestion"> 
+        <input type="checkbox" name="check1" /> 
+        <input type="text" name="q1" /> 
+        <button id="addanother1" type="button">Add Another</button>
+        <br />
+    </div>
+        <div id="ques2" class="userquestion hidden"> 
+        <input type="checkbox" name="check2" /> 
+        <input type="text" name="q2" /> 
+        <button id="addanother2" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques3" class="userquestion hidden"> 
+        <input type="checkbox" name="check3" /> 
+        <input type="text" name="q3" /> 
+        <button id="addanother3" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques4" class="userquestion hidden"> 
+        <input type="checkbox" name="check4" /> 
+        <input type="text" name="q4" /> 
+        <button id="addanother4" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques5" class="userquestion hidden"> 
+        <input type="checkbox" name="check5" /> 
+        <input type="text" name="q5" /> 
+        <button id="addanother5" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques6" class="userquestion hidden"> 
+        <input type="checkbox" name="check6" /> 
+        <input type="text" name="q6" /> 
+        <button id="addanother6" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques7" class="userquestion hidden"> 
+        <input type="checkbox" name="check7" /> 
+        <input type="text" name="q7" /> 
+        <button id="addanother7" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques8" class="userquestion hidden"> 
+        <input type="checkbox" name="check8" /> 
+        <input type="text" name="q8" /> 
+        <button id="addanother8" type="button">Add Another</button> 
+        <br />
+    </div>
+    <div id="ques9" class="userquestion hidden">
+        <input type="checkbox" name="check9" />
+	<input type="text" name="q9" />
+        <button id="addanother9" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques10" class="userquestion hidden">
+        <input type="checkbox" name="check10" />
+        <input type="text" name="q10" />
+        <button id="addanother10" type="button">Add Another</button>
+	<br />
+    </div>
+    <div id="ques11" class="userquestion hidden">
+        <input type="checkbox" name="check11" />
+        <input type="text" name="q11" />
+        <button id="addanother11" type="button">Add Another</button>
+	<br />
+    </div>
+
+    <h7> Give us a bit more information below then you can submit the survey. </h7>
+
+
+
+
+
 </div>
   <br/>
-  <div id="tell_room">
+  <div id="tell_room" class="ten columns">
     <h4 class="pointer clickable">2. Tell us about the room</h4>
     <dd>
-    <label>{{form.price.label}} ($)</label>
-    <p class="error_p">{{form.price.errors}}</p>
-    {{form.price}}
-    <label>{{form.address.label}}</label>
-    <p class="error_p">{{form.address.errors}}</p>
-    {{form.address}}
-    <label>{{form.city.label}}</label>
-    <p class="error_p">{{form.city.errors}}</p>
-    {{form.city}}
-    <label>{{form.state.label}}</label>
-    <p class="error_p">{{form.state.errors}}</p>
-    {{form.state}}
-    <label>{{form.zip.label}}</label>
-    <p class="error_p">{{form.zip.errors}}</p>
-    {{form.zip}}
-    <label>About the room:</label>
-    <p class="error_p">{{form.room_about.errors}}</p>
+    <label>{{form.price.label}} ($)</label><br />
+    {{form.price}}<br />
+    <label>{{form.address.label}}</label><br />
+    {{form.address}} <br />
+    <label>{{form.city.label}}</label><br />
+    {{form.city}} <br />
+    <label>{{form.state.label}}</label><br />
+    {{form.state}} <br />
+    <label>{{form.zip.label}}</label><br />
+    {{form.zip}} <br />
+    <label>About the room:</label><br />
     {{form.room_about}}
-
     </dd>
   </div><!--closes tell_room-->
   <br/>
-  <div id="create_account">
+  <div id="create_account" class="ten columns">
     <h4 class="pointer clickable">3. Create an account</h4>
     <dd>
-    <label>{{user_form.username.label}}</label>
-    <p class="error_p">{{user_form.username.errors}}</p>
-    {{user_form.username}}
-    <label>{{user_form.password.label}}</label>
-    <p class="error_p">{{user_form.password.errors}}</p>
-    {{user_form.password}}
-    <label>{{form.email.label}}</label>
-    <p class="error_p next_toggle">{{form.email.errors}}</p>
-    {{form.email}}
+    <label>{{form.username.label}}</label><br />
+    {{form.username}}<br />
+
+    <label>{{form.password.label}}</label>
+    <input type="password" name="password"/>
+
+    <label>{{form.email.label}}</label><br />
+    {{form.email}} <br />
     </dd>
   </div><!--closes create_account-->
   <br/>
-  <div id="tell_yourself">
+  
+    <div id="tell_yourself" class="ten columns">
     <h4 class="pointer clickable">4. Tell us a bit about yourself</h4>
     <dd>
-      <label>{{form.name.label}}</label>
-      {{form.name.errors}}
-      {{form.name}}
+      <label>{{form.name.label}}</label><br />
+      {{form.name}} <br />
       <label>How important is cleanliness to you?</label>
       <select name="clean_score">
-	<option value="1">1 - Not at all</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	<option value="4">4</option>
-	<option value="5">5 - Somewhat</option>
-	<option value="6">6</option>
-	<option value="7">7</option>
-	<option value="8">8</option>
-	<option value="9">9</option>
-	<option value="10">10 - It's all I care about</option>
+        <option value="1">1 - Not at all</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 - Somewhat</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10 - It's all I care about</option>
       </select>
       <label>{{form.about.label}}</label>
-      <p class="error_p">{{form.about.errors}}</p>
       {{form.about}}
-      <label>Upload a picture</label>
-      <p class="error_p">{{form.file.errors}}</p>
+      <label>Upload a picture</label><br/>
       {{form.file}}
       <br/><br/>
       <input type="submit" value="Submit!" />
@@ -118,6 +223,10 @@
   </div><!--closes tell_yourself-->
 </form>
 </div><!--closes container-->
+<script src="{% get_static_prefix %}js/pk.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="{% get_static_prefix %}js/dropdown.js"></script>
+
+
+
 {% endblock main %}
