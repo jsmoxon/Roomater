@@ -1,6 +1,8 @@
 from django.forms import ModelForm
 from models import ResponseList, Response, UserProfile
 from django import forms
+from django.contrib.auth.models import User, Permission, Group
+
 
 class ProfileForm(ModelForm):
     class Meta:
@@ -24,15 +26,23 @@ smoker_choices = (
     ('No', 'No')
 )
 
+#for validation purposes, we create a user form to give correct error messages to users
+class UserRegForm(ModelForm):
+    class Meta:
+        model = User
+        exclude = ('first_name', 'last_name', 'email', 'staff_status', 'groups', 'last_login', 'date_joined', 'user_permissions', 'is_active', 'is_superuser', 'is_staff', )
+        widgets = {
+            'password' : forms.PasswordInput()
+        }
+            
+           
+        
 class SearchRegForm(forms.Form):
-    username = forms.CharField(max_length=100)
-    password = forms.CharField(max_length=100, widget=forms.PasswordInput())
     email = forms.EmailField(max_length=100)
     name = forms.CharField(max_length=100)
     clean_score = forms.IntegerField(label="How much do you value cleanliness?", widget=forms.Select(choices=clean_scores))
-#    smoker = forms.NullBooleanField(widget=forms.Select(choices=smoker_choices))
     about = forms.CharField(widget=forms.Textarea)
-    file = forms.ImageField(label='Upload your pic; .png files only')
+    file = forms.ImageField(label='Upload a photo of yourself; .png files only')
     
 class ListRegForm(forms.Form):
     price = forms.IntegerField()
@@ -46,6 +56,5 @@ class ListRegForm(forms.Form):
     email = forms.EmailField()
     name = forms.CharField(max_length=150)
     clean_score = forms.IntegerField()
-#    smoker = forms.NullBooleanField()
     about = forms.CharField(widget=forms.Textarea)
     file = forms.ImageField(label='Upload your picture')

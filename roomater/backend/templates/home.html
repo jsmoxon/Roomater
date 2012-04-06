@@ -5,7 +5,7 @@
   <div id="login" class="horizontal_login">
     <form action="/accounts/login/" method="post">
       {% csrf_token %}
-      <input type="text" name="username" value="usename" class="login_box" id="username_input" onfocus="clearUsernameBox()"/>
+      <input type="text" name="username" value="username" class="login_box" id="username_input" onfocus="clearUsernameBox()"/>
       <input type="password" name="password" value="password" class="login_box" id="password_input" onfocus="clearPasswordBox()"/>
       <input type="hidden" name="next" value="{{ next }}" />
       <input type="submit" value="Login" />
@@ -15,7 +15,6 @@
 </div>
 <div class="container">
   <div id="home_main">
-    <h5>Get acquainted with...</h5>
     <img class="offset-by-four" src="{% get_static_prefix %}img/logo.png" width=50%/>
     <h2 class="center clearboth">Find roommates that fit your lifestyle</h2>
     <h4 class="center">Create standardized, customized surveys and track your potential roommates.</h4>
@@ -25,7 +24,7 @@
 <div id="list_room">
   <div class="container">
     <div class="left">
-      <img class="home_img" src="{% get_static_prefix %}img/questionman.png" />
+      <img class="home_img" src="{% get_static_prefix %}img/noun_project_user.png" />
     </div><!--closes right-->
     <div class="right center">
       <h3 class="grey_hover"><a href="/list_room/">List a room</a></h3>

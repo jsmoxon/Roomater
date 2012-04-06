@@ -157,6 +157,11 @@ clear:both;
 min-height:710px;
 }
 
+#search_reg_form input[type='text']{
+display:block;
+
+}
+
 /* HOME SCREEN*/
 
 #home_main {
@@ -218,6 +223,12 @@ width:100px;
 .home_img {
 width: 400px;
 padding:20px;
+background-color:white;
+max-height: 270px;
+width: auto;
+padding: 0px;
+margin: 5px;
+border:10px solid white;
 }
 
 .horizontal li{
@@ -326,6 +337,14 @@ color:#27AAE1;
 
 #create_survey_main {
 min-height: 680px;
+}
+
+/* ABOUT */
+
+.about_image {
+width:240px;
+height:200px;
+margin-left:-10px;
 }
 
 .hidden {
