@@ -199,9 +199,9 @@
     <div id="tell_yourself" class="ten columns">
     <h4 class="pointer clickable">4. Tell us a bit about yourself</h4>
     <dd>
-    <h7> We think this would be nice for folks who are searching. </h7> <br />
+    <h7> Optional; you can also just click "Submit" at the end. </h7> <br />
 
-      <label>{{form.name.label}}</label><br />
+      <label>(Optional) {{form.name.label}} </label><br />
       {{form.name}} <br />
       <label>How important is cleanliness to you?</label>
       <select name="clean_score">
@@ -216,9 +216,9 @@
         <option value="9">9</option>
         <option value="10">10 - It's all I care about</option>
       </select>
-      <label>{{form.about.label}}</label>
+      <label>(Optional) {{form.about.label}} </label>
       {{form.about}}
-      <label>Upload a picture. Right now it has to be .png</label><br/>
+      <label>(Optional) Upload a picture (.png files only, for now).</label><br/>
       {{form.file}}
       <br/><br/>
       <input type="submit" value="Submit!" />
