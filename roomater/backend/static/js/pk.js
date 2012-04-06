@@ -22,7 +22,6 @@ document.getElementById("addanother4").onclick = function(){
     document.createsurveyform.check4.checked=true
 }
 
-
 document.getElementById("addanother5").onclick = function(){
     document.getElementById("ques6").className = document.getElementById("ques6").className.replace ( /(?:^|\s)hidden(?!\S)/, '' )
     document.getElementById("addanother5").className += " hidden";
@@ -38,5 +37,5 @@ document.getElementById("addanother6").onclick = function(){
 document.getElementById("addanother7").onclick = function(){
     document.getElementById("ques8").className = document.getElementById("ques8").className.replace ( /(?:^|\s)hidden(?!\S)/, '' )
     document.getElementById("addanother7").className += " hidden";
-    document.createsurveyform.check7.checked=true
+    document.createsurveyform.check7    .checked=true
 }
