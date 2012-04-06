@@ -1,10 +1,11 @@
-{% extends "main_base.html" %}
+{% extends "header_footer.html" %}
 {% load static %}
-{% block page %}
-
+{% block main %}
+<div class="container">
+<div id="feedback" class="six columns">
 <h1>Feedback Page</h1>
 <h3>Please give us feedback!</h3>
-<div id="feedback" class="six columns">
+
 <form action="/feedback/submit/" method="get">
 <label> Your Message. No hard feelings here, but be specific please. </label>
 <textarea name="message" rows="10" cols="30"></textarea>
@@ -13,5 +14,5 @@
 <input type="submit" class="feedback" value="Submit"/>
 </form>
 </div>
-
-{% endblock page %}
+</div>
+{% endblock main %}
