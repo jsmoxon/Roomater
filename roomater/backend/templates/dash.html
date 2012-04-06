@@ -22,7 +22,6 @@
       <img class="five columns" src="{{response.responder.pic}}" width=30% alt = "user pic" />
       <ul class="ten columns user_info">
 	<h6>Basic Info</h6>
-	<li>Cleanliness: {{response.responder.clean_score}}</li>
 	<li>About: {{response.responder.about}}</li>
       </ul>
     </div><!--closes profile-->
@@ -59,12 +58,14 @@
       <h4>About the Room I've Listed</h4>
       <li><p class="bold">Room:</p> {{profile.survey.room}}</li>
       <li><p class="bold">About the room:</p> {{profile.survey.room.about}}</li>
-      <h4>About Me:</h4><p class="red">Applicants cannot see this information</p>
-{% else %}
+      {% else %}
       <h4>About Me:</h4><h6>This is the profile that will show up when you apply to different rooms.</h6>
-{% endif %}
-      <li><p class="bold">How Clean?</p> {{profile.clean_score}}</li>
-      <li><p class="bold">About:</p> <p>{{profile.about}}</p></li>
+      {% endif %}
+      {% if profile.about %}
+      <h4>About Me:</h4><p class="red">Applicants cannot see this information</p>
+      <li><p class="bold">About:</p><p>{{profile.about}}</p></li>
+        {% else %}
+      {% endif %}
     </ul>
   </div><!--closes profile_info-->
 
