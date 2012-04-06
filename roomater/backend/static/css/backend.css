@@ -331,3 +331,7 @@ min-height: 680px;
 .hidden {
 display:none;
 }
+
+#errorz li, #errorz ul {
+display:inline;
+}

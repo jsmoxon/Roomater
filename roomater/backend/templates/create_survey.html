@@ -4,6 +4,37 @@
 <div class="container" id="create_survey_main">
 <div class="page_title sixteen columns">
   <h2>List a room</h2>
+<div id="errorz" class="sixteen columns">
+    {% if form.price.errors %}
+    <span class="error_p">Price Error: {{form.price.errors}}</span><br />
+    {% else %}
+    {% endif %}
+    
+    {% if form.address.errors %}
+    <span class="error_p">Address Error: {{form.address.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.city.errors %}
+    <span class="error_p">Price Error: {{form.city.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.state.errors %}
+    <span class="error_p">Price Error: {{form.state.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.zip.errors %}
+    <span class="error_p">Price Error: {{form.zip.errors}}</span><br />
+    {% else %}
+    {% endif %}
+    
+    {% if form.room_about.errors %}
+    <span class="error_p">Price Error: {{form.room_about.errors}}</span><br />
+    {% else %}
+    {% endif %}
+</div><!--closes errormessages-->
 </div><!--closes page_title-->
 
 <form action="." method="post" enctype="multipart/form-data" name="createsurveyform">
@@ -81,23 +112,18 @@
   <div id="tell_room" class="ten columns">
     <h4 class="pointer clickable">2. Tell us about the room</h4>
     <dd>
-    <label>{{form.price.label}} ($)</label>
-    <p class="error_p">{{form.price.errors}}</p>
-    {{form.price}}
-    <label>{{form.address.label}}</label>
-    <p class="error_p">{{form.address.errors}}</p>
-    {{form.address}}
-    <label>{{form.city.label}}</label>
-    <p class="error_p">{{form.city.errors}}</p>
-    {{form.city}}
-    <label>{{form.state.label}}</label>
-    <p class="error_p">{{form.state.errors}}</p>
-    {{form.state}}
-    <label>{{form.zip.label}}</label>
-    <p class="error_p">{{form.zip.errors}}</p>
-    {{form.zip}}
-    <label>About the room:</label>
-    <p class="error_p">{{form.room_about.errors}}</p>
+    <label>{{form.price.label}} ($)</label><br />
+    {{form.price}}<br />
+    <label>{{form.address.label}}</label><br />
+    {{form.address}} <br />
+    <label>{{form.city.label}}</label><br />
+    {{form.city}} <br />
+    <label>{{form.state.label}}</label><br />
+    {{form.state}} <br />
+    <label>{{form.zip.label}}</label><br />
+    {{form.zip}} <br />
+    <label>About the room:</label><br />
+
     {{form.room_about}}
 
     </dd>
