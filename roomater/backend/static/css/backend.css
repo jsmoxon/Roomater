@@ -5,6 +5,7 @@ font-weight:bold;
 
 .container {
 clear:both;
+padding-top:10px;
 }
 
 .login_push_footer {
@@ -32,6 +33,10 @@ color:#27AAE1
 }
 
 .red {
+color:red;
+}
+
+.red:visited {
 color:red;
 }
 
@@ -178,8 +183,8 @@ display:block;
 /* HOME SCREEN*/
 
 #home_main {
-padding-top:60px;
-margin-bottom:100px;
+padding-top:0px;
+margin-bottom:80px;
 }
 
 #list_room {
@@ -236,6 +241,12 @@ width:100px;
 .home_img {
 width: 400px;
 padding:20px;
+background-color:white;
+max-height: 270px;
+width: auto;
+padding: 0px;
+margin: 5px;
+border:10px solid white;
 }
 
 .horizontal li{
@@ -348,6 +359,11 @@ min-height: 680px;
 
 /* ABOUT */
 
+.abouttext {
+font-size: 18px;
+margin-top: 30px;
+}
+
 .about_image {
 width:240px;
 height:200px;
@@ -363,6 +379,11 @@ display:inline;
 }
 
 /*REAL_SURVEY*/
+
+#the_room {
+margin-top:-50px;
+margin-bottom:20px;
+}
 
 #red_login {
 color:red;

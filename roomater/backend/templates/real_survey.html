@@ -2,6 +2,7 @@
 {% block main %}
 <div class="container login_push_footer">
   <div id="main">
+    <h4 class="soft_grey">The person renting this room is using Roommater to manage applications.<br/> Fill out the questionnaire below to apply. It's free.</h4>
     <div class="page_title sixteen columns">
       <h2>Questionnaire</h2>
     </div><!--closes page_title-->
@@ -24,7 +25,8 @@
       
     </div><!--closes left-->
     
-    <div class="eight columns">
+    <div id="the_room" class="eight columns">
+      <h2>The Room</h2>
       <h4>{{s.room.address}} {{s.room.city}}</h4>
       <ul>
 	<li>Price: ${{s.room.price}}</li>

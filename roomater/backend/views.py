@@ -27,13 +27,17 @@ def create_survey(request):
     if not form.is_valid() or not user_form.is_valid():
         print "something not valid"
         return render_to_response('create_survey.html', {"form":form, "user_form":user_form, "standard":standard_questions}, context_instance=RequestContext(request))
-    file = request.FILES["file"]
-    store_in_s3(file)
-    p = PhotoUrl(url="http://roommater.s3.amazonaws.com/"+str(file))
-    p.save()
+    try:
+        file = request.FILES["file"]
+        store_in_s3(file)
+        p = PhotoUrl(url="http://roommater.s3.amazonaws.com/"+str(file))
+        p.save()
+        picture = p.url
+    except:
+        picture = ""
 #create a new user and profile
     user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
-    newprofile = UserProfile(pic=p.url, user=user,
+    newprofile = UserProfile(pic=picture, user=user,
                              name=request.POST['name'], clean_score=request.POST['clean_score'],
                              about=request.POST['about'])
     newprofile.save()
@@ -86,7 +90,7 @@ def create_search_profile(request):
             p.save()
             user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
             newprofile = UserProfile(pic=p.url, user=user,
-                             name=request.POST['name'], clean_score=request.POST['clean_score'],
+                             name=request.POST['name'],
                              about=request.POST['about'])
             newprofile.save()
             username = request.POST['username']

@@ -5,7 +5,7 @@
 <div class="container">
   <div id="survey_url" class="sixteen columns">
     {% if profile.survey %}
-    <h5>Paste this URL to show your survey to others: <a href="/room/{{profile.survey.id}}">http://roommater.us/room/{{profile.survey.id}}</a></h5>
+    <h5>Paste this URL to craigslist or facebook to show your survey to others: <a href="/room/{{profile.survey.id}}">http://roommater.us/room/{{profile.survey.id}}</a></h5>
     {% else %}
     <h4>You've most recently applied to {{most_recent}}</h4>
     {% endif %}
@@ -37,7 +37,7 @@
       {% endfor %}
     </div><!--closes answers-->
   {% else %}
-  <p>No responses yet. Post the above <a href="/room/{{profile.survey.id}}/">url</a> to somewhere like <a href="http://craigslist.org">craigslist</a> or <a href="http://padmapper.com">padmapper</a> to get responses.</p>
+  <p>No responses yet. Post the above <a class="red" href="/room/{{profile.survey.id}}/">url</a> to somewhere like <a class="red" href="http://craigslist.org">craigslist</a> or <a class="red" href="http://padmapper.com">padmapper</a> to get responses.</p>
   {% endif %}
   
   {% else %}

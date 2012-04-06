@@ -65,8 +65,7 @@
     {% else %}
     {% endif %}
 
-
-</div><!--closes errormessages-->
+</div><!--closes errorz-->
 </div><!--closes page_title-->
 
 <form action="." method="post" enctype="multipart/form-data" name="createsurveyform">
@@ -74,10 +73,9 @@
   {% csrf_token %}
   {{form.non_field_errors}}
   <h4>1. What do you want to know about your roommates?</h4>
-  <h7 class="blue">Create a custom survey that your potential roommates will answer:</h7>
   <br/>
 <div class="ten columns">
-  <p>Choose from our standard questions:</p>
+  <p>Choose from our most popular questions:</p>
   {% for ques in standard %}
   <input type="checkbox" name="{{ques.text}}" value="{{ques.text}}" /> 
   <label for"{{ques.text}}"=>{{ques.text}}</label> <br />
@@ -86,7 +84,8 @@
 <!--  <h5 class="pointer clickable dropdown">Click here to add your own questions</h5>-->
 </div><!--closes left-->
 <div class="ten columns">
-  <p>Or add your own question:</p> 
+<br />
+  <p>Or add your own question in the box below:</p> 
     <div id="ques1" class="userquestion"> 
         <input type="checkbox" name="check1" /> 
         <input type="text" name="q1" /> 
@@ -165,6 +164,7 @@
   <div id="tell_room" class="ten columns">
     <h4 class="pointer clickable">2. Tell us about the room</h4>
     <dd>
+    <h7> This is so that people can find you through our site as well as Craigslist. </h7> <br />
     <label>{{form.price.label}} ($)</label><br />
     {{form.price}}<br />
     <label>{{form.address.label}}</label><br />
@@ -183,11 +183,12 @@
   <div id="create_account" class="ten columns">
     <h4 class="pointer clickable">3. Create an account</h4>
     <dd>
+    <h7> This is so you can access the survey responses later. </h7> <br />
     <label>{{form.username.label}}</label><br />
     {{form.username}}<br />
 
-    <label>{{form.password.label}}</label>
-    <input type="password" name="password"/>
+    <label>{{form.password.label}}</label> <br />
+    <input type="password" name="password"/><br />
 
     <label>{{form.email.label}}</label><br />
     {{form.email}} <br />
@@ -198,24 +199,13 @@
     <div id="tell_yourself" class="ten columns">
     <h4 class="pointer clickable">4. Tell us a bit about yourself</h4>
     <dd>
+    <h7> No one will see this yet, but it will help power our upcoming recommendation engine.</h7> <br />
+
       <label>{{form.name.label}}</label><br />
       {{form.name}} <br />
-      <label>How important is cleanliness to you?</label>
-      <select name="clean_score">
-        <option value="1">1 - Not at all</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5 - Somewhat</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10 - It's all I care about</option>
-      </select>
-      <label>{{form.about.label}}</label>
+      <label>{{form.about.label}} (optional)</label>
       {{form.about}}
-      <label>Upload a picture</label><br/>
+      <label>Upload a picture; must be a .png file (optional)</label><br/>
       {{form.file}}
       <br/><br/>
       <input type="submit" value="Submit!" />

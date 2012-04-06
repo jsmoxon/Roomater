@@ -48,9 +48,9 @@ class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
     survey = models.ForeignKey(Survey, on_delete=models.SET_NULL, blank=True, null=True)
     name = models.CharField(max_length=200)
-    clean_score = models.IntegerField(blank=True)
+    clean_score = models.IntegerField(blank=True, null=True)
     smoker = models.NullBooleanField()
-    about = models.TextField(blank=True)
+    about = models.TextField(blank=True, null=True)
     rooms = models.ManyToManyField(Room, blank=True, null=True)
     pic = models.CharField(max_length=500)
     def __unicode__(self):
