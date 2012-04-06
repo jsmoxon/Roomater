@@ -3,26 +3,14 @@
 
 {% block main %}
 <div class="container">
-  <div class="page_title sixteen columns">
-    <h2>{{profile.name}}'s Dashboard</h2>
-  </div><!--closes page_title-->
-  <div id="profile_info" class="sixteen columns profile">
-    <img class="five columns "src="{{pic}}" width=30%/>
-    <ul id="" class="ten columns">
-      <h4>My Basic Info</h4>
-      <li>How Clean? -- {{profile.clean_score}}</li>
-      <li>About: <p>{{profile.about}}</p></li>
-    </ul>
-  </div><!--closes profile_info-->
-  
   <div id="survey_url" class="sixteen columns">
     {% if profile.survey %}
     <h5>Paste this URL to show your survey to others: <a href="/room/{{profile.survey.id}}">http://roommater.us/room/{{profile.survey.id}}</a></h5>
     {% else %}
-    <h4>Click here to <a href="/backend/create_survey/">list a room</a></h4>
+    <h4>You've most recently applied to {{most_recent}}</h4>
     {% endif %}
   </div><!--closes survey_url-->
-  
+
   <div id="potential_roommates" class="sixteen columns">
     
     {% if profile.survey %}
@@ -48,7 +36,6 @@
       {% endfor %}
       {% endfor %}
     </div><!--closes answers-->
-  </div>
   {% else %}
   <p>No responses yet. Post the above <a href="/room/{{profile.survey.id}}/">url</a> to somewhere like <a href="http://craigslist.org">craigslist</a> or <a href="http://padmapper.com">padmapper</a> to get responses.</p>
   {% endif %}
@@ -63,8 +50,24 @@
   <p>You haven't applied anywhere yet. Checkout some of the <a href="/rooms/">rooms</a> we have listed.
     {% endif %}
     {% endif %}
-    
-    
 </div><!--closes potential_roommates-->
+
+  <div class="sixteen columns profile" id="profile_info">
+    <img class="five columns "src="{{pic}}" width=30%/>
+    <ul id="" class="ten columns">
+      {% if profile.survey %}
+      <h4>About the Room I've Listed</h4>
+      <li><p class="bold">Room:</p> {{profile.survey.room}}</li>
+      <li><p class="bold">About the room:</p> {{profile.survey.room.about}}</li>
+      <h4>About Me:</h4><p class="red">Applicants cannot see this information</p>
+{% else %}
+      <h4>About Me:</h4><h6>This is the profile that will show up when you apply to different rooms.</h6>
+{% endif %}
+      <li><p class="bold">How Clean?</p> {{profile.clean_score}}</li>
+      <li><p class="bold">About:</p> <p>{{profile.about}}</p></li>
+    </ul>
+  </div><!--closes profile_info-->
+
+
 </div><!--closes container -->
 {% endblock main %}

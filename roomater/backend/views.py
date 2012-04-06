@@ -51,16 +51,21 @@ def create_survey(request):
 
 @login_required
 def dash(request):
+    most_recent ="dlfkj"
     try:
         user_profile = request.user.get_profile()
     except:
         return render_to_response('profile_create.html', {}, context_instance=RequestContext(request))
     pic = user_profile.pic
     try:
+        most_recent = user_profile.rooms.all()[len(user_profile.rooms.all())-1]
+    except:
+        most_recent = ""
+    try:
         responses = ResponseList.objects.filter(survey__id=user_profile.survey.id)
     except:
         responses = "No Responses"
-    return render_to_response('dash.html', {'pic':pic, 'profile':user_profile, 'responses':responses}, context_instance=RequestContext(request))
+    return render_to_response('dash.html', {'pic':pic, 'profile':user_profile, 'responses':responses, 'most_recent':most_recent}, context_instance=RequestContext(request))
 
 #search the site for surveys
 

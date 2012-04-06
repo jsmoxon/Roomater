@@ -31,6 +31,14 @@ clear:both;
 color:#27AAE1
 }
 
+.red {
+color:red;
+}
+
+.bold {
+font-weight:bold;
+}
+
 .pointer {
 cursor:pointer;
 }
@@ -95,7 +103,6 @@ a:hover {
 color:grey;
 }
 
-
 /* DASHBOARD*/
 
 .page_title {
@@ -106,7 +113,6 @@ background:}
 .answers {
 clear:both;
 padding-top:30px;
-
 }
 
 .profile {
@@ -118,6 +124,7 @@ box-shadow: 10px 10px 5px #888;
 border-radius: 15px;
 padding:5px;
 background:#ADD8C7;
+margin-bottom:15px;
 }
 
 #survey_url {
@@ -126,9 +133,10 @@ background:#EAD46E;
 -webkit-box-shadow: 10px 10px 5px #888;
 box-shadow: 10px 10px 5px #888;
 -moz-border-radius: 15px;
-border-radius: 0px 0px 15px 15px;
+border-radius: 15px 15px 15px 15px;
 padding:5px;
-margin-top:-20px;
+margin-top:0px;
+text-align:center;
 }
 
 #potential_roommates {
@@ -138,7 +146,12 @@ background:;
 }
 
 #profile_info {
-clear:both
+clear:both;
+background:#EAD46E;
+}
+
+#profile_info p{
+margin:0px;
 }
 
 /* Survey List */
@@ -347,4 +360,14 @@ display:none;
 
 #errorz li, #errorz ul {
 display:inline;
+}
+
+/*REAL_SURVEY*/
+
+#red_login {
+color:red;
+}
+
+#red_login:hover {
+color:grey;
 }
