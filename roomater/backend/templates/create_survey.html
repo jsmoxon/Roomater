@@ -183,7 +183,7 @@
   <div id="create_account" class="ten columns">
     <h4 class="pointer clickable">3. Create an account</h4>
     <dd>
-    <h7> This is so you can access the survey responses later. </h7> <br />
+    <h7> This is so you can access the survey responses later. We won't ever share your information with anyone.</h7> <br />
     <label>{{form.username.label}}</label><br />
     {{form.username}}<br />
 
@@ -199,9 +199,8 @@
     <div id="tell_yourself" class="ten columns">
     <h4 class="pointer clickable">4. Tell us a bit about yourself</h4>
     <dd>
-    <h7> No one will see this yet, but it will help power our upcoming recommendation engine.</h7> <br />
-
-      <label>{{form.name.label}}</label><br />
+    <h7>No one can see this yet, but it will help power our upcoming recommendation algorithm.</h7> <br />
+      <label> {{form.name.label}} </label><br />
       {{form.name}} <br />
       <label>{{form.about.label}} (optional)</label>
       {{form.about}}

@@ -2,6 +2,7 @@ from django.views.generic.simple import direct_to_template
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 from django.conf.urls.static import static
+from feedback.models import *
 import settings
 admin.autodiscover()
 
@@ -13,7 +14,9 @@ urlpatterns = patterns('',
 #    url(r'^backend/', include('backend.urls')),                      
     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^login/$', 'backend.views.create_search_profile'),
-    url(r'^accounts/', include('registration.urls')),                       
+    url(r'^accounts/', include('registration.urls')),   
+    url(r'^feedback/$', 'feedback.views.home'),
+    url(r'^feedback/submit/$', 'feedback.views.feedback_submit'),                   
 )
 
 urlpatterns += patterns('django.contrib.staticfiles.views',

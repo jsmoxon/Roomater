@@ -1,0 +1,18 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block main %}
+<div class="container">
+<div id="feedback" class="six columns">
+<h1>Feedback Page</h1>
+<h3>Please give us feedback!</h3>
+
+<form action="/feedback/submit/" method="get">
+<label> Your Message. No hard feelings here, but be specific please. </label>
+<textarea name="message" rows="10" cols="30"></textarea>
+<label> Email (if you want us to get back to you) </label>
+<textarea name="sender" rows="1" cols="30"></textarea>
+<input type="submit" class="feedback" value="Submit"/>
+</form>
+</div>
+</div>
+{% endblock main %}
