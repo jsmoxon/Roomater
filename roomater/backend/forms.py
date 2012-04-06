@@ -42,7 +42,7 @@ class SearchRegForm(forms.Form):
     name = forms.CharField(max_length=100)
     clean_score = forms.IntegerField(label="How much do you value cleanliness?", widget=forms.Select(choices=clean_scores))
     about = forms.CharField(widget=forms.Textarea)
-    file = forms.ImageField(label='Upload your pic; .png files only')
+    file = forms.ImageField(label='Upload a photo of yourself; .png files only')
     
 class ListRegForm(forms.Form):
     price = forms.IntegerField()

@@ -157,6 +157,11 @@ clear:both;
 min-height:710px;
 }
 
+#search_reg_form input[type='text']{
+display:block;
+
+}
+
 /* HOME SCREEN*/
 
 #home_main {
@@ -326,4 +331,12 @@ color:#27AAE1;
 
 #create_survey_main {
 min-height: 680px;
+}
+
+/* ABOUT */
+
+.about_image {
+width:240px;
+height:200px;
+margin-left:-10px;
 }

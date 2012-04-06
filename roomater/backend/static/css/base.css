@@ -279,7 +279,7 @@
 		margin-bottom: 20px; }
 	fieldset {
 		margin-bottom: 20px; }
-	input[type="text"],
+	/*input[type="text"], */
 	input[type="password"],
 	input[type="email"],
 	textarea,
@@ -313,13 +313,13 @@
 		min-height: 60px; }
 	label,
 	legend {
-		display: block;
+		/*display: block; */
 		font-weight: bold;
 		font-size: 13px;  }
 	select {
 		width: 220px; }
-	input[type="checkbox"] {
-		display: inline; }
+/*	input[type="checkbox"] {
+		display: inline; } */
 	label span,
 	legend span {
 		font-weight: normal;
