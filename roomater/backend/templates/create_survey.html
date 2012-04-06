@@ -16,28 +16,61 @@
     {% endif %}
 
     {% if form.city.errors %}
-    <span class="error_p">Price Error: {{form.city.errors}}</span><br />
+    <span class="error_p">City Error: {{form.city.errors}}</span><br />
     {% else %}
     {% endif %}
 
     {% if form.state.errors %}
-    <span class="error_p">Price Error: {{form.state.errors}}</span><br />
+    <span class="error_p">State Error: {{form.state.errors}}</span><br />
     {% else %}
     {% endif %}
 
     {% if form.zip.errors %}
-    <span class="error_p">Price Error: {{form.zip.errors}}</span><br />
+    <span class="error_p">Zip Error: {{form.zip.errors}}</span><br />
     {% else %}
     {% endif %}
     
     {% if form.room_about.errors %}
-    <span class="error_p">Price Error: {{form.room_about.errors}}</span><br />
+    <span class="error_p">About Error: {{form.room_about.errors}}</span><br />
     {% else %}
     {% endif %}
+
+    {% if form.about.errors %}
+    <span class="error_p">About Error: {{form.about.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.password.errors %}
+    <span class="error_p">Password Error: {{form.password.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.email.errors %}
+    <span class="error_p">Email Error: {{form.email.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.name.errors %}
+    <span class="error_p">Name Error: {{form.name.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.about.errors %}
+    <span class="error_p">About Error: {{form.about.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+    {% if form.file.errors %}
+    <span class="error_p">Image Error: {{form.file.errors}}</span><br />
+    {% else %}
+    {% endif %}
+
+
 </div><!--closes errormessages-->
 </div><!--closes page_title-->
 
 <form action="." method="post" enctype="multipart/form-data" name="createsurveyform">
+
   {% csrf_token %}
   {{form.non_field_errors}}
   <h4>1. What do you want to know about your roommates?</h4>
@@ -102,6 +135,7 @@
 <!--        <button id="addanother8" type="button">Add Another</button> -->
         <br />
     </div>
+    <h7> Give us a bit more information below then you can submit the survey. </h7>
 
 
 
@@ -123,24 +157,21 @@
     <label>{{form.zip.label}}</label><br />
     {{form.zip}} <br />
     <label>About the room:</label><br />
-
     {{form.room_about}}
-
     </dd>
   </div><!--closes tell_room-->
   <br/>
   <div id="create_account" class="ten columns">
     <h4 class="pointer clickable">3. Create an account</h4>
     <dd>
-    <label>{{form.username.label}}</label>
-    <p class="error_p">{{form.username.errors}}</p>
-    {{form.username}}
+    <label>{{form.username.label}}</label><br />
+    {{form.username}}<br />
+
     <label>{{form.password.label}}</label>
-    <p class="error_p">{{form.password.errors}}</p>
-    <input type="password" name="password" />
-    <label>{{form.email.label}}</label>
-    <p class="error_p next_toggle">{{form.email.errors}}</p>
-    {{form.email}}
+    <input type="password" name="password"/>
+
+    <label>{{form.email.label}}</label><br />
+    {{form.email}} <br />
     </dd>
   </div><!--closes create_account-->
   <br/>
@@ -148,27 +179,24 @@
     <div id="tell_yourself" class="ten columns">
     <h4 class="pointer clickable">4. Tell us a bit about yourself</h4>
     <dd>
-      <label>{{form.name.label}}</label>
-      {{form.name.errors}}
-      {{form.name}}
+      <label>{{form.name.label}}</label><br />
+      {{form.name}} <br />
       <label>How important is cleanliness to you?</label>
       <select name="clean_score">
-	<option value="1">1 - Not at all</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	<option value="4">4</option>
-	<option value="5">5 - Somewhat</option>
-	<option value="6">6</option>
-	<option value="7">7</option>
-	<option value="8">8</option>
-	<option value="9">9</option>
-	<option value="10">10 - It's all I care about</option>
+        <option value="1">1 - Not at all</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 - Somewhat</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10 - It's all I care about</option>
       </select>
       <label>{{form.about.label}}</label>
-      <p class="error_p">{{form.about.errors}}</p>
       {{form.about}}
-      <label>Upload a picture</label>
-      <p class="error_p">{{form.file.errors}}</p>
+      <label>Upload a picture</label><br/>
       {{form.file}}
       <br/><br/>
       <input type="submit" value="Submit!" />
