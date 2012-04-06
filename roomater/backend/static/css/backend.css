@@ -342,6 +342,11 @@ min-height: 680px;
 
 /* ABOUT */
 
+.abouttext {
+font-size: 18px;
+margin-top: 30px;
+}
+
 .about_image {
 width:240px;
 height:200px;
