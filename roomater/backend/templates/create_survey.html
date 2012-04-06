@@ -6,11 +6,11 @@
   <h2>List a room</h2>
 </div><!--closes page_title-->
 
-<form action="." method="post" enctype="multipart/form-data">
+<form action="." method="post" enctype="multipart/form-data" name="createsurveyform">
   {% csrf_token %}
   {{form.non_field_errors}}
   <h4>1. What do you want to know about your roommates?</h4>
-  <h6 class="blue">Create a custom survey that your potential roommates will answer here.</h6>
+  <h7 class="blue">Create a custom survey that your potential roommates will answer:</h7>
   <br/>
 <div class="ten columns">
   <p>Choose from our standard questions:</p>
@@ -22,32 +22,63 @@
 <!--  <h5 class="pointer clickable dropdown">Click here to add your own questions</h5>-->
 </div><!--closes left-->
 <div class="ten columns">
-  <p>Or add your own question:</p>  
-  <input type="checkbox" /> 
-    <input type="text" name="q1" /> 
-    <button>Add Another</button>
-    <br />
-  <label>Question 2 (optional)</label>
-  <input type="text" name="q2" />
-  <label>Question 3 (optional)</label>
-  <input type="text" name="q3" />
-   <label>Question 4 (optional)</label>
-  <input type="text" name="q4" />
-  <label>Question 5 (optional)</label>
-  <input type="text" name="q5" />
-  <label>Question 6 (optional)</label>
-  <input type="text" name="q6" />
-  <label>Question 7 (optional)</label>
-  <input type="text" name="q7" />
-  <label>Question 8 (optional)</label>
-  <input type="text" name="q8" />
-  <label>Question 9 (optional)</label>
-  <input type="text" name="q9" />
-  <label>Question 10 (optional)</label>
-  <input type="text" name="q10" />
+  <p>Or add your own question:</p> 
+    <div id="ques1" class="userquestion"> 
+        <input type="checkbox" name="check1" /> 
+        <input type="text" name="q1" /> 
+        <button id="addanother1" type="button">Add Another</button>
+        <br />
+    </div>
+        <div id="ques2" class="userquestion hidden"> 
+        <input type="checkbox" name="check2" /> 
+        <input type="text" name="q1" /> 
+        <button id="addanother2" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques3" class="userquestion hidden""> 
+        <input type="checkbox" name="check3" /> 
+        <input type="text" name="q3" /> 
+        <button id="addanother3" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques4" class="userquestion hidden"> 
+        <input type="checkbox" name="check4" /> 
+        <input type="text" name="q4" /> 
+        <button id="addanother4" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques5" class="userquestion hidden"> 
+        <input type="checkbox" name="check5" /> 
+        <input type="text" name="q5" /> 
+        <button id="addanother5" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques6" class="userquestion hidden"> 
+        <input type="checkbox" name="check6" /> 
+        <input type="text" name="q6" /> 
+        <button id="addanother6" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques7" class="userquestion hidden"> 
+        <input type="checkbox" name="check7" /> 
+        <input type="text" name="q7" /> 
+        <button id="addanother7" type="button">Add Another</button>
+        <br />
+    </div>
+    <div id="ques8" class="userquestion hidden"> 
+        <input type="checkbox" name="check8" /> 
+        <input type="text" name="q8" /> 
+<!--        <button id="addanother8" type="button">Add Another</button> -->
+        <br />
+    </div>
+
+
+
+
+
 </div>
   <br/>
-  <div id="tell_room">
+  <div id="tell_room" class="ten columns">
     <h4 class="pointer clickable">2. Tell us about the room</h4>
     <dd>
     <label>{{form.price.label}} ($)</label>
@@ -72,7 +103,7 @@
     </dd>
   </div><!--closes tell_room-->
   <br/>
-  <div id="create_account">
+  <div id="create_account" class="ten columns">
     <h4 class="pointer clickable">3. Create an account</h4>
     <dd>
     <label>{{form.username.label}}</label>
@@ -87,7 +118,8 @@
     </dd>
   </div><!--closes create_account-->
   <br/>
-  <div id="tell_yourself">
+  
+    <div id="tell_yourself" class="ten columns">
     <h4 class="pointer clickable">4. Tell us a bit about yourself</h4>
     <dd>
       <label>{{form.name.label}}</label>
@@ -118,6 +150,10 @@
   </div><!--closes tell_yourself-->
 </form>
 </div><!--closes container-->
+<script src="{% get_static_prefix %}js/pk.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="{% get_static_prefix %}js/dropdown.js"></script>
+
+
+
 {% endblock main %}

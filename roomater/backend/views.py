@@ -14,15 +14,21 @@ from maps import geo_code
 class UploadForm(forms.Form):
     file = forms.ImageField(label='Upload your pic')
 
+
 def create_survey(request):
     standard_questions = Question.objects.filter(standard=True)
     if not request.method == "POST":
         form = ListRegForm()
-        return render_to_response('create_survey.html', {"form":form, "standard":standard_questions}, context_instance=RequestContext(request))
+        return render_to_response('create_survey.html', 
+                                    {"form":form, "standard":standard_questions}, 
+                                    context_instance=RequestContext(request)
+                                )
     form = ListRegForm(request.POST, request.FILES)
     if not form.is_valid():
-        return render_to_response('create_survey.html', {"form":form, "standard":standard_questions}, context_instance=RequestContext(request))
-
+        return render_to_response('create_survey.html', 
+                                    {"form":form, "standard":standard_questions}, 
+                                    context_instance=RequestContext(request)
+                                )
     file = request.FILES["file"]
     store_in_s3(file)
     p = PhotoUrl(url="http://roommater.s3.amazonaws.com/"+str(file))
@@ -125,6 +131,7 @@ def submit_create_survey(request, room):
             survey.questions.add(q)
             survey.save()
         i+=1
+
 #adds survey to UserProfile, this may require a request context for security down the line
     user_profile = request.user.get_profile()
     user_profile.survey = Survey.objects.get(name=str(survey))

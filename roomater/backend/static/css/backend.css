@@ -327,3 +327,7 @@ color:#27AAE1;
 #create_survey_main {
 min-height: 680px;
 }
+
+.hidden {
+display:none;
+}
