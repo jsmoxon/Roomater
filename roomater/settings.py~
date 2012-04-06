@@ -4,7 +4,7 @@ os.environ['DJANGO_SETTINGS_MODULE']= 'roomater.settings'
 
 from constants import *
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 AUTH_PROFILE_MODULE = "backend.UserProfile"
@@ -144,6 +144,7 @@ INSTALLED_APPS = (
     'gunicorn',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'feedback',
 )
 
 # A sample logging configuration. The only tangible logging
