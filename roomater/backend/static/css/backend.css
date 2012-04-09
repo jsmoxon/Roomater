@@ -184,7 +184,20 @@ margin-bottom:80px;
 }
 
 #list_room {
-background:#27AAE1;
+/*background:#27AAE1; */
+/*background:#7AB317;
+http://www.colourlovers.com/palette/81885/Hymn_For_My_Soul */
+
+/* from http://www.colorzilla.com/gradient-editor/#_ */
+background: #41ad1d; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover,  #41ad1d 0%, #399e1a 40%, #318517 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#41ad1d), color-stop(40%,#399e1a), color-stop(100%,#318517)); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover,  #41ad1d 0%,#399e1a 40%,#318517 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover,  #41ad1d 0%,#399e1a 40%,#318517 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover,  #41ad1d 0%,#399e1a 40%,#318517 100%); /* IE10+ */
+background: radial-gradient(center, ellipse cover,  #41ad1d 0%,#399e1a 40%,#318517 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#41ad1d', endColorstr='#318517',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
 
 #list_room h3, #list_room a {
@@ -200,7 +213,21 @@ color:white;
 }
 
 #find_room {
-background:#00A651;
+/*background:#00A651; */
+/*background: #0B2E59;
+11,46,89 from http://www.colourlovers.com/palette/81885/Hymn_For_My_Soul */
+
+/* from http://www.colorzilla.com/gradient-editor/#_ */
+background: #184593; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover,  #184593 0%, #2058c0 40%, #1c4ca4 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#184593), color-stop(40%,#2058c0), color-stop(100%,#1c4ca4)); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover,  #184593 0%,#2058c0 40%,#1c4ca4 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover,  #184593 0%,#2058c0 40%,#1c4ca4 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover,  #184593 0%,#2058c0 40%,#1c4ca4 100%); /* IE10+ */
+background: radial-gradient(center, ellipse cover,  #184593 0%,#2058c0 40%,#1c4ca4 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#184593', endColorstr='#1c4ca4',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
 }
 
 #find_room h3,#find_room a {
