@@ -38,7 +38,7 @@ def create_survey(request):
 #create a new user and profile
     user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
     newprofile = UserProfile(pic=picture, user=user,
-                             name=request.POST['name'], clean_score=request.POST['clean_score'],
+                             name=request.POST['name'],
                              about=request.POST['about'])
     newprofile.save()
 #log the new user in
