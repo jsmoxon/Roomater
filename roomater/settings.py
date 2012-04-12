@@ -145,6 +145,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'feedback',
+    'django_facebook',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -173,3 +174,20 @@ LOGGING = {
 ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_REDIRECT_URL = '/dash/'
 LOGIN_URL = '/login/'
+
+FACEBOOK_API_KEY = 381140895241901
+FACEBOOK_APP_ID = 381140895241901
+FACEBOOK_APP_SECRET = 77a03efcd9acf7bc60d76f8b4a2432e4
+
+TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
+"django.core.context_processors.debug",
+"django.core.context_processors.i18n",
+"django.core.context_processors.media",
+"django.core.context_processors.static",
+"django.core.context_processors.tz",
+"django.contrib.messages.context_processors.messages"
+"django_facebook.context_processors.facebook",)
+
+AUTHENTICATION_BACKENDS = (
+'django.contrib.auth.backends.ModelBackend',
+'django_facebook.auth_backends.FacebookBackend',)

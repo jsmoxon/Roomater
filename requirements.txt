@@ -10,3 +10,4 @@ gunicorn==0.12.2
 psycopg2==2.4.4
 simplejson==2.4.0
 wsgiref==0.1.2
+django-facebook==3.6.4

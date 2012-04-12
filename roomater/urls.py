@@ -16,7 +16,8 @@ urlpatterns = patterns('',
     url(r'^login/$', 'backend.views.create_search_profile'),
     url(r'^accounts/', include('registration.urls')),   
     url(r'^feedback/$', 'feedback.views.home'),
-    url(r'^feedback/submit/$', 'feedback.views.feedback_submit'),                   
+    url(r'^feedback/submit/$', 'feedback.views.feedback_submit'), 
+    url(r'^facebook/', include('django_facebook.urls')),                  
 )
 
 urlpatterns += patterns('django.contrib.staticfiles.views',
