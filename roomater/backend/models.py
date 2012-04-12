@@ -59,7 +59,7 @@ class UserProfile(models.Model):
 class ResponseList(models.Model):
     name = models.CharField(max_length=200)
     responder = models.ForeignKey(UserProfile)
-    survey = models.ForeignKey(Survey)
+    survey = models.ForeignKey(Survey, blank=True, null=True)
     responses = models.ManyToManyField(Response)
     def __unicode__(self):
         return str(self.name)

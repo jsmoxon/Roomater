@@ -24,6 +24,7 @@
 	<h6>Basic Info</h6>
 	<li>About: {{response.responder.about}}</li>
       </ul>
+      <a href="/emailing/remove/{{profile.survey.id}}/{{response.responder.id}}">Remove and send rejection email</a>
     </div><!--closes profile-->
     <div class="answers">
       <h5>Answers to Your Survey</h5>
@@ -58,13 +59,13 @@
       <h4>About the Room I've Listed</h4>
       <li><p class="bold">Room:</p> {{profile.survey.room}}</li>
       <li><p class="bold">About the room:</p> {{profile.survey.room.about}}</li>
-      {% else %}
-      <h4>About Me:</h4><h6>This is the profile that will show up when you apply to different rooms.</h6>
-      {% endif %}
       {% if profile.about %}
       <h4>About Me:</h4><p class="red">Applicants cannot see this information</p>
       <li><p class="bold">About:</p><p>{{profile.about}}</p></li>
         {% else %}
+      {% endif %}
+      {% else %}
+      <h4>About Me:</h4><h6>This is the profile that will show up when you apply to different rooms.</h6>
       {% endif %}
     </ul>
   </div><!--closes profile_info-->
