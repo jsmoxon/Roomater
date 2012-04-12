@@ -4,7 +4,7 @@ os.environ['DJANGO_SETTINGS_MODULE']= 'roomater.settings'
 
 from constants import *
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 AUTH_PROFILE_MODULE = "backend.UserProfile"
