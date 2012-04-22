@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response, get_object_or_404, HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
 from models import *
-from forms import ProfileForm, SearchRegForm, ListRegForm, UserRegForm
+from forms import ProfileForm, SearchRegForm, ListRegForm, UserRegForm, EditRoomForm
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Permission, Group
@@ -53,9 +53,29 @@ def create_survey(request):
     submit_create_survey(request, room)
     return redirect('/dash/')
 
+def edit_survey(request, room):
+    user_profile = request.user.get_profile()
+    if request.method =='POST':
+        form = EditRoomForm(request.POST)
+        if form.is_valid():
+            room = Room.objects.get(pk=room)
+            room.price = form.cleaned_data['price']
+            room.address = form.cleaned_data['address']
+            room.city = form.cleaned_data['city']
+            room.state = form.cleaned_data['state']
+            room.zip = form.cleaned_data['zip']
+            room.about = form.cleaned_data['room_about']
+            room.lat = geo_code(room.address, room.city, room.state, room.zip)[0]
+            room.lng = geo_code(room.address, room.city, room.state, room.zip)[1]
+            room.save()
+            return redirect('/dash/')
+    else:
+        form = EditRoomForm()
+    return render_to_response("edit_survey.html", {"user":user_profile, "form":form}, context_instance=RequestContext(request))
+
 @login_required
 def dash(request):
-    most_recent ="dlfkj"
+    most_recent ="meaningless string"
     try:
         user_profile = request.user.get_profile()
     except:

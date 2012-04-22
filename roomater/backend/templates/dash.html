@@ -57,6 +57,7 @@
     <ul id="" class="ten columns">
       {% if profile.survey %}
       <h4>About the Room I've Listed</h4>
+      <li><a href="/edit_room/{{profile.survey.id}}">Edit Room Description</a></li>
       <li><p class="bold">Room:</p> {{profile.survey.room}}</li>
       <li><p class="bold">About the room:</p> {{profile.survey.room.about}}</li>
       {% if profile.about %}

@@ -58,3 +58,12 @@ class ListRegForm(forms.Form):
 #    clean_score = forms.IntegerField()
     about = forms.CharField(widget=forms.Textarea, required=False)
     file = forms.ImageField(label='Upload your picture', required=False)
+
+class EditRoomForm(forms.Form):
+    price = forms.IntegerField()
+    address = forms.CharField(max_length=150)
+    city = forms.CharField(max_length=150)
+    state = forms.CharField(max_length=150)
+    zip = forms.CharField(max_length=150)
+    room_about = forms.CharField(widget=forms.Textarea)
+    

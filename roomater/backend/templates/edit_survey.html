@@ -1,0 +1,33 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block main %}
+<div class="container login_push_footer" id="">
+  <div class="page_title sixteen columns">
+  <h2>Edit The Room You've Listed</h2>
+    <form action="" method="post">
+      {% csrf_token %}
+      <label>{{form.price.label}} ($)</label><br />
+      {{form.price.errors}}
+      <input type="text" name="price" value="{{user.survey.room.price}}"><br />
+      <label>{{form.address.label}}</label><br />
+      {{form.address.errors}}
+      <input type="text" name="address" value="{{user.survey.room.address}}"><br />
+      <br />
+      <label>{{form.city.label}}</label><br />
+      {{form.city.errors}}
+      <input type="text" name="city" value="{{user.survey.room.city}}"><br />
+      <label>{{form.state.label}}</label><br />
+      {{form.state.errors}}
+      <input type="text" name="state" value="{{user.survey.room.state}}"><br />
+      <label>{{form.zip.label}}</label><br />
+      {{form.zip.errors}}
+      <input type="text" name="zip" value="{{user.survey.room.zip}}"><br />
+      <label>About the room:</label><br />
+      {{form.price.errors}}
+      <input type="text" name="room_about" value="{{user.survey.room.about}}"><br />
+      <input type="submit" value="Submit!" />
+    </form>
+    
+  </div><!--closes page_title-->
+</div><!--closes container-->
+{% endblock main %}
